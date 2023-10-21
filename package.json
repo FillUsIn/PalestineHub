@@ -1,0 +1,47 @@
+{
+  "name": "palestine-hub",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mantine/carousel": "^7.1.5",
+    "@mantine/code-highlight": "^7.1.5",
+    "@mantine/core": "^7.1.5",
+    "@mantine/dates": "^7.1.5",
+    "@mantine/dropzone": "^7.1.5",
+    "@mantine/form": "^7.1.5",
+    "@mantine/hooks": "^7.1.5",
+    "@mantine/modals": "^7.1.5",
+    "@mantine/notifications": "^7.1.5",
+    "@mantine/nprogress": "^7.1.5",
+    "@mantine/spotlight": "^7.1.5",
+    "@mantine/tiptap": "^7.1.5",
+    "@tabler/icons-react": "^2.39.0",
+    "@tiptap/extension-link": "^2.1.12",
+    "@tiptap/react": "^2.1.12",
+    "@tiptap/starter-kit": "^2.1.12",
+    "dayjs": "^1.11.10",
+    "embla-carousel-react": "^8.0.0-rc14",
+    "next": "13.5.6",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.6",
+    "postcss": "^8.4.31",
+    "postcss-preset-mantine": "^1.9.0",
+    "postcss-simple-vars": "^7.0.1",
+    "tailwindcss": "^3",
+    "typescript": "^5"
+  }
+}
