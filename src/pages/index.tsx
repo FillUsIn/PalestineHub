@@ -154,9 +154,24 @@ function CallToActions() {
 
 function TopPicks({ tab }: { tab: Tab }) {
   const postSummaries: PostSummaryDTO[] = [
-    { title: "test title", postUrl: "https://fillusin.com/posts/123", imageUrl: "/top-video.jpeg" },
-    { title: "another title", postUrl: "https://fillusin.com/posts/456", imageUrl: "/top-video.jpeg" },
-    { title: "last title", postUrl: "https://fillusin.com/posts/789", imageUrl: "/child.jpeg" },
+    {
+      title: "test title",
+      postUrl: "https://fillusin.com/posts/123",
+      imageUrl: "/top-video.jpeg",
+      body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!",
+    },
+    {
+      title: "another title",
+      postUrl: "https://fillusin.com/posts/456",
+      imageUrl: "/top-video.jpeg",
+      body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!",
+    },
+    {
+      title: "last title",
+      postUrl: "https://fillusin.com/posts/789",
+      imageUrl: "/child.jpeg",
+      body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!",
+    },
   ];
   return (
     <>

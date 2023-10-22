@@ -17,9 +17,12 @@ function PostPreview({ postSummary }: Props) {
       className='h-96 flex flex-col overflow-hidden justify-between'
     >
       <div className='p-5 bg-gradient-to-b from-[#141414eb] to-90% h-full flex flex-col justify-between'>
-        <Title order={3} className='text-white'>
-          {postSummary.title}
-        </Title>
+        <div>
+          <Title order={2} className='text-white'>
+            {postSummary.title}
+          </Title>
+          <p className='mt-3 text-white font-semibold'>{postSummary.body}</p>
+        </div>
         <Button variant='white' color='dark' className=''>
           Read post
         </Button>

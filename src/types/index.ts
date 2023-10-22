@@ -1,6 +1,7 @@
 type PostSummaryDTO = {
   title: string;
-  postUrl: string;
+  postUrl?: string;
+  body?: string;
   imageUrl?: string;
 };
 
