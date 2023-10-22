@@ -28,7 +28,7 @@ function SearchBar() {
 
   return (
     <div className='flex items-center w-96 justify-center overflow-visible'>
-      <Autocomplete
+      {/* <Autocomplete
         ref={searchBarRef}
         icon={<IconSearch />}
         className='w-full'
@@ -44,7 +44,7 @@ function SearchBar() {
         onChange={(newSearchTerm) => onSearchTermChanged(newSearchTerm)}
         hoverOnSearchChange
         onDropdownClose={() => removeFocus()}
-      />
+      /> */}
     </div>
   );
 }

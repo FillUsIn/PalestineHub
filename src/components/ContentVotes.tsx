@@ -9,13 +9,13 @@ function ContentVotes({ voteCount = 0 }: Props) {
   return (
     <div className='flex items-center rounded-full p-2 text-gray-500 '>
       {/* <ActionIcon radius={"xl"} size={"lg"} variant='subtle' onClick={handleUpvote}> */}
-      <ArrowUp />
+      {/* <ArrowUp /> */}
       {/* </ActionIcon> */}
 
       <p className='text-sm font-bold text-gray-500 text-center mx-1.5'>{voteCount}</p>
 
       {/* <ActionIcon radius={"xl"} size={"lg"} variant='subtle' onClick={handleDownvote}> */}
-      <ArrowDown />
+      {/* <ArrowDown /> */}
       {/* </ActionIcon> */}
     </div>
   );

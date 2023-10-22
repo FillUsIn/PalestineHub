@@ -1,5 +1,3 @@
-import PostList from "@/components/PostList";
-import PostPreview from "@/components/PostPreview";
 import PostSummaryItemList from "@/components/PostSummaryItemList";
 import TopPost from "@/components/TopPost";
 import { PostSummaryDTO } from "@/types";
@@ -22,33 +20,33 @@ function Resources({}: Props) {
   const postSummaries: PostSummaryDTO[] = [
     {
       title: "test title",
-      postUrl: "https://fillusin.com/posts/123",
       imageUrl: "/top-video.jpeg",
       body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!",
       authorUsername: "yaseen",
       createdDate: "2021-09-22T14:30:45",
       id: "123",
       voteCount: 3,
+      commentCount: 43,
     },
     {
       title: "another title",
-      postUrl: "https://fillusin.com/posts/456",
       imageUrl: "/top-video.jpeg",
       body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!",
       authorUsername: "mohammed",
       createdDate: "2021-09-22T14:30:45",
       id: "456",
       voteCount: 21,
+      commentCount: 3,
     },
     {
       title: "last title",
-      postUrl: "https://fillusin.com/posts/789",
       imageUrl: "/child.jpeg",
       body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!",
       authorUsername: "abdullah",
       createdDate: "2021-09-22T14:30:45",
       id: "789",
       voteCount: -5,
+      commentCount: 2,
     },
   ];
   return (

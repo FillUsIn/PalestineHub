@@ -7,7 +7,6 @@ function notify(text: string) {
     color: "yellow",
     radius: "md",
     className: "shadow-3xl",
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     styles: (theme) => ({
       root: {
