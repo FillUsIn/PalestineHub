@@ -1,16 +1,13 @@
 import { Inter, Poppins } from "next/font/google";
-import { AppShell, Burger, Button, Card, Group, SegmentedControl, Text, em } from "@mantine/core";
+import { AppShell, Burger, Button, Group, SegmentedControl, em } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import PostPreview from "@/components/PostPreview";
-import { PostSummaryDTO } from "@/types";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { TopPicks } from "@/components/TopPicks/TopPicks";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({ weight: "500", subsets: ["latin-ext"] });
-
 type Tab = string;
 
 export default function Home() {
@@ -109,32 +106,6 @@ export default function Home() {
   );
 }
 
-// const Card = () => {
-//   return (
-//     <div className='relative rounded-lg overflow-hidden shadow-md'>
-//       {/* Background image */}
-//       <div
-//         className='w-full h-40 bg-cover bg-center'
-//         style={{
-//           backgroundImage: `url('/top-video.jpeg')`,
-//         }}
-//       >
-//         {/* Black gradient overlay (bottom to top right) */}
-//         <div className='absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60'></div>
-
-//         {/* Title */}
-//         <div className='absolute bottom-4 left-4 text-white text-lg font-semibold'>Card Title</div>
-//       </div>
-
-//       {/* Card Content */}
-//       <div className='bg-white p-4'>{/* Your card content here */}</div>
-//     </div>
-//   );
-// };
-
-function Panel() {
-  return <></>;
-}
 
 function CallToActions() {
   return (
@@ -149,48 +120,5 @@ function CallToActions() {
         Tools
       </div>
     </div>
-  );
-}
-
-function TopPicks({ tab }: { tab: Tab }) {
-  const postSummaries: PostSummaryDTO[] = [
-    {
-      title: "test title",
-      postUrl: "https://fillusin.com/posts/123",
-      imageUrl: "/top-video.jpeg",
-      body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!",
-    },
-    {
-      title: "another title",
-      postUrl: "https://fillusin.com/posts/456",
-      imageUrl: "/top-video.jpeg",
-      body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!",
-    },
-    {
-      title: "last title",
-      postUrl: "https://fillusin.com/posts/789",
-      imageUrl: "/child.jpeg",
-      body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!",
-    },
-  ];
-  return (
-    <>
-      <p className='mt-10 font-semibold text-2xl'>Top picks</p>
-
-      <div className='space-y-10 mt-5 md:flex md:justify-between md:gap-5 md:space-y-0'>
-        <PostPreview postSummary={postSummaries[0]} />
-        <PostPreview postSummary={postSummaries[1]} />
-        <PostPreview postSummary={postSummaries[2]} />
-        {/* <div className='h-60 bg-gray-100 shadow-inner rounded-lg relative lg:w-full'>
-          <Image src={"/top-video.jpeg"} layout='fill' objectFit='cover' alt='top video' className='rounded-lg' />
-        </div>
-        <div className='h-60 bg-gray-100 shadow-inner rounded-lg relative lg:w-full'>
-          <Image src={"/article.jpeg"} layout='fill' objectFit='cover' alt='top video' className='rounded-lg' />
-        </div>
-        <div className='h-60 bg-gray-100 shadow-inner rounded-lg relative lg:w-full'>
-          <Image src={"/child.jpeg"} layout='fill' objectFit='cover' alt='top video' className='rounded-lg' />
-        </div> */}
-      </div>
-    </>
   );
 }
