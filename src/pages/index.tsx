@@ -1,4 +1,5 @@
 import { Inter, Poppins } from "next/font/google";
+import Head from 'next/head'
 import { AppShell, Burger, Button, Group, SegmentedControl, em } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { useState } from "react";
@@ -31,6 +32,9 @@ export default function Home() {
       pt={"xl"}
       className={`max-w-4xl mx-auto lg:px-0 px-7 ${inter.className}`}
     >
+      <Head>
+        <title>Fill Us In | Information and resources for Palestine</title>
+      </Head>
       <AppShell.Header>
         <Group className='h-full px-6 max-w-4xl mx-auto lg:px-0' justify='space-between'>
           <p className='font-black text-2xl space-x-1'>
