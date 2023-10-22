@@ -1,6 +1,10 @@
 type PostSummaryDTO = {
+  id: string;
   title: string;
-  postUrl?: string;
+  authorUsername: string;
+  createdDate: string;
+  voteCount: number;
+  commentCount: number;
   body?: string;
   imageUrl?: string;
 };
