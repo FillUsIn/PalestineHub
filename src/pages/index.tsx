@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({ weight: "500", subsets: ["latin-ext"] });
 
-type Tab = "New to the cause?" | "BDS" | "Donate";
+type Tab = string;
 
 export default function Home() {
   const [opened, { toggle }] = useDisclosure();
@@ -97,7 +97,7 @@ export default function Home() {
         <SegmentedControl
           data={resultTypes}
           value={selectedTab}
-          onChange={(value: Tab) => setSelectedTab(value)}
+          onChange={(value) => setSelectedTab(value)}
           fullWidth
           size='lg'
           className='mt-20'
