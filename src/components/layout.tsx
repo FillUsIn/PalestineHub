@@ -59,7 +59,7 @@ function Layout({ children }: Props) {
         </Group>
       </AppShell.Header>
 
-      <AppShell.Navbar p='md' className='my-5'>
+      <AppShell.Navbar p='md' className='mb-5'>
         <ul className='flex flex-col pl-4 space-y-6 text-2xl font-medium'>
           <Link href='/resources/education' className='cursor-pointer'>
             Education
