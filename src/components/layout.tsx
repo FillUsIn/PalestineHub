@@ -21,10 +21,13 @@ function Layout({ children }: Props) {
       header={{ height: 60 }}
       navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened, desktop: true } }}
       pt={"xl"}
-      className={`max-w-4xl mx-auto lg:px-0 px-7 ${inter.className}`}
+      // style={{
+      //   backgroundImage: "url(hero-bg.png)",
+      // }}
+      className={`max-w-6xl mx-auto lg:px-0 px-7 ${inter.className}`}
     >
-      <AppShell.Header>
-        <Group className='h-full px-6 max-w-4xl mx-auto lg:px-0' justify='space-between'>
+      <AppShell.Header withBorder={false}>
+        <Group className='h-full  px-6 max-w-4xl mx-auto lg:px-0' justify='space-between'>
           <Link href='/'>
             <p className='font-black text-2xl space-x-1'>
               <span>Fill</span>
@@ -74,7 +77,7 @@ function Layout({ children }: Props) {
         </ul>
       </AppShell.Navbar>
 
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main className='md:mt-20'>{children}</AppShell.Main>
     </AppShell>
   );
 }

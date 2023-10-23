@@ -19,21 +19,23 @@ export default function Home() {
       </Head>
       <div className='md:flex'>
         <h1 className='text-4xl  mx-auto text-center font-black leading-tight lg:max-w-3xl md:text-6xl md:text-start md:mx-0 sm:text-5xl'>
-          Learn the real truth behind the Israel-Palestine conflict.
+          Everything you need to know to aid the Palestinian cause.
         </h1>
         <div className='flex justify-center mt-10 md:mt-0'>
-          <Button onClick={() => router.push("/resources")} radius={"md"} color='#ba2f2f' size='lg'>
+          <Button onClick={() => router.push("/resources")} radius={"xl"} color='dark' size='lg'>
             Learn more
           </Button>
+          {/* color='#ba2f2f' */}
         </div>
       </div>
+      <p className='text-center mt-20 font-bold text-2xl md:text-3xl md:text-start'>The quickest way to help</p>
       <SegmentedControl
         data={resultTypes}
         value={selectedTab}
         onChange={(value) => setSelectedTab(value)}
         fullWidth
         size='md'
-        className='mt-20'
+        className='mt-10'
         radius={"xl"}
       />
       <TopPicks tab={selectedTab} />
