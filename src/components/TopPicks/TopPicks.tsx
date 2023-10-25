@@ -7,6 +7,9 @@ import { Post } from "@/types/entities";
 type Tab = string;
 
 export const TopPicks = ({ tab, topPosts }: { tab: Tab; topPosts: TopPost[] }) => {
+
+  if (topPosts.length == 0) return <p className='text-center'>No posts found.</p>;
+
   return (
     <>
       <div className='space-y-10 mt-5 md:flex md:justify-between md:gap-5 md:space-y-0'>
