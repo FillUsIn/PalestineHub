@@ -91,17 +91,6 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
     }
   }, [subcategoryName, setValue]);
 
-  useEffect(() => {
-    const fetchAllCommunities = async () => {
-      // const communities = await getAllCommunities();
-
-      // const selectData = mapCommunitiesToSelectData(communities);
-      setSelectData(selectData);
-    };
-
-    fetchAllCommunities();
-  }, []);
-
   // const mapCommunitiesToSelectData = (communities: Community[]): SelectItemType[] => {
   //   return communities.map((community): SelectItemType => {
   //     return {
@@ -133,6 +122,7 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
           withAsterisk
           disabled={subcategoryName != null}
           placeholder='Select subcategory'
+          //@ts-ignore
           itemComponent={SelectItem}
           data={selectData}
           searchable

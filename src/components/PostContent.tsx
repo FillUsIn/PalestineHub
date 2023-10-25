@@ -5,7 +5,7 @@ import { Constants } from "@/lib/constants";
 import Link from "next/link";
 import ContentInteractions from "./ContentInteractions";
 
-function PostContent({ post, onOptionsClicked }: { post: Post; onOptionsClicked: () => void }) {
+function PostContent({ post, onOptionsClicked }: { post: Post; onOptionsClicked?: () => void }) {
   return (
     <div className=''>
       <div className='flex items-center gap-2'>

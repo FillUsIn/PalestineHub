@@ -8,7 +8,7 @@ type Props = {
   onUpvote?: () => void;
   onDownvote?: () => void;
   voteCount: number;
-  onOptionsClicked: () => void;
+  onOptionsClicked?: () => void;
   onReplyClicked?: () => void;
   commentCount?: number;
   className?: string;

@@ -38,6 +38,7 @@ function PostPage({ post }: Props) {
   );
 }
 
+//@ts-ignore
 export async function getServerSideProps({ params }) {
   const { postId } = params;
 
@@ -52,6 +53,8 @@ export async function getServerSideProps({ params }) {
     url: "https://google.com",
     thumbnailUrl: null,
     voteCount: 32,
+    userDislikes: [],
+    userLikes: [],
   };
 
   return {
