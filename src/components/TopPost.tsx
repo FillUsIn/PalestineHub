@@ -13,7 +13,7 @@ function TopPost({ postSummary }: Props) {
       shadow='md'
       radius='lg'
       style={{ backgroundImage: `url(${postSummary.imageUrl})` }}
-      className='h-40 flex flex-col overflow-hidden justify-between'
+      className='h-40 w-full flex flex-col overflow-hidden justify-between md:h-80'
     >
       <div className='p-5 bg-gradient-to-b from-[#141414eb] to-90% h-full flex flex-col justify-between'>
         <div>
