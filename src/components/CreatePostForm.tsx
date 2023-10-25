@@ -17,7 +17,7 @@ import { notifications } from "@mantine/notifications";
 import { addArtificialDelay } from "@/lib/utils/network";
 import { useForm, SubmitHandler, useController } from "react-hook-form";
 import { CreatePostDTO } from "@/types/dtos";
-import { createSubcategoryPost } from "@/api/subcategory-posts";
+import { createSubcategoryPost } from "@/api/posts";
 import { useRouter } from "next/router";
 
 type Inputs = {
