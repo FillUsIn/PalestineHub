@@ -20,9 +20,6 @@ function Home({ topics }: Props) {
 
   return (
     <div>
-      <Head>
-        <title>Fill Us In | Information and resources for Palestine</title>
-      </Head>
       <div className='md:flex md:justify-between'>
         <h1 className='text-4xl  mx-auto text-center font-black leading-tight lg:max-w-3xl md:text-6xl md:text-start md:mx-0 sm:text-5xl'>
           Everything you need to know to aid the Palestinian cause.
