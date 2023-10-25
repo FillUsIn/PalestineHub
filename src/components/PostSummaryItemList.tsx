@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import PostSummaryItem from "./PostSummaryItem";
-import { PostSummaryDTO } from "@/types";
+import { PostSummaryDTO } from "@/types/dtos";
 
 type Props = {
   posts: PostSummaryDTO[];
