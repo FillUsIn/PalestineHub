@@ -62,8 +62,8 @@ function ContentInteractions({
 function Comments({ commentCount }: { commentCount: number }) {
   return (
     <div className='flex items-center cursor-pointer space-x-1 hover:bg-zinc-100 rounded-full py-1.5 px-2.5 '>
-      <IconMessageCircle size='22' color='gray' />
-      <p className='text-sm font-bold text-gray-500 '>{commentCount}</p>
+      <IconMessageCircle size='22' color='white' fill='white' />
+      <p className='text-sm font-bold text-white '>{commentCount}</p>
     </div>
   );
 }

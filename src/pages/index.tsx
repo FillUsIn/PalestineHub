@@ -3,10 +3,16 @@ import { Button, SegmentedControl } from "@mantine/core";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { TopPicks } from "@/components/TopPicks/TopPicks";
+import { getTopics } from "@/api/topics";
+import { Topic } from "@/types/dtos";
 
 type Tab = string;
 
-export default function Home() {
+type Props = {
+  topics: Topic[];
+};
+
+function Home({ topics }: Props) {
   const [resultTypes] = useState<Tab[]>(["New to the cause?", "BDS", "Donate"]);
   const [selectedTab, setSelectedTab] = useState<Tab>("New to the cause?");
 
@@ -17,12 +23,29 @@ export default function Home() {
       <Head>
         <title>Fill Us In | Information and resources for Palestine</title>
       </Head>
-      <div className='md:flex'>
+      <div className='md:flex md:justify-between'>
         <h1 className='text-4xl  mx-auto text-center font-black leading-tight lg:max-w-3xl md:text-6xl md:text-start md:mx-0 sm:text-5xl'>
           Everything you need to know to aid the Palestinian cause.
         </h1>
-        <div className='flex justify-center mt-10 md:mt-0'>
-          <Button onClick={() => router.push("/resources")} radius={"xl"} color='dark' size='lg'>
+        <div className='flex justify-center mt-10 md:mt-0 md:self-center'>
+          <Button
+            // styles={{ label: { textDecoration: "underline", textUnderlineOffset: ".3rem" } }}
+            onClick={() => router.push("/resources")}
+            radius={"xl"}
+            color='dark'
+            size={"lg"}
+            hiddenFrom='sm'
+          >
+            Learn more
+          </Button>
+          <Button
+            // styles={{ label: { textDecoration: "underline", textUnderlineOffset: ".3rem" } }}
+            onClick={() => router.push("/resources")}
+            radius={"xl"}
+            color='dark'
+            size={"xl"}
+            visibleFrom='sm'
+          >
             Learn more
           </Button>
           {/* color='#ba2f2f' */}
@@ -38,7 +61,19 @@ export default function Home() {
         className='mt-10'
         radius={"xl"}
       />
-      <TopPicks tab={selectedTab} />
+      <TopPicks tab={selectedTab} topPosts={topics[0].topPosts} />
     </div>
   );
 }
+
+export async function getServerSideProps() {
+  const topics = await getTopics();
+
+  return {
+    props: {
+      topics,
+    },
+  };
+}
+
+export default Home;

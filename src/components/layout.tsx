@@ -20,14 +20,14 @@ function Layout({ children }: Props) {
     <AppShell
       header={{ height: 60 }}
       navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened, desktop: true } }}
-      pt={"xl"}
+      py={"xl"}
       // style={{
       //   backgroundImage: "url(hero-bg.png)",
       // }}
-      className={`max-w-6xl mx-auto lg:px-0 px-7 ${inter.className}`}
+      className={`max-w-6xl mx-auto xl:px-0 px-7 ${inter.className}`}
     >
       <AppShell.Header withBorder={false}>
-        <Group className='h-full  px-6 max-w-4xl mx-auto lg:px-0' justify='space-between'>
+        <Group className='h-full  px-7 max-w-6xl mx-auto xl:px-0' justify='space-between'>
           <Link href='/'>
             <p className='font-black text-2xl space-x-1'>
               <span>Fill</span>
@@ -42,11 +42,11 @@ function Layout({ children }: Props) {
                 <Link href='/resources/education' className='cursor-pointer'>
                   Education
                 </Link>
-                <Link href='/resources/charities' className='cursor-pointer'>
-                  Charities
-                </Link>
                 <Link href='/resources/tools' className='cursor-pointer'>
                   Tools
+                </Link>
+                <Link href='/resources/charities' className='cursor-pointer'>
+                  Charities
                 </Link>
               </Group>
               <Button radius={"xl"} fw={"bolder"} size='sm' color='black'>
@@ -64,12 +64,13 @@ function Layout({ children }: Props) {
           <Link href='/resources/education' className='cursor-pointer'>
             Education
           </Link>
-          <Link href='/resources/charities' className='cursor-pointer'>
-            Charities
-          </Link>
           <Link href='/resources/tools' className='cursor-pointer'>
             Tools
           </Link>
+          <Link href='/resources/charities' className='cursor-pointer'>
+            Charities
+          </Link>
+
           <hr />
           <Button w={"100%"} radius={"md"} fw={"bold"} size='compact-xl' color='black'>
             Sign in
@@ -77,7 +78,7 @@ function Layout({ children }: Props) {
         </ul>
       </AppShell.Navbar>
 
-      <AppShell.Main className='md:mt-20'>{children}</AppShell.Main>
+      <AppShell.Main className=' md:mt-20'>{children}</AppShell.Main>
     </AppShell>
   );
 }
