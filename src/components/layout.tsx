@@ -49,7 +49,7 @@ function Layout({ children }: Props) {
                   Charities
                 </Link>
               </Group>
-              <Button radius={"xl"} fw={"bolder"} size='sm' color='black'>
+              <Button radius={"xl"} fw={"bolder"} size='sm' color='dark'>
                 Sign in
               </Button>
             </>
@@ -72,7 +72,7 @@ function Layout({ children }: Props) {
           </Link>
 
           <hr />
-          <Button w={"100%"} radius={"md"} fw={"bold"} size='compact-xl' color='black'>
+          <Button w={"100%"} radius={"xl"} fw={"bold"} size='compact-xl' color='dark'>
             Sign in
           </Button>
         </ul>
