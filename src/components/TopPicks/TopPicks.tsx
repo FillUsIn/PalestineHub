@@ -7,6 +7,7 @@ import { Post } from "@/types/entities";
 type Tab = string;
 
 export const TopPicks = ({ tab, topPosts }: { tab: Tab; topPosts: TopPost[] }) => {
+
   if (topPosts.length == 0) return <p className='text-center'>No posts found.</p>;
 
   return (
