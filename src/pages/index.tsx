@@ -58,7 +58,11 @@ function Home({ topics }: Props) {
         className='mt-10'
         radius={"xl"}
       />
-      <TopPicks tab={selectedTab} topPosts={topics[0].topPosts} />
+      {topics && topics.length ? (
+        <TopPicks tab={selectedTab} topPosts={topics[0].topPosts} />
+      ) : (
+        <p>Error displaying topics</p>
+      )}
     </div>
   );
 }
