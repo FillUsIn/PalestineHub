@@ -1,7 +1,10 @@
+import { getCategories } from '@/api/category';
+import { getCategoryPosts } from '@/api/posts';
 import CreatePostForm from '@/components/CreatePostForm';
 import PostSummaryItemList from '@/components/PostSummaryItemList';
 import TopPost from '@/components/TopPost';
 import { PostSummaryDTO } from '@/types/dtos';
+import { Category, Post } from '@/types/entities';
 import {
   Anchor,
   Breadcrumbs,
@@ -13,9 +16,12 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import React from 'react';
 
-type Props = {};
+type Props = {
+  categoryPosts: Post[]
+};
 
-function Resources({}: Props) {
+function Resources({categoryPosts}: Props) {
+
   const [opened, { close, open }] = useDisclosure(false);
   const items = [
     { title: 'Education', href: '#' },
@@ -26,38 +32,39 @@ function Resources({}: Props) {
     </Anchor>
   ));
 
-  const postSummaries: PostSummaryDTO[] = [
-    {
-      title: 'test title',
-      imageUrl: '/top-video.jpeg',
-      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!',
-      username: 'yaseen',
-      createdDate: '2021-09-22T14:30:45',
-      id: '123',
-      voteCount: 3,
-      commentCount: 43,
-    },
-    {
-      title: 'another title',
-      imageUrl: '/top-video.jpeg',
-      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!',
-      username: 'mohammed',
-      createdDate: '2021-09-22T14:30:45',
-      id: '456',
-      voteCount: 21,
-      commentCount: 3,
-    },
-    {
-      title: 'last title',
-      imageUrl: '/child.jpeg',
-      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!',
-      username: 'abdullah',
-      createdDate: '2021-09-22T14:30:45',
-      id: '789',
-      voteCount: -5,
-      commentCount: 2,
-    },
-  ];
+  // const postSummaries: PostSummaryDTO[] = [
+  //   {
+  //     title: 'test title',
+  //     imageUrl: '/top-video.jpeg',
+  //     body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!',
+  //     username: 'yaseen',
+  //     createdDate: '2021-09-22T14:30:45',
+  //     id: '123',
+  //     voteCount: 3,
+  //     commentCount: 43,
+  //   },
+  //   {
+  //     title: 'another title',
+  //     imageUrl: '/top-video.jpeg',
+  //     body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!',
+  //     username: 'mohammed',
+  //     createdDate: '2021-09-22T14:30:45',
+  //     id: '456',
+  //     voteCount: 21,
+  //     commentCount: 3,
+  //   },
+  //   {
+  //     title: 'last title',
+  //     imageUrl: '/child.jpeg',
+  //     body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!',
+  //     username: 'abdullah',
+  //     createdDate: '2021-09-22T14:30:45',
+  //     id: '789',
+  //     voteCount: -5,
+  //     commentCount: 2,
+  //   },
+  // ];
+
   return (
     <>
       <Modal
@@ -69,6 +76,7 @@ function Resources({}: Props) {
       >
         <CreatePostForm subcategoryName={'UK'} onDismiss={close} />
       </Modal>
+      {JSON.stringify(categoryPosts)}
       <div className='flex flex-col  justify-between md:flex-row '>
         <Breadcrumbs
           styles={{
@@ -95,18 +103,28 @@ function Resources({}: Props) {
       </Title>
 
       <div className='mt-5 justify-between space-y-4 md:flex md:gap-5 md:space-y-0'>
-        <TopPost postSummary={postSummaries[0]} />
-        <TopPost postSummary={postSummaries[1]} />
-        <TopPost postSummary={postSummaries[2]} />
+        {categoryPosts.map(categoryPost => (
+          <TopPost post={categoryPost} />
+        ))}
       </div>
 
       <Divider className='my-5' size={'xl'} />
 
-      <PostSummaryItemList posts={postSummaries} />
+      <PostSummaryItemList posts={categoryPosts} />
 
       {/* <SideBar /> */}
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const categoryPosts = await getCategoryPosts();
+
+  return {
+    props: {
+      categoryPosts,
+    },
+  };
 }
 
 export default Resources;
