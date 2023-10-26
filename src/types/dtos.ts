@@ -18,6 +18,16 @@ type CreatePostDTO = {
   url?: string;
 };
 
+type CreateUserDTO = {
+  username: string;
+  password: string;
+};
+
+type LoginDTO = {
+  username: string;
+  password: string;
+};
+
 type Topic = {
   title: string;
   topPosts: TopPost[];
@@ -28,4 +38,4 @@ type TopPost = {
   post: Post;
 };
 
-export type { CreatePostDTO, PostSummaryDTO, Topic, TopPost };
+export type { CreatePostDTO, PostSummaryDTO, Topic, TopPost, LoginDTO, CreateUserDTO };

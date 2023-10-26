@@ -17,4 +17,14 @@ type User = {
   updatedAt: string;
 };
 
-export type { Post, User };
+type Category = {
+  name: string;
+  subcategories: Subcategory[];
+};
+
+type Subcategory = {
+  name: string;
+  posts: Post[];
+};
+
+export type { Post, User, Category, Subcategory };

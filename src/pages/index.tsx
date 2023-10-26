@@ -21,9 +21,13 @@ function Home({ topics }: Props) {
   return (
     <div>
       <div className='md:flex md:justify-between'>
-        <h1 className='text-4xl  mx-auto text-center font-black leading-tight lg:max-w-3xl md:text-6xl md:text-start md:mx-0 sm:text-5xl'>
-          Everything you need to know to aid the Palestinian cause.
-        </h1>
+        <h1 className='text-4xl mx-auto text-center font-black leading-tight lg:max-w-3xl md:text-6xl md:text-start md:mx-0 sm:text-5xl'>
+          Ultimate Resources Hub for the  
+          <span className="text-black"> PAL</span>
+          <span className="text-red-700">EST</span>
+          <span className="text-green-700">INE </span>
+                 Cause
+            </h1>
         <div className='flex justify-center mt-10 md:mt-0 md:self-center'>
           <Button
             // styles={{ label: { textDecoration: "underline", textUnderlineOffset: ".3rem" } }}
@@ -48,7 +52,7 @@ function Home({ topics }: Props) {
           {/* color='#ba2f2f' */}
         </div>
       </div>
-      <p className='text-center mt-20 font-bold text-2xl md:text-3xl md:text-start'>The quickest way to help</p>
+      {/* <p className='text-center mt-20 font-bold text-2xl md:text-3xl md:text-start'>The quickest way to help</p> */}
       <SegmentedControl
         data={resultTypes}
         value={selectedTab}
