@@ -8,7 +8,7 @@ type PostSummaryDTO = {
   voteCount: number;
   commentCount: number;
   body?: string;
-  imageUrl?: string;
+  thumbnailUrl?: string;
 };
 
 type CreatePostDTO = {

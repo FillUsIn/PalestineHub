@@ -2,10 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import { Button, Card, Group, Paper, Text, Title } from '@mantine/core';
 import { PostSummaryDTO } from '@/types/dtos';
-import { Post } from '@/types/entities';
 
 type Props = {
-  post: Post;
+  post: PostSummaryDTO;
 };
 
 function TopPost({ post }: Props) {

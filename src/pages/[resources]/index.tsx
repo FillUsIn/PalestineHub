@@ -1,10 +1,8 @@
 import { getCategories } from '@/api/category';
-import { getCategoryPosts } from '@/api/posts';
 import CreatePostForm from '@/components/CreatePostForm';
 import PostSummaryItemList from '@/components/PostSummaryItemList';
 import TopPost from '@/components/TopPost';
 import { PostSummaryDTO } from '@/types/dtos';
-import { Category, Post } from '@/types/entities';
 import {
   Anchor,
   Breadcrumbs,
@@ -15,13 +13,16 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import React from 'react';
+import { getAllPosts } from '../../api/posts';
 
 type Props = {
-  categoryPosts: Post[]
+  allPosts: PostSummaryDTO[];
 };
 
-function Resources({categoryPosts}: Props) {
+const numberOfTopPosts = 3;
+const postsPerPage = 10;
 
+function Resources({ allPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const items = [
     { title: 'Education', href: '#' },
@@ -31,39 +32,6 @@ function Resources({categoryPosts}: Props) {
       {item.title}
     </Anchor>
   ));
-
-  // const postSummaries: PostSummaryDTO[] = [
-  //   {
-  //     title: 'test title',
-  //     imageUrl: '/top-video.jpeg',
-  //     body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!',
-  //     username: 'yaseen',
-  //     createdDate: '2021-09-22T14:30:45',
-  //     id: '123',
-  //     voteCount: 3,
-  //     commentCount: 43,
-  //   },
-  //   {
-  //     title: 'another title',
-  //     imageUrl: '/top-video.jpeg',
-  //     body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!',
-  //     username: 'mohammed',
-  //     createdDate: '2021-09-22T14:30:45',
-  //     id: '456',
-  //     voteCount: 21,
-  //     commentCount: 3,
-  //   },
-  //   {
-  //     title: 'last title',
-  //     imageUrl: '/child.jpeg',
-  //     body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!',
-  //     username: 'abdullah',
-  //     createdDate: '2021-09-22T14:30:45',
-  //     id: '789',
-  //     voteCount: -5,
-  //     commentCount: 2,
-  //   },
-  // ];
 
   return (
     <>
@@ -76,12 +44,12 @@ function Resources({categoryPosts}: Props) {
       >
         <CreatePostForm subcategoryName={'UK'} onDismiss={close} />
       </Modal>
-      {JSON.stringify(categoryPosts)}
       <div className='flex flex-col  justify-between md:flex-row '>
         <Breadcrumbs
+          separator='>'
           styles={{
-            breadcrumb: { color: 'black', fontWeight: '700' },
-            separator: { fontWeight: '800' },
+            breadcrumb: { color: 'grey', fontWeight: '500' },
+            separator: { color: 'grey', fontWeight: '500' },
           }}
         >
           {items}
@@ -103,26 +71,25 @@ function Resources({categoryPosts}: Props) {
       </Title>
 
       <div className='mt-5 justify-between space-y-4 md:flex md:gap-5 md:space-y-0'>
-        {categoryPosts.map(categoryPost => (
-          <TopPost post={categoryPost} />
-        ))}
+        {allPosts &&
+          allPosts &&
+          allPosts
+            .slice(0, numberOfTopPosts)
+            .map((post) => <TopPost post={post} key={post.id} />)}
       </div>
 
       <Divider className='my-5' size={'xl'} />
 
-      <PostSummaryItemList posts={categoryPosts} />
-
-      {/* <SideBar /> */}
+      <PostSummaryItemList posts={allPosts.slice(numberOfTopPosts)} />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const categoryPosts = await getCategoryPosts();
-
+  const allPosts = (await getAllPosts(0, postsPerPage)).content;
   return {
     props: {
-      categoryPosts,
+      allPosts,
     },
   };
 }
