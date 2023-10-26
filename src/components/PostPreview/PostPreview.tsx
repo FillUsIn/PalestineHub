@@ -16,14 +16,14 @@ function PostPreview({ post }: Props) {
       w='100%'
       radius='lg'
       style={{ backgroundImage: `url(${post.thumbnailUrl})` }}
-      className='h-96 flex flex-col overflow-hidden justify-between'
+      className='flex h-96 flex-col justify-between overflow-hidden'
     >
-      <div className='p-5 bg-gradient-to-b from-[#141414eb] to-90% h-full flex flex-col justify-between'>
+      <div className='flex h-full flex-col justify-between bg-gradient-to-b from-[#141414eb] to-90% p-5'>
         <div>
           <Title order={2} className='text-white'>
             {post.title}
           </Title>
-          <p className='mt-3 text-white font-semibold'>{post.body}</p>
+          <p className='mt-3 font-semibold text-white'>{post.body}</p>
         </div>
         <Button variant='white' color='dark' className=''>
           Read post

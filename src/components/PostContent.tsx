@@ -1,11 +1,15 @@
 import { Post } from "@/types/entities";
-import { Avatar } from "@mantine/core";
 import { since } from "@/lib/utils/date-time";
-import { Constants } from "@/lib/constants";
 import Link from "next/link";
 import ContentInteractions from "./ContentInteractions";
 
-function PostContent({ post, onOptionsClicked }: { post: Post; onOptionsClicked?: () => void }) {
+function PostContent({
+  post,
+  onOptionsClicked,
+}: {
+  post: Post;
+  onOptionsClicked?: () => void;
+}) {
   return (
     <div className=''>
       <div className='flex items-center gap-2'>
@@ -23,8 +27,10 @@ function PostContent({ post, onOptionsClicked }: { post: Post; onOptionsClicked?
           </p>
         </div>
       </div>
-      <h1 className='font-semibold text-2xl mt-4'>{post.title}</h1>
-      {post.body && <p className='mt-10 whitespace-pre-line break-words'>{post.body}</p>}
+      <h1 className='mt-4 text-2xl font-semibold'>{post.title}</h1>
+      {post.body && (
+        <p className='mt-10 whitespace-pre-line break-words'>{post.body}</p>
+      )}
       <ContentInteractions
         voteCount={post.voteCount}
         commentCount={0}

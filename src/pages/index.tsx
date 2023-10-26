@@ -21,14 +21,14 @@ function Home({ topics }: Props) {
   return (
     <div>
       <div className='md:flex md:justify-between'>
-        <h1 className='text-4xl mx-auto text-center font-black leading-tight lg:max-w-3xl md:text-6xl md:text-start md:mx-0 sm:text-5xl'>
-          Ultimate Resources Hub for the  
-          <span className="text-black"> PAL</span>
-          <span className="text-red-700">EST</span>
-          <span className="text-green-700">INE </span>
-                 Cause
-            </h1>
-        <div className='flex justify-center mt-10 md:mt-0 md:self-center'>
+        <h1 className='mx-auto text-center text-4xl font-black leading-tight sm:text-5xl md:mx-0 md:text-start md:text-6xl lg:max-w-3xl'>
+          Ultimate Resources Hub for the
+          <span className='text-black'> PAL</span>
+          <span className='text-red-700'>EST</span>
+          <span className='text-green-700'>INE </span>
+          Cause
+        </h1>
+        <div className='mt-10 flex justify-center md:mt-0 md:self-center'>
           <Button
             // styles={{ label: { textDecoration: "underline", textUnderlineOffset: ".3rem" } }}
             onClick={() => router.push("/resources")}
@@ -68,7 +68,6 @@ function Home({ topics }: Props) {
       ) : (
         <p>Error displaying topics</p>
       )}
-
     </div>
   );
 }

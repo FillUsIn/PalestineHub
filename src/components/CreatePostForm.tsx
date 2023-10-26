@@ -41,11 +41,19 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
     setValue,
   } = useForm<Inputs>();
 
-  const { field: selectedSubCategoryNameField } = useController({ name: "subcategoryName", control });
+  const { field: selectedSubCategoryNameField } = useController({
+    name: "subcategoryName",
+    control,
+  });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit: SubmitHandler<Inputs> = async ({ title, body, subcategoryName, contentUrl }) => {
+  const onSubmit: SubmitHandler<Inputs> = async ({
+    title,
+    body,
+    subcategoryName,
+    contentUrl,
+  }) => {
     setIsSubmitting(true);
 
     const createPostDTO: CreatePostDTO = {
@@ -56,7 +64,10 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
     };
 
     try {
-      const createdPost = await createSubcategoryPost(subcategoryName, createPostDTO);
+      const createdPost = await createSubcategoryPost(
+        subcategoryName,
+        createPostDTO
+      );
       await addArtificialDelay(1);
 
       if (createdPost) {
@@ -107,9 +118,19 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='relative'>
-      <LoadingOverlay transitionProps={{ duration: 100 }} loaderProps={{ size: "lg" }} visible={isSubmitting} />
+      <LoadingOverlay
+        transitionProps={{ duration: 100 }}
+        loaderProps={{ size: "lg" }}
+        visible={isSubmitting}
+      />
       <div className='flex items-center justify-between'>
-        <CloseButton onClick={onDismiss} size={"xl"} iconSize={30} radius={"xl"} color='gray' />
+        <CloseButton
+          onClick={onDismiss}
+          size={"xl"}
+          iconSize={30}
+          radius={"xl"}
+          color='gray'
+        />
         <Title order={3}>Submit a resource</Title>
         <p className='opacity-0'>next</p>
         {/* <Button type='submit' className='transition-all duration-300' radius={"xl"} disabled={!isValid}>
@@ -151,7 +172,13 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
           {...register("contentUrl", { required: false })}
         />
 
-        <Textarea variant='filled' label='Body' placeholder='Write something here...' rows={6} {...register("body")} />
+        <Textarea
+          variant='filled'
+          label='Body'
+          placeholder='Write something here...'
+          rows={6}
+          {...register("body")}
+        />
 
         <Button
           type='submit'
@@ -168,24 +195,26 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
   );
 }
 
-const SelectItem = forwardRef<HTMLDivElement, ItemProps>(({ label, description, ...others }: ItemProps, ref) => (
-  <div ref={ref} key={label} {...others}>
-    <Group wrap='nowrap'>
-      <Avatar size='lg' radius='xl' color='cyan'>
-        <IconBrandReddit size='40' />
-      </Avatar>
+const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
+  ({ label, description, ...others }: ItemProps, ref) => (
+    <div ref={ref} key={label} {...others}>
+      <Group wrap='nowrap'>
+        <Avatar size='lg' radius='xl' color='cyan'>
+          <IconBrandReddit size='40' />
+        </Avatar>
 
-      <div>
-        <Text size='md' className='font-semibold'>
-          {label}
-        </Text>
-        <Text size='xs' className='font-medium' opacity={0.65}>
-          {description}
-        </Text>
-      </div>
-    </Group>
-  </div>
-));
+        <div>
+          <Text size='md' className='font-semibold'>
+            {label}
+          </Text>
+          <Text size='xs' className='font-medium' opacity={0.65}>
+            {description}
+          </Text>
+        </div>
+      </Group>
+    </div>
+  )
+);
 
 SelectItem.displayName = "SelectItem";
 

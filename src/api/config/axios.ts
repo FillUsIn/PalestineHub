@@ -29,7 +29,11 @@ axiosInstance.interceptors.response.use(
     } else {
       // Something else happened that caused an error
       console.error("Error:", error.message);
-      notifications.show({ title: "Something went wrong", message: error.message, color: "red" });
+      notifications.show({
+        title: "Something went wrong",
+        message: error.message,
+        color: "red",
+      });
     }
 
     // You can also throw the error to propagate it to the calling code,

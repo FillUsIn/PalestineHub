@@ -13,9 +13,9 @@ function TopPost({ postSummary }: Props) {
       shadow='md'
       radius='lg'
       style={{ backgroundImage: `url(${postSummary.imageUrl})` }}
-      className='h-40 w-full flex flex-col overflow-hidden justify-between md:h-80'
+      className='flex h-40 w-full flex-col justify-between overflow-hidden md:h-80'
     >
-      <div className='p-5 bg-gradient-to-b from-[#141414eb] to-90% h-full flex flex-col justify-between'>
+      <div className='flex h-full flex-col justify-between bg-gradient-to-b from-[#141414eb] to-90% p-5'>
         <div>
           <Title order={5} className='text-white'>
             {postSummary.title}

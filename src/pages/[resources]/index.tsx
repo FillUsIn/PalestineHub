@@ -2,7 +2,14 @@ import CreatePostForm from "@/components/CreatePostForm";
 import PostSummaryItemList from "@/components/PostSummaryItemList";
 import TopPost from "@/components/TopPost";
 import { PostSummaryDTO } from "@/types/dtos";
-import { Anchor, Breadcrumbs, Button, Divider, Modal, Title } from "@mantine/core";
+import {
+  Anchor,
+  Breadcrumbs,
+  Button,
+  Divider,
+  Modal,
+  Title,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React from "react";
 
@@ -53,14 +60,32 @@ function Resources({}: Props) {
   ];
   return (
     <>
-      <Modal classNames={{ body: "md:mx-5" }} opened={opened} onClose={close} centered withCloseButton={false}>
+      <Modal
+        classNames={{ body: "md:mx-5" }}
+        opened={opened}
+        onClose={close}
+        centered
+        withCloseButton={false}
+      >
         <CreatePostForm subcategoryName={"UK"} onDismiss={close} />
       </Modal>
       <div className='flex flex-col  justify-between md:flex-row '>
-        <Breadcrumbs styles={{ breadcrumb: { color: "black", fontWeight: "700" }, separator: { fontWeight: "800" } }}>
+        <Breadcrumbs
+          styles={{
+            breadcrumb: { color: "black", fontWeight: "700" },
+            separator: { fontWeight: "800" },
+          }}
+        >
           {items}
         </Breadcrumbs>
-        <Button onClick={open} fw={"bolder"} radius='lg' color='dark' size='sm' className='mt-5 md:mt-0'>
+        <Button
+          onClick={open}
+          fw={"bolder"}
+          radius='lg'
+          color='dark'
+          size='sm'
+          className='mt-5 md:mt-0'
+        >
           Submit a post
         </Button>
       </div>
@@ -69,7 +94,7 @@ function Resources({}: Props) {
         Top 3 posts
       </Title>
 
-      <div className='mt-5 space-y-4 md:flex justify-between md:gap-5 md:space-y-0'>
+      <div className='mt-5 justify-between space-y-4 md:flex md:gap-5 md:space-y-0'>
         <TopPost postSummary={postSummaries[0]} />
         <TopPost postSummary={postSummaries[1]} />
         <TopPost postSummary={postSummaries[2]} />

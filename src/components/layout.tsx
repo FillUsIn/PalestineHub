@@ -19,17 +19,24 @@ function Layout({ children }: Props) {
   return (
     <AppShell
       header={{ height: 60 }}
-      navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened, desktop: true } }}
+      navbar={{
+        width: 300,
+        breakpoint: "sm",
+        collapsed: { mobile: !opened, desktop: true },
+      }}
       py={"xl"}
       // style={{
       //   backgroundImage: "url(hero-bg.png)",
       // }}
-      className={`max-w-6xl mx-auto xl:px-0 px-7 ${inter.className}`}
+      className={`mx-auto max-w-6xl px-7 xl:px-0 ${inter.className}`}
     >
       <AppShell.Header withBorder={false}>
-        <Group className='h-full  px-7 max-w-6xl mx-auto xl:px-0' justify='space-between'>
+        <Group
+          className='mx-auto  h-full max-w-6xl px-7 xl:px-0'
+          justify='space-between'
+        >
           <Link href='/'>
-            <p className='font-black text-2xl space-x-1'>
+            <p className='space-x-1 text-2xl font-black'>
               <span>Fill</span>
               <span className='text-red-700'>Us</span>
               <span className='text-green-800'>In</span>
@@ -60,7 +67,7 @@ function Layout({ children }: Props) {
       </AppShell.Header>
 
       <AppShell.Navbar p='md' className='mb-5'>
-        <ul className='flex flex-col pl-4 space-y-6 text-2xl font-medium'>
+        <ul className='flex flex-col space-y-6 pl-4 text-2xl font-medium'>
           <Link href='/resources/education' className='cursor-pointer'>
             Education
           </Link>
@@ -72,7 +79,13 @@ function Layout({ children }: Props) {
           </Link>
 
           <hr />
-          <Button w={"100%"} radius={"xl"} fw={"bold"} size='compact-xl' color='dark'>
+          <Button
+            w={"100%"}
+            radius={"xl"}
+            fw={"bold"}
+            size='compact-xl'
+            color='dark'
+          >
             Sign in
           </Button>
         </ul>

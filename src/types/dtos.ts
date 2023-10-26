@@ -38,4 +38,11 @@ type TopPost = {
   post: Post;
 };
 
-export type { CreatePostDTO, PostSummaryDTO, Topic, TopPost, LoginDTO, CreateUserDTO };
+export type {
+  CreatePostDTO,
+  PostSummaryDTO,
+  Topic,
+  TopPost,
+  LoginDTO,
+  CreateUserDTO,
+};

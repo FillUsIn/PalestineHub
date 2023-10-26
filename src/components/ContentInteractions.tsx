@@ -1,4 +1,8 @@
-import { IconArrowBackUp, IconDots, IconMessageCircle } from "@tabler/icons-react";
+import {
+  IconArrowBackUp,
+  IconDots,
+  IconMessageCircle,
+} from "@tabler/icons-react";
 import { cn } from "@/lib/utils/classname";
 import { useState } from "react";
 import { ActionIcon } from "@mantine/core";
@@ -51,7 +55,7 @@ function ContentInteractions({
         <IconDots
           size='36'
           color='gray'
-          className='cursor-pointer  p-1.5 rounded-full hover:bg-zinc-100'
+          className='cursor-pointer  rounded-full p-1.5 hover:bg-zinc-100'
           onClick={onOptionsClicked}
         />
       )}
@@ -61,7 +65,7 @@ function ContentInteractions({
 
 function Comments({ commentCount }: { commentCount: number }) {
   return (
-    <div className='flex items-center cursor-pointer space-x-1 hover:bg-zinc-100 rounded-full py-1.5 px-2.5 '>
+    <div className='flex cursor-pointer items-center space-x-1 rounded-full px-2.5 py-1.5 hover:bg-zinc-100 '>
       <IconMessageCircle size='22' color='white' fill='white' />
       <p className='text-sm font-bold text-white '>{commentCount}</p>
     </div>

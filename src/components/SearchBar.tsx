@@ -11,7 +11,9 @@ function SearchBar() {
 
   const router = useRouter();
 
-  const handleKeyPress = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyPress = async (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (event.key === "Enter") {
       removeFocus();
       if (searchTerm.trim().length < 1) return;
@@ -27,7 +29,7 @@ function SearchBar() {
   const removeFocus = () => searchBarRef.current?.blur();
 
   return (
-    <div className='flex items-center w-96 justify-center overflow-visible'>
+    <div className='flex w-96 items-center justify-center overflow-visible'>
       {/* <Autocomplete
         ref={searchBarRef}
         icon={<IconSearch />}

@@ -1,7 +1,6 @@
 import PostContent from "@/components/PostContent";
 import { Post } from "@/types/entities";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRouter } from "next/router";
 import React from "react";
 
 type Props = {
@@ -13,7 +12,11 @@ function PostPage({ post }: Props) {
 
   return (
     <AnimatePresence>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         <PostContent post={post} />
         {/* <AddCommentBox
           className='my-5'

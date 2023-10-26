@@ -18,13 +18,13 @@ function PostSummaryItem({ post }: Props) {
         shadow='md'
         radius='lg'
         style={{ backgroundImage: `url(${post.imageUrl})` }}
-        className='h-52 flex flex-col overflow-hidden justify-between text-white'
+        className='flex h-52 flex-col justify-between overflow-hidden text-white'
       >
         {/* bg-gradient-to-b from-[#1a1a1af4] */}
-        <div className='p-5 bg-[#1a1a1a9e]  h-full flex flex-col justify-between'>
+        <div className='flex h-full  flex-col justify-between bg-[#1a1a1a9e] p-5'>
           <div>
             <div className='flex items-center'>
-              <p className='font-medium text-sm'>
+              <p className='text-sm font-medium'>
                 {post.username}
                 <span className='text-xs font-semibold '>
                   <span className='mx-1'>·</span>
@@ -33,8 +33,8 @@ function PostSummaryItem({ post }: Props) {
               </p>
             </div>
 
-            <p className='font-semibold text-xl mt-2'>{post.title}</p>
-            <p className='whitespace-pre-line mt-8 mb-2 break-words text-sm font-medium'>
+            <p className='mt-2 text-xl font-semibold'>{post.title}</p>
+            <p className='mb-2 mt-8 whitespace-pre-line break-words text-sm font-medium'>
               {post.body?.substring(0, 200)}...
             </p>
 

@@ -12,7 +12,9 @@ function ContentVotes({ voteCount = 0 }: Props) {
       {/* <ArrowUp /> */}
       {/* </ActionIcon> */}
 
-      <p className='text-sm font-bold text-white text-center mx-1.5'>{voteCount}</p>
+      <p className='mx-1.5 text-center text-sm font-bold text-white'>
+        {voteCount}
+      </p>
 
       {/* <ActionIcon radius={"xl"} size={"lg"} variant='subtle' onClick={handleDownvote}> */}
       {/* <ArrowDown /> */}
@@ -21,12 +23,23 @@ function ContentVotes({ voteCount = 0 }: Props) {
   );
 }
 
-function ArrowUp({ active, onClick }: { active?: boolean; onClick: () => void }) {
+function ArrowUp({
+  active,
+  onClick,
+}: {
+  active?: boolean;
+  onClick: () => void;
+}) {
   return (
     <>
       <ActionIcon radius={"xl"} color='gray' onClick={onClick}>
         {active ? (
-          <IconArrowBigUp size='24' className='cursor-pointer' fill='green' stroke={0} />
+          <IconArrowBigUp
+            size='24'
+            className='cursor-pointer'
+            fill='green'
+            stroke={0}
+          />
         ) : (
           <IconArrowBigUp size='22' className='cursor-pointer' />
         )}
@@ -35,12 +48,23 @@ function ArrowUp({ active, onClick }: { active?: boolean; onClick: () => void })
   );
 }
 
-function ArrowDown({ active, onClick }: { active?: boolean; onClick: () => void }) {
+function ArrowDown({
+  active,
+  onClick,
+}: {
+  active?: boolean;
+  onClick: () => void;
+}) {
   return (
     <>
       <ActionIcon radius={"xl"} color='gray' onClick={onClick}>
         {active ? (
-          <IconArrowBigDown size='24' className='cursor-pointer' fill='red' stroke={0} />
+          <IconArrowBigDown
+            size='24'
+            className='cursor-pointer'
+            fill='red'
+            stroke={0}
+          />
         ) : (
           <IconArrowBigDown size='22' className='cursor-pointer' />
         )}
