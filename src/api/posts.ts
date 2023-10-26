@@ -49,4 +49,4 @@ async function dislikePost(postId: string): Promise<PagedResponse<Post>> {
   return response.data;
 }
 
-export { createSubcategoryPost, getSubcategoryPosts, getCategoryPosts, getPostById, likePost, dislikePost , };
+export { createSubcategoryPost, getSubcategoryPosts, getCategoryPosts, getPostById, likePost, dislikePost };
