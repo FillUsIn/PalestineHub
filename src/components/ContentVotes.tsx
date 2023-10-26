@@ -1,5 +1,5 @@
-import { IconArrowBigDown, IconArrowBigUp } from "@tabler/icons-react";
-import { ActionIcon } from "@mantine/core";
+import { IconArrowBigDown, IconArrowBigUp } from '@tabler/icons-react';
+import { ActionIcon } from '@mantine/core';
 
 type Props = {
   voteCount: number;
@@ -32,7 +32,7 @@ function ArrowUp({
 }) {
   return (
     <>
-      <ActionIcon radius={"xl"} color='gray' onClick={onClick}>
+      <ActionIcon radius={'xl'} color='gray' onClick={onClick}>
         {active ? (
           <IconArrowBigUp
             size='24'
@@ -57,7 +57,7 @@ function ArrowDown({
 }) {
   return (
     <>
-      <ActionIcon radius={"xl"} color='gray' onClick={onClick}>
+      <ActionIcon radius={'xl'} color='gray' onClick={onClick}>
         {active ? (
           <IconArrowBigDown
             size='24'

@@ -1,4 +1,4 @@
-import { Post } from "./entities";
+import { Post } from './entities';
 
 type PostSummaryDTO = {
   id: string;

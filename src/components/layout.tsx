@@ -1,14 +1,14 @@
-import { AppShell, Burger, Button, Group, em } from "@mantine/core";
-import { useDisclosure, useMediaQuery } from "@mantine/hooks";
-import { Inter } from "next/font/google";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { Children, ReactNode } from "react";
+import { AppShell, Burger, Button, Group, em } from '@mantine/core';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
+import { Inter } from 'next/font/google';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { Children, ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
 };
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 function Layout({ children }: Props) {
   const [opened, { toggle }] = useDisclosure();
@@ -21,10 +21,10 @@ function Layout({ children }: Props) {
       header={{ height: 60 }}
       navbar={{
         width: 300,
-        breakpoint: "sm",
+        breakpoint: 'sm',
         collapsed: { mobile: !opened, desktop: true },
       }}
-      py={"xl"}
+      py={'xl'}
       // style={{
       //   backgroundImage: "url(hero-bg.png)",
       // }}
@@ -56,7 +56,7 @@ function Layout({ children }: Props) {
                   Charities
                 </Link>
               </Group>
-              <Button radius={"xl"} fw={"bolder"} size='sm' color='dark'>
+              <Button radius={'xl'} fw={'bolder'} size='sm' color='dark'>
                 Sign in
               </Button>
             </>
@@ -80,9 +80,9 @@ function Layout({ children }: Props) {
 
           <hr />
           <Button
-            w={"100%"}
-            radius={"xl"}
-            fw={"bold"}
+            w={'100%'}
+            radius={'xl'}
+            fw={'bold'}
             size='compact-xl'
             color='dark'
           >

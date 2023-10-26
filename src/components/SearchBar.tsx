@@ -1,10 +1,10 @@
-import { IconSearch } from "@tabler/icons-react";
-import { Autocomplete } from "@mantine/core";
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
+import { IconSearch } from '@tabler/icons-react';
+import { Autocomplete } from '@mantine/core';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 
 function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [allCommunityNames, setAllCommunityNames] = useState<string[]>([]);
   const [autoCompleteData, setAutoCompleteData] = useState<string[]>([]);
   const searchBarRef = useRef<HTMLInputElement | null>(null);
@@ -14,7 +14,7 @@ function SearchBar() {
   const handleKeyPress = async (
     event: React.KeyboardEvent<HTMLInputElement>
   ) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       removeFocus();
       if (searchTerm.trim().length < 1) return;
 

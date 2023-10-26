@@ -1,12 +1,12 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import '@/styles/globals.css';
+import type { AppProps } from 'next/app';
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
-import "@mantine/core/styles.css";
+import '@mantine/core/styles.css';
 
-import { MantineProvider, createTheme } from "@mantine/core";
-import Layout from "@/components/layout";
-import Head from "next/head";
+import { MantineProvider, createTheme } from '@mantine/core';
+import Layout from '@/components/layout';
+import Head from 'next/head';
 
 const theme = createTheme({
   /** Put your mantine theme override here */

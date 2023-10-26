@@ -1,10 +1,10 @@
-import Head from "next/head";
-import { Button, SegmentedControl } from "@mantine/core";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { TopPicks } from "@/components/TopPicks/TopPicks";
-import { getTopics } from "@/api/topics";
-import { Topic } from "@/types/dtos";
+import Head from 'next/head';
+import { Button, SegmentedControl } from '@mantine/core';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { TopPicks } from '@/components/TopPicks/TopPicks';
+import { getTopics } from '@/api/topics';
+import { Topic } from '@/types/dtos';
 
 type Tab = string;
 
@@ -13,8 +13,8 @@ type Props = {
 };
 
 function Home({ topics }: Props) {
-  const [resultTypes] = useState<Tab[]>(["New to the cause?", "BDS", "Donate"]);
-  const [selectedTab, setSelectedTab] = useState<Tab>("New to the cause?");
+  const [resultTypes] = useState<Tab[]>(['New to the cause?', 'BDS', 'Donate']);
+  const [selectedTab, setSelectedTab] = useState<Tab>('New to the cause?');
 
   const router = useRouter();
 
@@ -31,20 +31,20 @@ function Home({ topics }: Props) {
         <div className='mt-10 flex justify-center md:mt-0 md:self-center'>
           <Button
             // styles={{ label: { textDecoration: "underline", textUnderlineOffset: ".3rem" } }}
-            onClick={() => router.push("/resources")}
-            radius={"xl"}
+            onClick={() => router.push('/resources')}
+            radius={'xl'}
             color='dark'
-            size={"lg"}
+            size={'lg'}
             hiddenFrom='sm'
           >
             Learn more
           </Button>
           <Button
             // styles={{ label: { textDecoration: "underline", textUnderlineOffset: ".3rem" } }}
-            onClick={() => router.push("/resources")}
-            radius={"xl"}
+            onClick={() => router.push('/resources')}
+            radius={'xl'}
             color='dark'
-            size={"xl"}
+            size={'xl'}
             visibleFrom='sm'
           >
             Learn more
@@ -60,7 +60,7 @@ function Home({ topics }: Props) {
         fullWidth
         size='md'
         className='mt-10'
-        radius={"xl"}
+        radius={'xl'}
       />
 
       {topics && topics.length ? (

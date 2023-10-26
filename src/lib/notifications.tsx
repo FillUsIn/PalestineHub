@@ -1,12 +1,12 @@
-import { notifications } from "@mantine/notifications";
+import { notifications } from '@mantine/notifications';
 
 function notify(text: string) {
   notifications.show({
     withCloseButton: false,
     withBorder: true,
-    color: "yellow",
-    radius: "md",
-    className: "shadow-3xl",
+    color: 'yellow',
+    radius: 'md',
+    className: 'shadow-3xl',
     // @ts-ignore
     styles: (theme) => ({
       root: {
@@ -16,10 +16,10 @@ function notify(text: string) {
 
       description: {
         color: theme.white,
-        paddingTop: ".25rem",
-        paddingBottom: ".25rem",
-        fontSize: "1rem",
-        fontWeight: "600",
+        paddingTop: '.25rem',
+        paddingBottom: '.25rem',
+        fontSize: '1rem',
+        fontWeight: '600',
       },
     }),
     message: text,

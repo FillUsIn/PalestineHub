@@ -1,7 +1,7 @@
-import { Post } from "@/types/entities";
-import { since } from "@/lib/utils/date-time";
-import Link from "next/link";
-import ContentInteractions from "./ContentInteractions";
+import { Post } from '@/types/entities';
+import { since } from '@/lib/utils/date-time';
+import Link from 'next/link';
+import ContentInteractions from './ContentInteractions';
 
 function PostContent({
   post,

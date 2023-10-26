@@ -1,8 +1,8 @@
-import { api } from "@/api/config/axios";
-import { CreatePostDTO } from "@/types/dtos";
-import { Post } from "@/types/entities";
+import { api } from '@/api/config/axios';
+import { CreatePostDTO } from '@/types/dtos';
+import { Post } from '@/types/entities';
 
-const API_BASE_URI = "/posts";
+const API_BASE_URI = '/posts';
 async function createSubcategoryPost(
   subCategoryName: string,
   createPostDTO: CreatePostDTO

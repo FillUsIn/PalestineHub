@@ -1,9 +1,9 @@
-import { Avatar, Box, Paper, Title } from "@mantine/core";
-import { IconBrandReddit } from "@tabler/icons-react";
-import { since } from "@/lib/utils/date-time";
-import { PostSummaryDTO } from "@/types/dtos";
-import Link from "next/link";
-import ContentInteractions from "./ContentInteractions";
+import { Avatar, Box, Paper, Title } from '@mantine/core';
+import { IconBrandReddit } from '@tabler/icons-react';
+import { since } from '@/lib/utils/date-time';
+import { PostSummaryDTO } from '@/types/dtos';
+import Link from 'next/link';
+import ContentInteractions from './ContentInteractions';
 
 type Props = {
   post: PostSummaryDTO;

@@ -1,7 +1,7 @@
-import PostContent from "@/components/PostContent";
-import { Post } from "@/types/entities";
-import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
+import PostContent from '@/components/PostContent';
+import { Post } from '@/types/entities';
+import { AnimatePresence, motion } from 'framer-motion';
+import React from 'react';
 
 type Props = {
   post: Post;
@@ -45,15 +45,15 @@ function PostPage({ post }: Props) {
 export async function getServerSideProps({ params }) {
   const { postId } = params;
 
-  console.log("postId :>> ", postId);
+  console.log('postId :>> ', postId);
 
   const post: Post = {
     id: postId,
-    body: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, odit.",
-    title: "Why palestinians are the oppressed, not the oppressors.",
-    createdAt: "2023-10-24T01:08:46.305527088",
-    username: "ahmad",
-    url: "https://google.com",
+    body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, odit.',
+    title: 'Why palestinians are the oppressed, not the oppressors.',
+    createdAt: '2023-10-24T01:08:46.305527088',
+    username: 'ahmad',
+    url: 'https://google.com',
     thumbnailUrl: null,
     voteCount: 32,
     userDislikes: [],

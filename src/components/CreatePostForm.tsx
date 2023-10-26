@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from 'react';
 import {
   Avatar,
   Button,
@@ -10,15 +10,15 @@ import {
   TextInput,
   Textarea,
   Title,
-} from "@mantine/core";
-import { IconBrandReddit, IconCheck } from "@tabler/icons-react";
-import { Constants } from "@/lib/constants";
-import { notifications } from "@mantine/notifications";
-import { addArtificialDelay } from "@/lib/utils/network";
-import { useForm, SubmitHandler, useController } from "react-hook-form";
-import { CreatePostDTO } from "@/types/dtos";
-import { createSubcategoryPost } from "@/api/posts";
-import { useRouter } from "next/router";
+} from '@mantine/core';
+import { IconBrandReddit, IconCheck } from '@tabler/icons-react';
+import { Constants } from '@/lib/constants';
+import { notifications } from '@mantine/notifications';
+import { addArtificialDelay } from '@/lib/utils/network';
+import { useForm, SubmitHandler, useController } from 'react-hook-form';
+import { CreatePostDTO } from '@/types/dtos';
+import { createSubcategoryPost } from '@/api/posts';
+import { useRouter } from 'next/router';
 
 type Inputs = {
   title: string;
@@ -42,7 +42,7 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
   } = useForm<Inputs>();
 
   const { field: selectedSubCategoryNameField } = useController({
-    name: "subcategoryName",
+    name: 'subcategoryName',
     control,
   });
 
@@ -59,7 +59,7 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
     const createPostDTO: CreatePostDTO = {
       title: title.trim(),
       body: body?.trim(),
-      username: "ahmad",
+      username: 'ahmad',
       url: contentUrl,
     };
 
@@ -72,17 +72,17 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
 
       if (createdPost) {
         notifications.show({
-          color: "green",
-          title: "Your post is now live!",
-          message: "",
+          color: 'green',
+          title: 'Your post is now live!',
+          message: '',
           icon: <IconCheck size='1rem' />,
           autoClose: 4000,
         });
         router.push(`/posts/${createdPost.id}`);
       } else {
         notifications.show({
-          message: "Something went wrong, please try again.",
-          color: "red",
+          message: 'Something went wrong, please try again.',
+          color: 'red',
         });
       }
     } finally {
@@ -91,14 +91,14 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
   };
 
   const [selectData, setSelectData] = useState<SelectItemType[]>([
-    { label: "test", description: "test2", value: "123" },
+    { label: 'test', description: 'test2', value: '123' },
   ]);
 
   const router = useRouter();
 
   useEffect(() => {
     if (subcategoryName) {
-      setValue("subcategoryName", subcategoryName);
+      setValue('subcategoryName', subcategoryName);
     }
   }, [subcategoryName, setValue]);
 
@@ -120,15 +120,15 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
     <form onSubmit={handleSubmit(onSubmit)} className='relative'>
       <LoadingOverlay
         transitionProps={{ duration: 100 }}
-        loaderProps={{ size: "lg" }}
+        loaderProps={{ size: 'lg' }}
         visible={isSubmitting}
       />
       <div className='flex items-center justify-between'>
         <CloseButton
           onClick={onDismiss}
-          size={"xl"}
+          size={'xl'}
           iconSize={30}
-          radius={"xl"}
+          radius={'xl'}
           color='gray'
         />
         <Title order={3}>Submit a resource</Title>
@@ -162,14 +162,14 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
           withAsterisk
           placeholder='Enter title'
           variant='filled'
-          {...register("title", { required: true })}
+          {...register('title', { required: true })}
         />
 
         <TextInput
           label='Link / URL'
           variant='filled'
           placeholder='https://google.com'
-          {...register("contentUrl", { required: false })}
+          {...register('contentUrl', { required: false })}
         />
 
         <Textarea
@@ -177,15 +177,15 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
           label='Body'
           placeholder='Write something here...'
           rows={6}
-          {...register("body")}
+          {...register('body')}
         />
 
         <Button
           type='submit'
           className='transition-all duration-300'
-          w={"100%"}
+          w={'100%'}
           color='dark'
-          radius={"xl"}
+          radius={'xl'}
           disabled={!isValid}
         >
           POST
@@ -216,7 +216,7 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
   )
 );
 
-SelectItem.displayName = "SelectItem";
+SelectItem.displayName = 'SelectItem';
 
 type SelectItemType = {
   label: string;
@@ -224,7 +224,7 @@ type SelectItemType = {
   description: string;
 };
 
-interface ItemProps extends React.ComponentPropsWithoutRef<"div"> {
+interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
   image: string;
   label: string;
   description: string;

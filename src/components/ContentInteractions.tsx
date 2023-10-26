@@ -2,11 +2,11 @@ import {
   IconArrowBackUp,
   IconDots,
   IconMessageCircle,
-} from "@tabler/icons-react";
-import { cn } from "@/lib/utils/classname";
-import { useState } from "react";
-import { ActionIcon } from "@mantine/core";
-import ContentVotes from "./ContentVotes";
+} from '@tabler/icons-react';
+import { cn } from '@/lib/utils/classname';
+import { useState } from 'react';
+import { ActionIcon } from '@mantine/core';
+import ContentVotes from './ContentVotes';
 
 type Props = {
   onUpvote?: () => void;
@@ -37,7 +37,7 @@ function ContentInteractions({
   // const [voteState, setVoteState] = useState<VoteState>();
 
   return (
-    <div className={cn("flex items-center space-x-5", className ?? "")}>
+    <div className={cn('flex items-center space-x-5', className ?? '')}>
       <ContentVotes
         voteCount={voteCount}
         // setVoteCount={setVoteCount}
@@ -46,7 +46,7 @@ function ContentInteractions({
 
       {showCommentsCount && <Comments commentCount={commentCount} />}
       {showReplyButton && (
-        <ActionIcon radius={"xl"} onClick={onReplyClicked}>
+        <ActionIcon radius={'xl'} onClick={onReplyClicked}>
           <IconArrowBackUp size='24' color='gray' />
         </ActionIcon>
       )}
