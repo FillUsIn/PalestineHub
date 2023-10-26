@@ -13,8 +13,10 @@ type Props = {
 };
 
 function Home({ topics }: Props) {
-  const [resultTypes] = useState<Tab[]>(['New to the cause?', 'BDS', 'Donate']);
-  const [selectedTab, setSelectedTab] = useState<Tab>('New to the cause?');
+  const [resultTypes, setResultTypes] = useState<Tab[]>(
+    topics ? topics.map((topic) => topic.title) : ['']
+  );
+  const [selectedTab, setSelectedTab] = useState<Tab>(resultTypes[0]);
 
   const router = useRouter();
 
@@ -64,7 +66,12 @@ function Home({ topics }: Props) {
       />
 
       {topics && topics.length ? (
-        <TopPicks tab={selectedTab} topPosts={topics[0].topPosts} />
+        <TopPicks
+          tab={selectedTab}
+          topPosts={
+            topics.find((topic) => topic.title === selectedTab)?.topPosts || []
+          }
+        />
       ) : (
         <p>Error displaying topics</p>
       )}
@@ -74,7 +81,7 @@ function Home({ topics }: Props) {
 
 export async function getServerSideProps() {
   const topics = await getTopics();
-
+  console.log(topics);
   return {
     props: {
       topics,
