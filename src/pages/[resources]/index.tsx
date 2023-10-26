@@ -1,3 +1,4 @@
+import { getCategories } from '@/api/category';
 import CreatePostForm from '@/components/CreatePostForm';
 import PostSummaryItemList from '@/components/PostSummaryItemList';
 import TopPost from '@/components/TopPost';
@@ -12,10 +13,16 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import React from 'react';
+import { getAllPosts } from '../../api/posts';
 
-type Props = {};
+type Props = {
+  allPosts: PostSummaryDTO[];
+};
 
-function Resources({}: Props) {
+const numberOfTopPosts = 3;
+const postsPerPage = 10;
+
+function Resources({ allPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const items = [
     { title: 'Education', href: '#' },
@@ -26,38 +33,6 @@ function Resources({}: Props) {
     </Anchor>
   ));
 
-  const postSummaries: PostSummaryDTO[] = [
-    {
-      title: 'test title',
-      imageUrl: '/top-video.jpeg',
-      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!',
-      username: 'yaseen',
-      createdDate: '2021-09-22T14:30:45',
-      id: '123',
-      voteCount: 3,
-      commentCount: 43,
-    },
-    {
-      title: 'another title',
-      imageUrl: '/top-video.jpeg',
-      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!',
-      username: 'mohammed',
-      createdDate: '2021-09-22T14:30:45',
-      id: '456',
-      voteCount: 21,
-      commentCount: 3,
-    },
-    {
-      title: 'last title',
-      imageUrl: '/child.jpeg',
-      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, est!',
-      username: 'abdullah',
-      createdDate: '2021-09-22T14:30:45',
-      id: '789',
-      voteCount: -5,
-      commentCount: 2,
-    },
-  ];
   return (
     <>
       <Modal
@@ -71,9 +46,10 @@ function Resources({}: Props) {
       </Modal>
       <div className='flex flex-col  justify-between md:flex-row '>
         <Breadcrumbs
+          separator='>'
           styles={{
-            breadcrumb: { color: 'black', fontWeight: '700' },
-            separator: { fontWeight: '800' },
+            breadcrumb: { color: 'grey', fontWeight: '500' },
+            separator: { color: 'grey', fontWeight: '500' },
           }}
         >
           {items}
@@ -95,18 +71,27 @@ function Resources({}: Props) {
       </Title>
 
       <div className='mt-5 justify-between space-y-4 md:flex md:gap-5 md:space-y-0'>
-        <TopPost postSummary={postSummaries[0]} />
-        <TopPost postSummary={postSummaries[1]} />
-        <TopPost postSummary={postSummaries[2]} />
+        {allPosts &&
+          allPosts &&
+          allPosts
+            .slice(0, numberOfTopPosts)
+            .map((post) => <TopPost post={post} key={post.id} />)}
       </div>
 
       <Divider className='my-5' size={'xl'} />
 
-      <PostSummaryItemList posts={postSummaries} />
-
-      {/* <SideBar /> */}
+      <PostSummaryItemList posts={allPosts.slice(numberOfTopPosts)} />
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const allPosts = (await getAllPosts(0, postsPerPage)).content;
+  return {
+    props: {
+      allPosts,
+    },
+  };
 }
 
 export default Resources;

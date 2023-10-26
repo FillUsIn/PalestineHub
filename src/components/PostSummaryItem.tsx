@@ -17,7 +17,7 @@ function PostSummaryItem({ post }: Props) {
       <Paper
         shadow='md'
         radius='lg'
-        style={{ backgroundImage: `url(${post.imageUrl})` }}
+        style={{ backgroundImage: `url(${post.thumbnailUrl})` }}
         className='flex h-52 flex-col justify-between overflow-hidden text-white'
       >
         {/* bg-gradient-to-b from-[#1a1a1af4] */}
@@ -49,7 +49,7 @@ function PostSummaryItem({ post }: Props) {
       </Paper>
       {/* <Box
         className=' text-white bg-gradient-to-b from-[#141414eb] to-90% h-full px-6 py-4 cursor-pointer rounded-2xl border-2 border-gray-100   transition-all'
-        style={{ backgroundImage: `url(${post.imageUrl})` }}
+        style={{ backgroundImage: `url(${post.thumbnailUrl})` }}
       >
         <div className='flex items-center'>
           <p className='font-semibold text-sm'>
