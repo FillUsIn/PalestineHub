@@ -16,10 +16,7 @@ function TopVotedPost({ postSummary }: Props) {
     >
       <div className='flex h-full flex-col justify-between bg-gradient-to-b from-[#141414eb] to-90% p-5'>
         <div>
-          <Text size='sm' c='gray' className='text-white-400 capitalize'>
-            {postSummary.username}
-          </Text>
-          <div className='mt-2'>
+          <div>
             <Title order={1} className='text-white-700 uppercase'>
               {postSummary.title}
             </Title>
