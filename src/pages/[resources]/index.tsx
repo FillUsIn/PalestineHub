@@ -42,7 +42,7 @@ function Resources({ allPosts }: Props) {
         centered
         withCloseButton={false}
       >
-        <CreatePostForm subcategoryName={'UK'} onDismiss={close} />
+        <CreatePostForm onDismiss={close} />
       </Modal>
       <div className='flex flex-col  justify-between md:flex-row '>
         <Breadcrumbs

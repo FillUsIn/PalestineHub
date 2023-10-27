@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import {
   Avatar,
   Button,
@@ -19,39 +19,98 @@ import { useForm, SubmitHandler, useController } from 'react-hook-form';
 import { CreatePostDTO } from '@/types/dtos';
 import { createSubcategoryPost } from '@/api/posts';
 import { useRouter } from 'next/router';
+import useCategories from '@/hooks/useCategories';
+import { Category, Subcategory } from '@/types/entities';
+import { AnimatePresence, motion } from 'framer-motion';
 
 type Inputs = {
   title: string;
-  subcategoryName: string;
+  categoryName: string;
+  subCategoryName: string;
   body?: string;
   contentUrl?: string;
 };
 
 type Props = {
   onDismiss: () => void;
-  subcategoryName?: string;
 };
 
-function CreatePostForm({ subcategoryName, onDismiss }: Props) {
+function CreatePostForm({ onDismiss }: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
     control,
     setValue,
+    resetField,
+    setFocus,
   } = useForm<Inputs>();
 
-  const { field: selectedSubCategoryNameField } = useController({
-    name: 'subcategoryName',
+  const { field: selectedCategoryNameField } = useController({
+    name: 'categoryName',
     control,
+    rules: { required: true },
   });
 
+  const { field: selectedSubCategoryNameField } = useController({
+    name: 'subCategoryName',
+    control,
+    rules: { required: true },
+  });
+
+  // const [selectedCategoryName, setSelectedCategoryName] = useState()
+  // const [selectedSubCategoryName, setSelectedSubCategoryName] = useState()
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const subCategorySelectRef = useRef(null);
+  const categorySelectRef = useRef(null);
+
+  const [categorySelectItems, setCategorySelectItems] = useState<
+    SelectItemType[]
+  >([]);
+
+  const [subCategorySelectItems, setSubCategorySelectItems] = useState<
+    SelectItemType[]
+  >([]);
+
+  const router = useRouter();
+
+  const categories = useCategories();
+
+  useEffect(() => {
+    const categorySelectItems = mapCategoriesToSelectData(categories);
+    setCategorySelectItems(categorySelectItems);
+  }, [categories]);
+
+  const categorySelected = !!categories.find(
+    (c) => c.name === selectedCategoryNameField.value
+  );
+
+  const handleCategoryChange = (newCategoryNameValue: string | null) => {
+    const newCategory = categories.find((c) => c.name === newCategoryNameValue);
+    selectedCategoryNameField.onChange(newCategoryNameValue);
+
+    if (!newCategory) {
+      setSubCategorySelectItems([]);
+      setValue('subCategoryName', '');
+      return;
+    }
+
+    const subCategoryItems = mapSubCategoriesToSelectData(
+      newCategory.subcategories
+    );
+    setSubCategorySelectItems(subCategoryItems);
+  };
+
+  const handleSubCategoryChange = (newSubCategoryNameValue: string | null) => {
+    // setSelectedSubCategoryName(newSubCategoryNameValue)
+    selectedSubCategoryNameField.onChange(newSubCategoryNameValue);
+  };
 
   const onSubmit: SubmitHandler<Inputs> = async ({
     title,
     body,
-    subcategoryName,
+    subCategoryName,
     contentUrl,
   }) => {
     setIsSubmitting(true);
@@ -59,16 +118,15 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
     const createPostDTO: CreatePostDTO = {
       title: title.trim(),
       body: body?.trim(),
-      username: 'ahmad',
-      url: contentUrl,
+      username: 'ahmad', //TODO: // REPLACE WITH LOGGED IN USER
+      url: contentUrl?.trim(),
     };
 
     try {
       const createdPost = await createSubcategoryPost(
-        subcategoryName,
+        subCategoryName,
         createPostDTO
       );
-      await addArtificialDelay(1);
 
       if (createdPost) {
         notifications.show({
@@ -78,7 +136,7 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
           icon: <IconCheck size='1rem' />,
           autoClose: 4000,
         });
-        router.push(`/posts/${createdPost.id}`);
+        router.push(`/resources`);
       } else {
         notifications.show({
           message: 'Something went wrong, please try again.',
@@ -88,32 +146,6 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const [selectData, setSelectData] = useState<SelectItemType[]>([
-    { label: 'test', description: 'test2', value: '123' },
-  ]);
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (subcategoryName) {
-      setValue('subcategoryName', subcategoryName);
-    }
-  }, [subcategoryName, setValue]);
-
-  // const mapCommunitiesToSelectData = (communities: Community[]): SelectItemType[] => {
-  //   return communities.map((community): SelectItemType => {
-  //     return {
-  //       label: Constants.PREFIX_COMMUNITY + community.name,
-  //       description: community.description,
-  //       value: community.name,
-  //     };
-  //   });
-  // };
-
-  const handleSelectChange = (newValue: string | null) => {
-    selectedSubCategoryNameField.onChange(newValue);
   };
 
   return (
@@ -139,23 +171,59 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
       </div>
       <div className='mt-5 space-y-5'>
         <Select
-          label='Sub-category'
+          label='Category'
           withAsterisk
-          disabled={subcategoryName != null}
-          placeholder='Select subcategory'
-          //@ts-ignore
-          itemComponent={SelectItem}
-          data={selectData}
-          searchable
+          placeholder='Select a category'
+          data={categorySelectItems}
           maxDropdownHeight={400}
-          nothingFound='No communities found'
-          // filter={(value, item) =>
-          //   item?.label?.toLowerCase().includes(value.toLowerCase().trim()) ||
-          //   item.description.toLowerCase().includes(value.toLowerCase().trim())
-          // }
-          value={selectedSubCategoryNameField.value}
-          onChange={handleSelectChange}
+          nothingFoundMessage='No categories found.'
+          value={selectedCategoryNameField.value}
+          // value={selectedCategoryName}
+          onChange={handleCategoryChange}
+          variant='filled'
+          clearable
+          required
+          comboboxProps={{ returnFocus: true }}
+          ref={categorySelectRef}
         />
+
+        <AnimatePresence>
+          {categorySelected && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, height: '0' }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                height: 'auto',
+              }}
+              exit={{
+                opacity: 0,
+                y: -10,
+                height: '0',
+              }}
+              transition={{ duration: 0.4, type: 'spring' }}
+              key={'1'}
+            >
+              <Select
+                label='Sub-category'
+                withAsterisk
+                // disabled={category}
+                placeholder='Select sub-category'
+                data={subCategorySelectItems}
+                maxDropdownHeight={400}
+                nothingFoundMessage='No sub-categories found.'
+                limit={10} //for large data sets and optimising performance
+                value={selectedSubCategoryNameField.value}
+                // value={selectedSubCategoryName}
+                onChange={handleSubCategoryChange}
+                variant='filled'
+                clearable
+                required
+                ref={subCategorySelectRef}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <TextInput
           label='Title'
@@ -195,39 +263,29 @@ function CreatePostForm({ subcategoryName, onDismiss }: Props) {
   );
 }
 
-const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
-  ({ label, description, ...others }: ItemProps, ref) => (
-    <div ref={ref} key={label} {...others}>
-      <Group wrap='nowrap'>
-        <Avatar size='lg' radius='xl' color='cyan'>
-          <IconBrandReddit size='40' />
-        </Avatar>
+function mapCategoriesToSelectData(categories: Category[]): SelectItemType[] {
+  return categories.map((category): SelectItemType => {
+    return {
+      label: category.name,
+      value: category.name,
+    };
+  });
+}
 
-        <div>
-          <Text size='md' className='font-semibold'>
-            {label}
-          </Text>
-          <Text size='xs' className='font-medium' opacity={0.65}>
-            {description}
-          </Text>
-        </div>
-      </Group>
-    </div>
-  )
-);
-
-SelectItem.displayName = 'SelectItem';
+function mapSubCategoriesToSelectData(
+  subCategories: Subcategory[]
+): SelectItemType[] {
+  return subCategories.map((subCategory): SelectItemType => {
+    return {
+      label: subCategory.name,
+      value: subCategory.name,
+    };
+  });
+}
 
 type SelectItemType = {
   label: string;
   value: string;
-  description: string;
 };
-
-interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
-  image: string;
-  label: string;
-  description: string;
-}
 
 export default CreatePostForm;
