@@ -15,13 +15,30 @@ async function createSubcategoryPost(
   return response.data;
 }
 
-async function getSubcategoryPosts(
-  subCategoryName: string,
+type PagedResponse<T> = {
+  content: T[];
+};
+
+async function getAllPosts(
+  page: number = 0,
+  size: number = 10
+): Promise<PagedResponse<Post>> {
+  const response = await api.get<PagedResponse<Post>>(`${API_BASE_URI}`, {
+    params: {
+      page,
+      size,
+    },
+  });
+  return response.data;
+}
+
+async function getCategoryPosts(
+  categoryName: string,
   page: number = 0,
   size: number = 10
 ): Promise<PagedResponse<Post>> {
   const response = await api.get<PagedResponse<Post>>(
-    `${API_BASE_URI}/subcategory/${subCategoryName}`,
+    `${API_BASE_URI}/category/${categoryName}`,
     {
       params: {
         page,
@@ -32,18 +49,13 @@ async function getSubcategoryPosts(
   return response.data;
 }
 
-type PagedResponse<T> = {
-  content: T[];
-  // Add other paging properties like totalElements, totalPages, etc if needed
-};
-
-async function getCategoryPosts(
-  categoryName: string,
+async function getSubcategoryPosts(
+  subCategoryName: string,
   page: number = 0,
   size: number = 10
 ): Promise<PagedResponse<Post>> {
   const response = await api.get<PagedResponse<Post>>(
-    `${API_BASE_URI}/category/${categoryName}`,
+    `${API_BASE_URI}/subcategory/${subCategoryName}`,
     {
       params: {
         page,
@@ -80,6 +92,7 @@ async function dislikePost(postId: string): Promise<PagedResponse<Post>> {
 
 export {
   createSubcategoryPost,
+  getAllPosts,
   getSubcategoryPosts,
   getCategoryPosts,
   getPostById,
