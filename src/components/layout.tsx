@@ -1,3 +1,4 @@
+import { login } from '@/api/users';
 import { AppShell, Burger, Button, Group, em } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { Inter } from 'next/font/google';
@@ -56,7 +57,15 @@ function Layout({ children }: Props) {
                   Charities
                 </Link>
               </Group>
-              <Button radius={'xl'} fw={'bolder'} size='sm' color='dark'>
+              <Button
+                radius={'xl'}
+                fw={'bolder'}
+                size='sm'
+                color='dark'
+                onClick={() =>
+                  login({ username: 'admin', password: 'password' })
+                }
+              >
                 Sign in
               </Button>
             </>
@@ -91,7 +100,7 @@ function Layout({ children }: Props) {
         </ul>
       </AppShell.Navbar>
 
-      <AppShell.Main className=' md:mt-20'>{children}</AppShell.Main>
+      <AppShell.Main>{children}</AppShell.Main>
     </AppShell>
   );
 }
