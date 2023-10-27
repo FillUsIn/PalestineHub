@@ -72,7 +72,6 @@ function Resources({ allPosts }: Props) {
 
       <div className='mt-5 justify-between space-y-4 md:flex md:gap-5 md:space-y-0'>
         {allPosts &&
-          allPosts &&
           allPosts
             .slice(0, numberOfTopPosts)
             .map((post) => <TopPost post={post} key={post.id} />)}
