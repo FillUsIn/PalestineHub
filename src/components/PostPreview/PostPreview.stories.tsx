@@ -26,6 +26,7 @@ const examplePost: Post = {
       updatedAt: new Date().toDateString(),
     },
   ],
+  comments: [],
 };
 
 const meta: Meta<typeof PostPreview> = {
