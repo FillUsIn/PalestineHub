@@ -4,13 +4,11 @@ import type { AppProps } from 'next/app';
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
 
-import { MantineProvider, createTheme } from '@mantine/core';
 import Layout from '@/components/layout';
+import { theme } from '@/styles/theme';
+import { MantineProvider, createTheme } from '@mantine/core';
 import Head from 'next/head';
 
-const theme = createTheme({
-  /** Put your mantine theme override here */
-});
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <MantineProvider theme={theme}>
