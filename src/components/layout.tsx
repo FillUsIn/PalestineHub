@@ -91,7 +91,7 @@ function Layout({ children }: Props) {
         </ul>
       </AppShell.Navbar>
 
-      <AppShell.Main className=' md:mt-20'>{children}</AppShell.Main>
+      <AppShell.Main>{children}</AppShell.Main>
     </AppShell>
   );
 }
