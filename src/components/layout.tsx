@@ -63,7 +63,7 @@ function Layout({ children }: Props) {
                 size='sm'
                 color='dark'
                 onClick={() =>
-                  login({ username: 'ahmad', password: 'password123' })
+                  login({ username: 'admin', password: 'password' })
                 }
               >
                 Sign in
