@@ -1,11 +1,10 @@
 import React from 'react';
-import { PostSummaryDTO, TopPost } from '@/types/dtos';
+import { TopPost } from '@/types/dtos';
 import PostPreview from './PostPreview/PostPreview';
-import { Post } from '@/types/entities';
 
 type Tab = string;
 
-export const TopPicks = ({
+export const TopPosts = ({
   tab,
   topPosts,
 }: {

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { Button, SegmentedControl } from '@mantine/core';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { TopPicks } from '@/components/TopPosts';
+import { TopPosts } from '@/components/TopPosts';
 import { getTopics } from '@/api/topics';
 import { Topic } from '@/types/dtos';
 
@@ -63,7 +63,7 @@ function Home({ topics }: Props) {
       />
 
       {topics && topics.length ? (
-        <TopPicks
+        <TopPosts
           tab={selectedTab}
           topPosts={
             topics.find((topic) => topic.title === selectedTab)?.topPosts || []
