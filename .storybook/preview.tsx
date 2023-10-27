@@ -1,4 +1,5 @@
 import '@mantine/core/styles.css';
+import '../src/styles/globals.css';
 
 import React, { useEffect } from 'react';
 import { addons } from '@storybook/preview-api';
