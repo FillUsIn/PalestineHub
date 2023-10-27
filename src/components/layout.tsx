@@ -1,3 +1,4 @@
+import { login } from '@/api/users';
 import { AppShell, Burger, Button, Group, em } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { Inter } from 'next/font/google';
@@ -56,7 +57,15 @@ function Layout({ children }: Props) {
                   Charities
                 </Link>
               </Group>
-              <Button radius={'xl'} fw={'bolder'} size='sm' color='dark'>
+              <Button
+                radius={'xl'}
+                fw={'bolder'}
+                size='sm'
+                color='dark'
+                onClick={() =>
+                  login({ username: 'ahmad', password: 'password123' })
+                }
+              >
                 Sign in
               </Button>
             </>

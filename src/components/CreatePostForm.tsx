@@ -3,6 +3,7 @@ import {
   Avatar,
   Button,
   CloseButton,
+  Divider,
   Group,
   LoadingOverlay,
   Select,
@@ -170,22 +171,27 @@ function CreatePostForm({ onDismiss }: Props) {
         </Button> */}
       </div>
       <div className='mt-5 space-y-5'>
-        <Select
-          label='Category'
-          withAsterisk
-          placeholder='Select a category'
-          data={categorySelectItems}
-          maxDropdownHeight={400}
-          nothingFoundMessage='No categories found.'
-          value={selectedCategoryNameField.value}
-          // value={selectedCategoryName}
-          onChange={handleCategoryChange}
-          variant='filled'
-          clearable
-          required
-          comboboxProps={{ returnFocus: true }}
-          ref={categorySelectRef}
-        />
+        <div className='space-y-2'>
+          <p className='text-base font-medium '>
+            Which category does your resource belong to?
+          </p>
+          <Select
+            label='Category'
+            withAsterisk
+            placeholder='Select a category'
+            data={categorySelectItems}
+            maxDropdownHeight={400}
+            nothingFoundMessage='No categories found.'
+            value={selectedCategoryNameField.value}
+            // value={selectedCategoryName}
+            onChange={handleCategoryChange}
+            variant='filled'
+            clearable
+            required
+            comboboxProps={{ returnFocus: true }}
+            ref={categorySelectRef}
+          />
+        </div>
 
         <AnimatePresence>
           {categorySelected && (
@@ -225,13 +231,17 @@ function CreatePostForm({ onDismiss }: Props) {
           )}
         </AnimatePresence>
 
-        <TextInput
-          label='Title'
-          withAsterisk
-          placeholder='Enter title'
-          variant='filled'
-          {...register('title', { required: true })}
-        />
+        <div className='space-y-4'>
+          <Divider mt={25} size={'md'} color='#d3d3d386' />
+
+          <TextInput
+            label='Title'
+            withAsterisk
+            placeholder='Enter title'
+            variant='filled'
+            {...register('title', { required: true })}
+          />
+        </div>
 
         <TextInput
           label='Link / URL'
@@ -250,9 +260,9 @@ function CreatePostForm({ onDismiss }: Props) {
 
         <Button
           type='submit'
-          className='transition-all duration-300'
+          className='transition-all duration-300 '
           w={'100%'}
-          color='dark'
+          color='#007A3D'
           radius={'xl'}
           disabled={!isValid}
         >
