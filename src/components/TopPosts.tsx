@@ -1,6 +1,6 @@
 import React from 'react';
 import { PostSummaryDTO, TopPost } from '@/types/dtos';
-import PostPreview from '../PostPreview/PostPreview';
+import PostPreview from './PostPreview/PostPreview';
 import { Post } from '@/types/entities';
 
 type Tab = string;
