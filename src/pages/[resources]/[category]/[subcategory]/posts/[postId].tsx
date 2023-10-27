@@ -56,6 +56,7 @@ export async function getServerSideProps({ params }) {
     url: 'https://google.com',
     thumbnailUrl: null,
     voteCount: 32,
+    comments: [],
     userDislikes: [],
     userLikes: [],
   };

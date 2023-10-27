@@ -1,4 +1,4 @@
-import { getCategories } from '@/api/category';
+import { getCategories } from '@/api/categories';
 import CreatePostForm from '@/components/CreatePostForm';
 import PostSummaryItemList from '@/components/PostSummaryItemList';
 import TopPost from '@/components/TopPost';
