@@ -12,7 +12,7 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import CreatePostForm from '../../../../components/CreatePostForm';
 import PostSummaryItemList from '../../../../components/PostSummaryItemList';
-import TopPost from '../../../../components/TopPost';
+import TopPost from '../../../../components/TopPosts/TopPost';
 
 type Props = {
   subcategoryPosts: PostSummaryDTO[];

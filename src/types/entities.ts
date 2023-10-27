@@ -12,6 +12,11 @@ type Post = {
   comments: Comment[];
 };
 
+type TopPosts = {
+  subcategoryName: string;
+  post: Post;
+}[];
+
 type Comment = {
   id: string;
   body: string;
@@ -39,4 +44,4 @@ type Subcategory = {
   posts: Post[];
 };
 
-export type { Post, User, Category, Subcategory, Comment };
+export type { Post, TopPosts, User, Category, Subcategory, Comment };

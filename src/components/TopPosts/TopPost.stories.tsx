@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { examplePost } from '../../__dummydata/post';
-import PostPreview from './PostPreview';
+import TopPost from './TopPost';
+import { examplePostSummary } from '../../__dummydata/post';
 
-const meta: Meta<typeof PostPreview> = {
-  component: PostPreview,
+const meta: Meta<typeof TopPost> = {
+  component: TopPost,
   argTypes: {
     post: {
       id: {
@@ -43,14 +43,14 @@ const meta: Meta<typeof PostPreview> = {
     },
   },
   args: {
-    post: examplePost,
+    post: examplePostSummary,
   },
 };
 
 export default meta;
 
-type Story = StoryObj<typeof PostPreview>;
+type Story = StoryObj<typeof TopPost>;
 
 export const Primary: Story = {
-  render: () => <PostPreview post={examplePost} />,
+  render: () => <TopPost post={examplePostSummary} />,
 };
