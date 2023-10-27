@@ -1,9 +1,5 @@
-import React from 'react';
-import Image from 'next/image';
-import { Button, Card, Group, Paper, Text, Title } from '@mantine/core';
-import { PostSummaryDTO, TopPost } from '@/types/dtos';
 import { Post } from '@/types/entities';
-import Link from 'next/link';
+import { Button, Paper, Title } from '@mantine/core';
 
 type Props = {
   post: Post;
