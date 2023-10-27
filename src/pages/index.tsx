@@ -63,7 +63,6 @@ function Home({ topics }: Props) {
 
       {topics && topics.length ? (
         <TopPosts
-          tab={selectedTab}
           topPosts={
             topics.find((topic) => topic.title === selectedTab)?.topPosts || []
           }
