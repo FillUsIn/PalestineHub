@@ -1,10 +1,9 @@
-import Head from 'next/head';
-import { Button, SegmentedControl } from '@mantine/core';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { TopPosts } from '@/components/TopPosts';
 import { getTopics } from '@/api/topics';
+import TopPosts from '@/components/TopPosts/TopThreePosts';
 import { Topic } from '@/types/dtos';
+import { Button, SegmentedControl } from '@mantine/core';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 type Tab = string;
 
@@ -64,7 +63,6 @@ function Home({ topics }: Props) {
 
       {topics && topics.length ? (
         <TopPosts
-          tab={selectedTab}
           topPosts={
             topics.find((topic) => topic.title === selectedTab)?.topPosts || []
           }
