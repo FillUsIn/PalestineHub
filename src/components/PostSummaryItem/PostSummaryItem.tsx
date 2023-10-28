@@ -5,7 +5,7 @@ import { truncate } from '@/lib/utils/truncate';
 import { PostSummaryDTO } from '@/types/dtos';
 import Link from 'next/link';
 
-import ContentInteractions from './ContentInteractions';
+import ContentInteractions from '../ContentInteractions';
 
 type Props = {
   post: PostSummaryDTO;
@@ -41,22 +41,22 @@ function PostSummaryItem({ post }: Props) {
         )}
 
         <div className='basis-2/3 flex h-full flex-col justify-between bg-[white] p-5'>
-          <div>
-            <div className='flex items-center'>
-              <p className='text-sm font-medium'>
-                {username}
-                <span className='text-xs font-semibold '>
-                  <span className='mx-1'>·</span>
-                  <span>{formattedDate}</span>
-                </span>
-              </p>
-            </div>
-
-            <h3 className='mt-2 text-xl font-semibold'>{title}</h3>
-            <p className='mb-2 mt-8 whitespace-pre-line break-words text-sm font-medium'>
-              {truncate(body, 200)}
+          <div className='flex items-center'>
+            <p className='text-sm font-medium mb-2'>
+              {username}
+              <span className='text-xs font-semibold '>
+                <span className='mx-1'>·</span>
+                <span>{formattedDate}</span>
+              </span>
             </p>
+          </div>
 
+          <h3 className='mb-3 text-xl font-semibold'>{title}</h3>
+          <p className='whitespace-pre-line break-words text-sm font-medium'>
+            {truncate(body, 200)}
+          </p>
+
+          <div className='mt-auto'>
             <ContentInteractions
               voteCount={voteCount}
               commentCount={commentCount}
