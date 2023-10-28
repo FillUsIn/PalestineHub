@@ -12,9 +12,10 @@ const inter = Inter({ subsets: ['latin'] });
 
 function Layout({ children }: Props) {
   const [opened, { toggle }] = useDisclosure();
-
   const isMobile = useMediaQuery(`(max-width: ${em(767)})`);
   const router = useRouter();
+
+  const isLinkSelected = (href: string) => router.pathname === href;
 
   return (
     <AppShell
@@ -46,10 +47,25 @@ function Layout({ children }: Props) {
           {!isMobile && (
             <>
               <Group className='space-x-10 text-lg font-semibold'>
-                <Link href='/resources/education' className='cursor-pointer'>
+                <Link
+                  href='/resources/education'
+                  className={`cursor-pointer ${
+                    isLinkSelected('/resources/education')
+                      ? { textDecoration: 'underline' }
+                      : ''
+                  }`}
+                >
                   Education
                 </Link>
-                <Link href='/resources/tools' className='cursor-pointer'>
+                <Link
+                  href='/resources/tools'
+                  className='cursor-pointer'
+                  style={
+                    router.pathname === '/resources/tools'
+                      ? { textDecoration: 'underline' }
+                      : {}
+                  }
+                >
                   Tools
                 </Link>
                 <Link href='/resources/charities' className='cursor-pointer'>
@@ -66,12 +82,25 @@ function Layout({ children }: Props) {
         </Group>
       </AppShell.Header>
 
-      <AppShell.Navbar p='md' className='mb-5'>
-        <ul className='flex flex-col space-y-6 pl-4 text-2xl font-medium'>
-          <Link href='/resources/education' className='cursor-pointer'>
+      <AppShell.Navbar p='xs' className='mb-5'>
+        <ul className='flex flex-col space-y-6 pl-8 text-2xl font-small'>
+          <Link
+            href='/resources/education'
+            className={`cursor-pointer ${
+              isLinkSelected('/resources/education') ? 'mt-5' : ''
+            }`}
+          >
             Education
           </Link>
-          <Link href='/resources/tools' className='cursor-pointer'>
+          <Link
+            href='/resources/tools'
+            className='cursor-pointer'
+            style={
+              router.pathname === '/resources/tools'
+                ? { textDecoration: 'underline' }
+                : {}
+            }
+          >
             Tools
           </Link>
           <Link href='/resources/charities' className='cursor-pointer'>
