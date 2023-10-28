@@ -47,8 +47,13 @@ function Layout({ children }: Props) {
 
           {!isMobile && (
             <>
-              <Tabs defaultValue='gallery' color='green'>
+              <Tabs color='green'>
                 <Tabs.List>
+                  <Tabs.Tab value='resources' className='mr-0'>
+                    <Link href='/resources' className='cursor-pointer'>
+                      Resources
+                    </Link>
+                  </Tabs.Tab>
                   <Tabs.Tab value='education' className='mr-0'>
                     <Link
                       href='/resources/education'
@@ -92,29 +97,18 @@ function Layout({ children }: Props) {
 
       <AppShell.Navbar p='xs' className='mb-5'>
         <ul className='flex flex-col space-y-6 pl-8 text-2xl font-small'>
-          <Link
-            href='/resources/education'
-            className={`cursor-pointer ${
-              isLinkSelected('/resources/education') ? 'mt-5' : ''
-            }`}
-          >
+          <Link href='/resources' className='cursor-pointer'>
+            Resources
+          </Link>
+          <Link href='/resources/education' className='cursor-pointer'>
             Education
           </Link>
-          <Link
-            href='/resources/tools'
-            className='cursor-pointer'
-            style={
-              router.pathname === '/resources/tools'
-                ? { textDecoration: 'underline' }
-                : {}
-            }
-          >
+          <Link href='/resources/tools' className='cursor-pointer'>
             Tools
           </Link>
           <Link href='/resources/charities' className='cursor-pointer'>
             Charities
           </Link>
-
           <hr />
           <Button
             w={'100%'}
