@@ -1,10 +1,9 @@
-import Head from 'next/head';
-import { Button, SegmentedControl } from '@mantine/core';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { TopPosts } from '@/components/TopPosts';
 import { getTopics } from '@/api/topics';
+import TopPosts from '@/components/TopPosts/TopThreePosts';
 import { Topic } from '@/types/dtos';
+import { Button, SegmentedControl } from '@mantine/core';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 type Tab = string;
 
@@ -22,7 +21,7 @@ function Home({ topics }: Props) {
 
   return (
     <div>
-      <div className='md:flex md:justify-between'>
+      <div className='md:mt-20 md:flex md:justify-between'>
         <h1 className='mx-auto text-center text-4xl font-black leading-tight sm:text-5xl md:mx-0 md:text-start md:text-6xl lg:max-w-3xl'>
           Ultimate Resources Hub for the
           <span className='text-black'> PAL</span>
@@ -64,7 +63,6 @@ function Home({ topics }: Props) {
 
       {topics && topics.length ? (
         <TopPosts
-          tab={selectedTab}
           topPosts={
             topics.find((topic) => topic.title === selectedTab)?.topPosts || []
           }

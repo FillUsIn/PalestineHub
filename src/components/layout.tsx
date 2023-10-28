@@ -3,7 +3,7 @@ import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
@@ -76,7 +76,7 @@ function Layout({ children }: Props) {
         </ul>
       </AppShell.Navbar>
 
-      <AppShell.Main className=' md:mt-20'>{children}</AppShell.Main>
+      <AppShell.Main>{children}</AppShell.Main>
     </AppShell>
   );
 }

@@ -1,15 +1,16 @@
-import React from 'react';
-import Image from 'next/image';
-import { Button, Card, Group, Paper, Text, Title } from '@mantine/core';
-import { PostSummaryDTO, TopPost } from '@/types/dtos';
+import { PostSummaryDTO } from '@/types/dtos';
 import { Post } from '@/types/entities';
-import Link from 'next/link';
+import { Button, Paper, Title } from '@mantine/core';
 
-type Props = {
-  post: Post;
+type PostPreviewProps = {
+  post: Post | PostSummaryDTO;
+  previewMode?: boolean;
 };
 
-function PostPreview({ post }: Props) {
+const PostPreview: React.FC<PostPreviewProps> = ({
+  post,
+  previewMode = false,
+}) => {
   return (
     <Paper
       shadow='md'
@@ -23,14 +24,18 @@ function PostPreview({ post }: Props) {
           <Title order={2} className='text-white'>
             {post.title}
           </Title>
-          <p className='mt-3 font-semibold text-white'>{post.body}</p>
+          {!previewMode && (
+            <p className='mt-3 font-semibold text-white'>{post.body}</p>
+          )}
         </div>
-        <Button variant='white' color='dark' className=''>
-          Read post
-        </Button>
+        {!previewMode && (
+          <Button variant='white' color='dark' className=''>
+            Read post
+          </Button>
+        )}
       </div>
     </Paper>
   );
-}
+};
 
 export default PostPreview;

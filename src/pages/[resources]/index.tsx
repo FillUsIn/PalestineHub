@@ -1,7 +1,7 @@
-import { getCategories } from '@/api/category';
+import { getCategories } from '@/api/categories';
 import CreatePostForm from '@/components/CreatePostForm';
 import PostSummaryItemList from '@/components/PostSummaryItemList';
-import TopPost from '@/components/TopPost';
+import TopPost from '@/components/TopPosts/TopPost';
 import { PostSummaryDTO } from '@/types/dtos';
 import {
   Anchor,
@@ -42,7 +42,7 @@ function Resources({ allPosts }: Props) {
         centered
         withCloseButton={false}
       >
-        <CreatePostForm subcategoryName={'UK'} onDismiss={close} />
+        <CreatePostForm onDismiss={close} />
       </Modal>
       <div className='flex flex-col  justify-between md:flex-row '>
         <Breadcrumbs

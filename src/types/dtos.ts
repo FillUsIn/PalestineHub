@@ -18,6 +18,12 @@ type CreatePostDTO = {
   url?: string;
 };
 
+type CreateCommentDTO = {
+  parentPostId: string;
+  parentCommentId: string;
+  body: string;
+};
+
 type CreateUserDTO = {
   username: string;
   password: string;
@@ -40,6 +46,7 @@ type TopPost = {
 
 export type {
   CreatePostDTO,
+  CreateCommentDTO,
   PostSummaryDTO,
   Topic,
   TopPost,
