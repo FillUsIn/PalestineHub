@@ -1,8 +1,10 @@
-import { Avatar, Box, Paper, Title } from '@mantine/core';
-import { IconBrandReddit } from '@tabler/icons-react';
+/* eslint-disable @next/next/no-img-element */
+import { Paper } from '@mantine/core';
 import { since } from '@/lib/utils/date-time';
+import { truncate } from '@/lib/utils/truncate';
 import { PostSummaryDTO } from '@/types/dtos';
 import Link from 'next/link';
+
 import ContentInteractions from './ContentInteractions';
 
 type Props = {
@@ -10,66 +12,58 @@ type Props = {
 };
 
 function PostSummaryItem({ post }: Props) {
-  const formattedDate = since(post.createdDate);
-
+  const {
+    body,
+    commentCount,
+    createdDate,
+    id,
+    title,
+    thumbnailUrl,
+    username,
+    voteCount,
+  } = post;
+  const formattedDate = since(createdDate);
   return (
-    <Link href={`/posts/${post.id}`}>
+    <Link href={`/posts/${id}`}>
       <Paper
-        shadow='md'
+        className='h-48 overflow-hidden text-black'
         radius='lg'
-        style={{ backgroundImage: `url(${post.thumbnailUrl})` }}
-        className='flex h-52 flex-col justify-between overflow-hidden text-white'
+        withBorder={true}
       >
-        {/* bg-gradient-to-b from-[#1a1a1af4] */}
-        <div className='flex h-full  flex-col justify-between bg-[#1a1a1a9e] p-5'>
-          <div>
-            <div className='flex items-center'>
-              <p className='text-sm font-medium'>
-                {post.username}
-                <span className='text-xs font-semibold '>
-                  <span className='mx-1'>·</span>
-                  <span>{formattedDate}</span>
-                </span>
-              </p>
+        <div className='flex flex-row justify-between'>
+          {thumbnailUrl && (
+            <div className='w-1/3'>
+              <img alt={title} className='w-full' src={thumbnailUrl} />
             </div>
+          )}
 
-            <p className='mt-2 text-xl font-semibold'>{post.title}</p>
-            <p className='mb-2 mt-8 whitespace-pre-line break-words text-sm font-medium'>
-              {post.body?.substring(0, 200)}...
-            </p>
+          <div className='basis-2/3 flex h-full flex-col justify-between bg-[white] p-5'>
+            <div>
+              <div className='flex items-center'>
+                <p className='text-sm font-medium'>
+                  {username}
+                  <span className='text-xs font-semibold '>
+                    <span className='mx-1'>·</span>
+                    <span>{formattedDate}</span>
+                  </span>
+                </p>
+              </div>
 
-            <ContentInteractions
-              voteCount={post.voteCount}
-              commentCount={post.commentCount}
-              showOptions={false}
-              onOptionsClicked={() => {}}
-            />
+              <h3 className='mt-2 text-xl font-semibold'>{title}</h3>
+              <p className='mb-2 mt-8 whitespace-pre-line break-words text-sm font-medium'>
+                {truncate(body, 200)}
+              </p>
+
+              <ContentInteractions
+                voteCount={voteCount}
+                commentCount={commentCount}
+                showOptions={false}
+                onOptionsClicked={() => {}}
+              />
+            </div>
           </div>
         </div>
       </Paper>
-      {/* <Box
-        className=' text-white bg-gradient-to-b from-[#141414eb] to-90% h-full px-6 py-4 cursor-pointer rounded-2xl border-2 border-gray-100   transition-all'
-        style={{ backgroundImage: `url(${post.thumbnailUrl})` }}
-      >
-        <div className='flex items-center'>
-          <p className='font-semibold text-sm'>
-            {post.username}
-            <span className='text-xs font-semibold text-gray-400'>
-              <span className='mx-1'>·</span>
-              <span>{formattedDate}</span>
-            </span>
-          </p>
-        </div>
-        <p className='font-semibold text-xl mt-2'>{post.title}</p>
-        <p className='whitespace-pre-line mt-8 mb-2 break-words'>{post.body?.substring(0, 200)}...</p>
-
-        <ContentInteractions
-          voteCount={post.voteCount}
-          commentCount={post.commentCount}
-          showOptions={false}
-          onOptionsClicked={() => {}}
-        />
-      </Box> */}
     </Link>
   );
 }

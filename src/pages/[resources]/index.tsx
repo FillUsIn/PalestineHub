@@ -1,6 +1,6 @@
 import { getCategories } from '@/api/categories';
 import CreatePostForm from '@/components/CreatePostForm';
-import PostSummaryItemList from '@/components/PostSummaryItemList';
+import PostSummaryItemList from '@/components/PostSummaryItemList/PostSummaryItemList';
 import TopPost from '@/components/TopPosts/TopPost';
 import { PostSummaryDTO } from '@/types/dtos';
 import {

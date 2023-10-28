@@ -12,7 +12,7 @@ import {
   Title,
 } from '@mantine/core';
 import CreatePostForm from '../../../components/CreatePostForm';
-import PostSummaryItemList from '../../../components/PostSummaryItemList';
+import PostSummaryItemList from '../../../components/PostSummaryItemList/PostSummaryItemList';
 import TopPost from '../../../components/TopPosts/TopPost';
 
 type Props = {
