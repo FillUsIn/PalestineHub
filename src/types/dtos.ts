@@ -1,29 +1,16 @@
 import { Post } from './entities';
 
-// type PostSummaryDTO = {
-//   id: string;
-//   title: string;
-//   username: string;
-//   createdDate: string;
-//   voteCount: number;
-//   commentCount: number;
-//   body?: string;
-//   thumbnailUrl?: string;
-// };
-
 type PostSummaryDTO = {
   id: string;
-  title: string;
-  voteCount: number;
-  thumbnailUrl: string;
   body?: string;
-  url?: string;
   categoryName: string;
-  subcategoryName: string;
   commentCount: number;
+  subCategoryName: string;
+  title: string;
   username: string;
-  createdAt: string;
-  updatedDate: string;
+  createdDate: string;
+  voteCount: number;
+  thumbnailUrl?: string;
 };
 
 type CreatePostDTO = {

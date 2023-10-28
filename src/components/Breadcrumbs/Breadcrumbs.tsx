@@ -6,11 +6,11 @@ type BreadcrumbItem = {
   href: string;
 };
 
-type BreadcrumbsProps = {
+interface BreadcrumbsProps {
   items: BreadcrumbItem[];
   home?: string;
   separator?: string;
-};
+}
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   items,
