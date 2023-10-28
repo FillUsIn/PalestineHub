@@ -28,12 +28,20 @@ export function LinksGroup({
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
   const items = (hasLinks ? links : []).map((link) => (
-    // Use the Link component to wrap the navigation links
-    <div className={classes.link}>
-      <Link href={link.link} key={link.label}>
-        {link.label}
-      </Link>
-    </div>
+    // <div className={classes.link}>
+    //   <Link href={link.link} key={link.label}>
+    //     {link.label}
+    //   </Link>
+    // </div>
+    <Text<'a'>
+      component='a'
+      className={classes.link}
+      href={link.link}
+      key={link.label}
+      //onClick={(event) => event.currentTarget} // this refeshes the page
+    >
+      {link.label}
+    </Text>
   ));
 
   return (
