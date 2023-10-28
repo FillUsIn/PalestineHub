@@ -26,7 +26,7 @@ const postsPerPage = 10;
 function CategoryPage({ categoryPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const items = [
-    { title: 'Education', href: '#' },
+    { title: categoryPosts[0].title, href: '#' },
     { title: 'documentaries', href: '#' },
   ].map((item, index) => (
     <Anchor href={item.href} key={index}>

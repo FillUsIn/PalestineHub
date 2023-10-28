@@ -25,8 +25,8 @@ const postsPerPage = 10;
 function SubCategoryPage({ subcategoryPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const items = [
-    { title: 'Education', href: '#' },
-    { title: 'documentaries', href: '#' },
+    { title: subcategoryPosts[0]?.categoryName, href: '#' },
+    { title: subcategoryPosts[0]?.subcategoryName, href: '#' },
   ].map((item, index) => (
     <Anchor href={item.href} key={index}>
       {item.title}

@@ -27,8 +27,8 @@ const postsPerPage = 10;
 function Resources({ allPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const items = [
-    { title: 'Education', href: '#' },
-    { title: 'documentaries', href: '#' },
+    { title: 'Resources', href: '#' },
+    // { title: 'documentaries', href: '#' },
   ].map((item, index) => (
     <Anchor href={item.href} key={index}>
       {item.title}
