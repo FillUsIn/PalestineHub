@@ -6,8 +6,13 @@ import PostContent from '@/components/PostContent';
 import UpvoteDownvote from '@/components/UpvoteDownvote';
 import { CreateCommentDTO, PostSummaryDTO } from '@/types/dtos';
 import { Comment, Post } from '@/types/entities';
-import { Divider } from '@mantine/core';
-import { IconBrandWechat } from '@tabler/icons-react';
+import { Button, Divider } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import {
+  IconBrandWechat,
+  IconChevronDown,
+  IconChevronUp,
+} from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
 
@@ -17,6 +22,8 @@ type Props = {
 
 function PostPage({ post }: Props) {
   const [comments, setComments] = useState<Comment[]>(post.comments);
+
+  const [commentsExpanded, { toggle }] = useDisclosure(false);
 
   // Function to add a new comment
   const addComment = (comment: Comment) => {
@@ -48,26 +55,51 @@ function PostPage({ post }: Props) {
 
         <UpvoteDownvote />
 
-        <AddCommentBox
-          className='my-5'
-          onSubmit={(text) => handleAddComment(text)}
-        />
+        <Button
+          variant='light'
+          color='dark'
+          radius={'xl'}
+          onClick={toggle}
+          w={180}
+          rightSection={
+            commentsExpanded ? (
+              <IconChevronUp strokeWidth={1.5} />
+            ) : (
+              <IconChevronDown strokeWidth={1.5} />
+            )
+          }
+        >
+          {commentsExpanded ? 'Hide' : 'Show'} comments
+        </Button>
+        <AnimatePresence>
+          {commentsExpanded && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <AddCommentBox
+                className='my-5'
+                onSubmit={(text) => handleAddComment(text)}
+              />
 
-        <Divider mb={20} size={'6'} color='rgb(234, 234, 234)' />
-
-        {/* {JSON.stringify(post.comments)} */}
-        <AnimatePresence mode='wait'>
-          {comments.length ? (
-            <CommentsList
-              comments={comments.sort(
-                (a, b) =>
-                  new Date(b.createdAt).valueOf() -
-                  new Date(a.createdAt).valueOf()
-              )}
-              isChild={false}
-            />
-          ) : (
-            <NoCommentsYet />
+              <Divider mb={20} size={'6'} color='rgb(234, 234, 234)' />
+              <AnimatePresence mode='wait'>
+                {comments.length ? (
+                  <CommentsList
+                    comments={comments.sort(
+                      (a, b) =>
+                        new Date(b.createdAt).valueOf() -
+                        new Date(a.createdAt).valueOf()
+                    )}
+                    isChild={false}
+                  />
+                ) : (
+                  <NoCommentsYet />
+                )}
+              </AnimatePresence>
+            </motion.div>
           )}
         </AnimatePresence>
       </motion.div>
