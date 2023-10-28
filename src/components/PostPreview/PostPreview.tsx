@@ -16,7 +16,7 @@ const PostPreview: React.FC<PostPreviewProps> = ({
 
   return (
     <Paper
-      className='flex h-96 flex-col justify-between overflow-hidden hover:ring-sky-500'
+      className='flex h-96 flex-col justify-between overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover: duration-300'
       component={Link}
       href={`/resources/${categoryName}/${subCategoryName}${id}`}
       radius='lg'
