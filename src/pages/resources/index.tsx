@@ -14,9 +14,10 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import React from 'react';
 import { getAllPosts } from '../../api/posts';
+import { Post } from '@/types/entities';
 
 type Props = {
-  allPosts: PostSummaryDTO[];
+  allPosts: Post[];
 };
 
 const numberOfTopPosts = 3;

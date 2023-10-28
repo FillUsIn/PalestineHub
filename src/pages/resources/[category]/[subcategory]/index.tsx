@@ -13,9 +13,10 @@ import { useDisclosure } from '@mantine/hooks';
 import CreatePostForm from '../../../../components/CreatePostForm';
 import PostSummaryItemList from '../../../../components/PostSummaryItemList';
 import TopPost from '../../../../components/TopPosts/TopPost';
+import { Post } from '@/types/entities';
 
 type Props = {
-  subcategoryPosts: PostSummaryDTO[];
+  subcategoryPosts: Post[];
 };
 
 const numberOfTopPosts = 3;

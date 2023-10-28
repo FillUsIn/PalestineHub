@@ -14,9 +14,10 @@ import {
 import CreatePostForm from '../../../components/CreatePostForm';
 import PostSummaryItemList from '../../../components/PostSummaryItemList';
 import TopPost from '../../../components/TopPosts/TopPost';
+import { Post } from '@/types/entities';
 
 type Props = {
-  categoryPosts: PostSummaryDTO[];
+  categoryPosts: Post[];
 };
 
 const numberOfTopPosts = 3;
