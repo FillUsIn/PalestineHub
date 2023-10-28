@@ -83,7 +83,11 @@ function SubCategoryPage({ subcategoryPosts }: Props) {
           </div>
 
           <Divider className='my-5' size={'xl'} />
-
+          {subcategoryPosts.length > 3 && (
+            <Title order={2} mt={10} mb={20}>
+              Other resources:
+            </Title>
+          )}
           <PostSummaryItemList
             posts={subcategoryPosts.slice(numberOfTopPosts)}
           />

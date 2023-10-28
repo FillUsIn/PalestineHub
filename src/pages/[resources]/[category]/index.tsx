@@ -26,8 +26,8 @@ const postsPerPage = 10;
 function CategoryPage({ categoryPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const items = [
-    { title: categoryPosts[0].title, href: '#' },
-    { title: 'documentaries', href: '#' },
+    { title: categoryPosts[0].categoryName, href: '#' },
+    // { title: 'documentaries', href: '#' },
   ].map((item, index) => (
     <Anchor href={item.href} key={index}>
       {item.title}
@@ -84,7 +84,11 @@ function CategoryPage({ categoryPosts }: Props) {
           </div>
 
           <Divider className='my-5' size={'xl'} />
-
+          {categoryPosts.length > 3 && (
+            <Title order={2} mt={10} mb={20}>
+              Other resources:
+            </Title>
+          )}
           <PostSummaryItemList posts={categoryPosts.slice(numberOfTopPosts)} />
         </div>
       </div>

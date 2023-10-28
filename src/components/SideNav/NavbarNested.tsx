@@ -28,21 +28,21 @@ const mockdata = [
     ],
   },
   {
-    label: 'Tools',
-    icon: IconSettings,
-    links: [
-      { label: 'BDS', link: '/resources/tools/bds' },
-      // { label: 'General Tools', link: '/resources/tools/generaltools' },
-      // { label: 'Fact Check', link: '/resources/tools/factcheck' },
-    ],
-  },
-  {
     label: 'Charities',
     icon: IconGift,
     links: [
       // { label: 'General Charities', link: '/resources/charities/generalcharities' },
       { label: 'UK', link: '/resources/charities/UK' },
       { label: 'USA', link: '/resources/charities/USA' },
+    ],
+  },
+  {
+    label: 'Tools',
+    icon: IconSettings,
+    links: [
+      { label: 'BDS', link: '/resources/tools/bds' },
+      // { label: 'General Tools', link: '/resources/tools/generaltools' },
+      // { label: 'Fact Check', link: '/resources/tools/factcheck' },
     ],
   },
 ];

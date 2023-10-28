@@ -74,7 +74,7 @@ function Resources({ allPosts }: Props) {
           </div>
 
           <Title order={2} mt={30}>
-            Top 3 postss
+            Top 3 posts
           </Title>
 
           <div className='mt-5 justify-between space-y-4 md:flex md:gap-5 md:space-y-0'>
@@ -85,7 +85,11 @@ function Resources({ allPosts }: Props) {
           </div>
 
           <Divider className='my-5' size={'xl'} />
-
+          {allPosts.length > 3 && (
+            <Title order={2} mt={10} mb={20}>
+              Other resources:
+            </Title>
+          )}
           <PostSummaryItemList posts={allPosts.slice(numberOfTopPosts)} />
         </div>
       </div>

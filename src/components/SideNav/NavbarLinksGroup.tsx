@@ -44,12 +44,12 @@ export function LinksGroup({
       >
         <Group justify='space-between' gap={0}>
           <Box style={{ display: 'flex', alignItems: 'center' }}>
-            <ThemeIcon variant='light' size={30}>
+            <ThemeIcon variant='transparent' size={30} color='#007A3D'>
               <Icon style={{ width: rem(18), height: rem(18) }} />
             </ThemeIcon>
             <Box ml='md'>{label}</Box>
           </Box>
-          {hasLinks && (
+          {/* {hasLinks && (
             <IconChevronRight
               className={classes.chevron}
               stroke={1.5}
@@ -59,7 +59,7 @@ export function LinksGroup({
                 transform: opened ? 'rotate(-90deg)' : 'none',
               }}
             />
-          )}
+          )} */}
         </Group>
       </UnstyledButton>
       {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
