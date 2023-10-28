@@ -36,7 +36,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
-    "tailwind-merge": "^1.14.0"
+    "tailwind-merge": "^1.14.0",
+    "unique-username-generator": "^1.2.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.5.1",

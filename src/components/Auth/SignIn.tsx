@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useForm } from '@mantine/form';
+import { hasLength, isEmail, useForm } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
 import {
   Button,
@@ -18,22 +18,28 @@ export const SignIn = () => {
   const router = useRouter();
   const form = useForm({
     initialValues: {
-      username: '',
+      email: '',
       password: '',
+    },
+    validate: {
+      email: isEmail('Invalid Email'),
+      password: hasLength(
+        { min: 6, max: 16 },
+        'Password must be 6-16 characters long'
+      ),
     },
   });
 
   const [visible, { toggle }] = useDisclosure(false);
 
-  const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
-
-    const { username, password } = form.values;
-    await signIn('credentials', {
-      username,
-      password,
-      redirect: true,
-      callbackUrl: '/',
+    return form.onSubmit(async (values) => {
+      await signIn('credentials', {
+        ...values,
+        redirect: true,
+        callbackUrl: '/',
+      });
     });
   };
 
@@ -43,20 +49,19 @@ export const SignIn = () => {
       className='flex flex-col gap-6'
       maw={340}
       mx='auto'
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit()}
     >
       <TextInput
         withAsterisk
         label='Email'
         placeholder='your@email.com'
-        {...form.getInputProps('username')}
+        {...form.getInputProps('email')}
       />
       <PasswordInput
         withAsterisk
         label='Password'
         visible={visible}
         onVisibilityChange={toggle}
-        error={form.errors.password}
         {...form.getInputProps('password')}
       />
       <Stack justify='center'>

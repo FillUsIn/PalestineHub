@@ -5,24 +5,21 @@ import { login, logout } from '@/api/users';
 export const authOptions: AuthOptions = {
   pages: {
     signIn: '/auth/signin',
-    signOut: '/auth/signout',
-    newUser: '/auth/signup',
   },
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        username: { label: 'Username', type: 'text' },
+        email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        if (!credentials?.username || !credentials.password) return null;
+        if (!credentials?.email || !credentials.password) return null;
 
         try {
           const user = await login(credentials);
           return user;
         } catch (e) {
-          console.error(e);
           return null;
         }
       },
@@ -34,7 +31,6 @@ export const authOptions: AuthOptions = {
     },
     async session({ session, token }) {
       session.user = token;
-      console.log(session);
       return session;
     },
   },

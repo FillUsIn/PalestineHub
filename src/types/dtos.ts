@@ -27,12 +27,13 @@ type CreateCommentDTO = {
 };
 
 type CreateUserDTO = {
+  email: string;
   username: string;
   password: string;
 };
 
 type LoginDTO = {
-  username: string;
+  email: string;
   password: string;
 };
 
