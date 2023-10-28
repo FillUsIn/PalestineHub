@@ -12,7 +12,7 @@ import {
   Text,
 } from '@mantine/core';
 import { useRouter } from 'next/navigation';
-import { createUserAccount } from '@/api/user';
+import { createUserAccount } from '@/api/users';
 
 export const SignUp = () => {
   const router = useRouter();

@@ -1,6 +1,6 @@
 import NextAuth, { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { login, logout } from '@/api/user';
+import { login, logout } from '@/api/users';
 
 export const authOptions: AuthOptions = {
   pages: {
@@ -46,6 +46,7 @@ export const authOptions: AuthOptions = {
   session: {
     strategy: 'jwt',
   },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 export default NextAuth(authOptions);
