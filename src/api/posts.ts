@@ -66,11 +66,8 @@ async function getSubcategoryPosts(
   return response.data;
 }
 
-async function getPostById(postId: string): Promise<PagedResponse<Post>> {
-  const response = await api.get<PagedResponse<Post>>(
-    `${API_BASE_URI}/${postId}`,
-    {}
-  );
+async function getPostById(postId: string): Promise<Post> {
+  const response = await api.get<Post>(`${API_BASE_URI}/${postId}`);
   return response.data;
 }
 

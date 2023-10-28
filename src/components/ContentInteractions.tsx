@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils/classname';
 import { useState } from 'react';
 import { ActionIcon } from '@mantine/core';
 import ContentVotes from './ContentVotes';
+import UpvoteDownvote from './UpvoteDownvote';
 
 type Props = {
   onUpvote?: () => void;
@@ -38,16 +39,22 @@ function ContentInteractions({
 
   return (
     <div className={cn('flex items-center space-x-5', className ?? '')}>
-      <ContentVotes
+      {/* <ContentVotes
         voteCount={voteCount}
         // setVoteCount={setVoteCount}
         // setVoteState={setVoteState}
-      />
+      /> */}
+      <UpvoteDownvote />
 
       {showCommentsCount && <Comments commentCount={commentCount} />}
       {showReplyButton && (
-        <ActionIcon radius={'xl'} onClick={onReplyClicked}>
-          <IconArrowBackUp size='24' color='gray' />
+        <ActionIcon
+          radius={'xl'}
+          variant='transparent'
+          color='gray'
+          onClick={onReplyClicked}
+        >
+          <IconArrowBackUp size='24' />
         </ActionIcon>
       )}
 
@@ -63,11 +70,11 @@ function ContentInteractions({
   );
 }
 
-function Comments({ commentCount }: { commentCount: number }) {
+function Comments({ commentCount = 0 }: { commentCount: number }) {
   return (
-    <div className='flex cursor-pointer items-center space-x-1 rounded-full px-2.5 py-1.5 hover:bg-zinc-100 '>
-      <IconMessageCircle size='22' color='white' fill='white' />
-      <p className='text-sm font-bold text-white '>{commentCount}</p>
+    <div className='flex text-gray-500 cursor-pointer items-center space-x-1 rounded-full px-2.5 py-1.5 hover:bg-zinc-100 '>
+      <IconMessageCircle size='22' />
+      <p className='text-sm font-bold  '>{commentCount}</p>
     </div>
   );
 }

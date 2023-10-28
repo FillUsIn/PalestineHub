@@ -10,10 +10,12 @@ type Props = {
 };
 
 function PostSummaryItem({ post }: Props) {
-  const formattedDate = since(post.createdDate);
+  const formattedDate = since(post.createdAt);
 
   return (
-    <Link href={`/posts/${post.id}`}>
+    <Link
+      href={`/resources/${post.categoryName}/${post.subcategoryName}/posts/${post.id}`}
+    >
       <Paper
         shadow='md'
         radius='lg'
@@ -40,7 +42,7 @@ function PostSummaryItem({ post }: Props) {
 
             <ContentInteractions
               voteCount={post.voteCount}
-              commentCount={post.commentCount}
+              commentCount={0}
               showOptions={false}
               onOptionsClicked={() => {}}
             />

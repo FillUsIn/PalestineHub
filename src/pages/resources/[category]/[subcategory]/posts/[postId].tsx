@@ -1,20 +1,41 @@
+import { createComment } from '@/api/comments';
 import { getPostById } from '@/api/posts';
 import AddCommentBox from '@/components/Comments/AddCommentBox';
 import CommentsList from '@/components/Comments/CommentsList';
 import PostContent from '@/components/PostContent';
 import UpvoteDownvote from '@/components/UpvoteDownvote';
-import { Post } from '@/types/entities';
+import { CreateCommentDTO, PostSummaryDTO } from '@/types/dtos';
+import { Comment, Post } from '@/types/entities';
 import { Divider } from '@mantine/core';
 import { IconBrandWechat } from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'framer-motion';
-import React from 'react';
+import React, { useState } from 'react';
 
 type Props = {
   post: Post;
 };
 
 function PostPage({ post }: Props) {
-  if (!post) return <p>Post not found</p>;
+  const [comments, setComments] = useState<Comment[]>(post.comments);
+
+  // Function to add a new comment
+  const addComment = (comment: Comment) => {
+    setComments([...comments, comment]);
+  };
+
+  const handleAddComment = async (text: string) => {
+    const createCommentDTO: CreateCommentDTO = {
+      body: text.trim(),
+      parentPostId: post.id,
+      parentCommentId: '',
+    };
+
+    const createdComment = await createComment(createCommentDTO);
+
+    if (createdComment) {
+      addComment(createdComment);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -27,15 +48,18 @@ function PostPage({ post }: Props) {
 
         <UpvoteDownvote />
 
-        <AddCommentBox className='my-5' onSubmit={() => {}} />
+        <AddCommentBox
+          className='my-5'
+          onSubmit={(text) => handleAddComment(text)}
+        />
 
         <Divider mb={20} size={'6'} color='rgb(234, 234, 234)' />
 
         {/* {JSON.stringify(post.comments)} */}
         <AnimatePresence mode='wait'>
-          {post.comments.length ? (
+          {comments.length ? (
             <CommentsList
-              comments={post.comments.sort(
+              comments={comments.sort(
                 (a, b) =>
                   new Date(b.createdAt).valueOf() -
                   new Date(a.createdAt).valueOf()
@@ -63,11 +87,9 @@ function NoCommentsYet() {
 export async function getServerSideProps({ params }) {
   const { postId } = params;
 
-  console.log('postId :>> ', postId);
-
   const post = await getPostById(postId);
 
-  // const post: Post = {
+  // const post: PostSummaryDTO = {
   //   id: postId,
   //   body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, odit.',
   //   title: 'Why palestinians are the oppressed, not the oppressors.',
