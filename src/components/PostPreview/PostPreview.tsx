@@ -1,6 +1,7 @@
 import { PostSummaryDTO } from '@/types/dtos';
 import { Post } from '@/types/entities';
 import { Button, Paper, Title } from '@mantine/core';
+import Link from 'next/link';
 
 type PostPreviewProps = {
   post: Post | PostSummaryDTO;
@@ -11,8 +12,12 @@ const PostPreview: React.FC<PostPreviewProps> = ({
   post,
   previewMode = false,
 }) => {
+  console.log(post);
+  const url = `/posts/${post.id}`;
   return (
     <Paper
+      component={Link}
+      href={url}
       shadow='md'
       w='100%'
       radius='lg'
