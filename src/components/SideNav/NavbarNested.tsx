@@ -12,7 +12,7 @@ import { LinksGroup } from './NavbarLinksGroup';
 import classes from './NavbarNested.module.css';
 
 const mockdata = [
-  { label: 'Dashboard', icon: IconGauge },
+  { label: 'All Resources', icon: IconGauge },
   {
     label: 'Market news',
     icon: IconNotes,
@@ -33,9 +33,6 @@ const mockdata = [
       { label: 'Releases schedule', link: '/' },
     ],
   },
-  { label: 'Analytics', icon: IconPresentationAnalytics },
-  { label: 'Contracts', icon: IconFileAnalytics },
-  { label: 'Settings', icon: IconAdjustments },
   {
     label: 'Security',
     icon: IconLock,
@@ -54,21 +51,9 @@ export function NavbarNested() {
 
   return (
     <nav className={classes.navbar}>
-      <div className={classes.header}>
-        <Group justify='space-between'>
-          <Code fw={700}>v3.1.2</Code>
-        </Group>
-      </div>
-
       <ScrollArea className={classes.links}>
         <div className={classes.linksInner}>{links}</div>
       </ScrollArea>
-
-      <div className={classes.footer}>
-        <Button radius={'xl'} fw={'bolder'} size='sm' color='dark'>
-          Sign in
-        </Button>
-      </div>
     </nav>
   );
 }
