@@ -1,23 +1,25 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-// Import styles of packages that you've installed.
-// All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
-
+import { MantineProvider } from '@mantine/core';
 import Layout from '@/components/layout';
-import { theme } from '@/styles/theme';
-import { MantineProvider, createTheme } from '@mantine/core';
+import SessionProvider from '@/components/SessionProvider';
 import Head from 'next/head';
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider>
       <Head>
         <title>Fill Us In | Information and resources for Palestine</title>
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <SessionProvider session={session}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SessionProvider>
     </MantineProvider>
   );
 }
