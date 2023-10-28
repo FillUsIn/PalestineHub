@@ -48,17 +48,19 @@ export async function getServerSideProps({ params }) {
   console.log('postId :>> ', postId);
 
   const post: Post = {
-    id: postId,
     body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, odit.',
-    title: 'Why palestinians are the oppressed, not the oppressors.',
+    categoryName: 'Charities',
     createdAt: '2023-10-24T01:08:46.305527088',
-    username: 'ahmad',
-    url: 'https://google.com',
-    thumbnailUrl: null,
-    voteCount: 32,
     comments: [],
+    id: postId,
+    subCategoryName: 'Medical',
+    title: 'Why palestinians are the oppressed, not the oppressors.',
+    thumbnailUrl: null,
+    url: 'https://google.com',
     userDislikes: [],
     userLikes: [],
+    username: 'ahmad',
+    voteCount: 32,
   };
 
   return {

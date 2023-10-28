@@ -2,14 +2,15 @@ import { PostSummaryDTO } from '@/types/dtos';
 import { Post, TopPosts } from '@/types/entities';
 
 export const examplePost: Post = {
-  id: 'post1',
-  title: 'Post title',
   body: 'Post body',
-  voteCount: 5,
+  categoryName: 'Charities',
+  comments: [],
   createdAt: new Date().toDateString(),
-  username: 'testuser',
-  url: '/testpost',
+  id: 'post1',
+  subCategoryName: 'Medical',
   thumbnailUrl: '',
+  title: 'Post title',
+  url: '/testpost',
   userLikes: [
     {
       username: 'user1',
@@ -24,7 +25,8 @@ export const examplePost: Post = {
       updatedAt: new Date().toDateString(),
     },
   ],
-  comments: [],
+  username: 'testuser',
+  voteCount: 5,
 };
 
 export const exampleTopPosts: TopPosts = [
@@ -53,12 +55,14 @@ export const exampleTopPosts: TopPosts = [
 ];
 
 export const examplePostSummary: PostSummaryDTO = {
-  id: 'post1',
-  title: 'Post title',
   body: 'Post body',
-  voteCount: 5,
+  categoryName: 'Charities',
   commentCount: 3,
   createdDate: new Date().toDateString(),
-  username: 'testuser',
+  id: 'post1',
+  subCategoryName: 'Medical',
   thumbnailUrl: '',
+  title: 'Post title',
+  username: 'testuser',
+  voteCount: 5,
 };
