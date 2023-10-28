@@ -1,20 +1,8 @@
-import { Group, Code, ScrollArea, rem, Button } from '@mantine/core';
-import IconSettings2 from '../../../public/IconCharity.svg';
-import {
-  IconNotes,
-  IconCalendarStats,
-  IconSettings,
-  IconGift,
-  IconBook,
-  IconLock,
-} from '@tabler/icons-react';
+import { ScrollArea } from '@mantine/core';
+import { IconSettings, IconGift, IconBook } from '@tabler/icons-react';
 import { LinksGroup } from './NavbarLinksGroup';
 import classes from './NavbarNested.module.css';
-import useCategories from '@/hooks/useCategories';
-import { getCategoryPosts } from '@/api/posts';
 
-const categories = JSON.stringify(useCategories);
-console.log(categories);
 const mockdata = [
   {
     label: 'Education',
@@ -43,7 +31,7 @@ const mockdata = [
     label: 'Tools',
     icon: IconSettings,
     links: [
-      { label: 'BDS', link: '/resources/tools/bds' },
+      { label: 'BDS', link: '/resources/tools/BDS' },
       { label: 'General Tools', link: '/resources/tools/general tools' },
       { label: 'Fact Check', link: '/resources/tools/fact check' },
     ],
