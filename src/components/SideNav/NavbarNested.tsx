@@ -1,9 +1,15 @@
 import { ScrollArea } from '@mantine/core';
-import { IconSettings, IconGift, IconBook } from '@tabler/icons-react';
+import {
+  IconSettings,
+  IconGift,
+  IconBook,
+  IconGauge,
+} from '@tabler/icons-react';
 import { LinksGroup } from './NavbarLinksGroup';
 import classes from './NavbarNested.module.css';
 
 const mockdata = [
+  { label: 'All Resources', icon: IconGauge },
   {
     label: 'Education',
     icon: IconBook,

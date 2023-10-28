@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
+import { Logo100 } from '../img/Logo';
 
 type Props = {
   children: ReactNode;
@@ -16,7 +17,7 @@ function Layout({ children }: Props) {
 
   return (
     <AppShell
-      header={{ height: 60 }}
+      header={{ height: 130 }}
       navbar={{
         width: 300,
         breakpoint: 'sm',
@@ -31,10 +32,8 @@ function Layout({ children }: Props) {
           justify='space-between'
         >
           <Link href='/'>
-            <p className='space-x-1 text-2xl font-black'>
-              <span>Fill</span>
-              <span className='text-red-700'>Us</span>
-              <span className='text-green-800'>In</span>
+            <p className='space-x-1'>
+              <Logo100 />
             </p>
           </Link>
 
