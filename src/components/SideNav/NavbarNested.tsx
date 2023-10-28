@@ -1,4 +1,5 @@
 import { Group, Code, ScrollArea, rem, Button } from '@mantine/core';
+import IconSettings from '../../../public/IconCharity.svg';
 import {
   IconNotes,
   IconCalendarStats,
@@ -10,39 +11,39 @@ import {
 } from '@tabler/icons-react';
 import { LinksGroup } from './NavbarLinksGroup';
 import classes from './NavbarNested.module.css';
+import useCategories from '@/hooks/useCategories';
+import { getCategoryPosts } from '@/api/posts';
 
+const categories = JSON.stringify(useCategories);
+console.log(categories);
 const mockdata = [
-  { label: 'Dashboard', icon: IconGauge },
   {
-    label: 'Market news',
+    label: 'Education',
     icon: IconNotes,
     initiallyOpened: true,
     links: [
-      { label: 'Overview', link: '/' },
-      { label: 'Forecasts', link: '/' },
-      { label: 'Outlook', link: '/' },
-      { label: 'Real time', link: '/' },
+      { label: 'Articles', link: '/resources/education/articles' },
+      { label: 'Documentaries', link: '/resources/education/documentaries' },
+      { label: 'Videos', link: '/resources/education/videos' },
+      { label: 'Podcasts', link: '/resources/education/podcasts' },
     ],
   },
   {
-    label: 'Releases',
+    label: 'Tools',
     icon: IconCalendarStats,
     links: [
-      { label: 'Upcoming releases', link: '/' },
-      { label: 'Previous releases', link: '/' },
-      { label: 'Releases schedule', link: '/' },
+      { label: 'BDS', link: '/resources/tools/bds' },
+      // { label: 'General Tools', link: '/resources/tools/generaltools' },
+      // { label: 'Fact Check', link: '/resources/tools/factcheck' },
     ],
   },
-  { label: 'Analytics', icon: IconPresentationAnalytics },
-  { label: 'Contracts', icon: IconFileAnalytics },
-  { label: 'Settings', icon: IconAdjustments },
   {
-    label: 'Security',
+    label: 'Charities',
     icon: IconLock,
     links: [
-      { label: 'Enable 2FA', link: '/' },
-      { label: 'Change password', link: '/' },
-      { label: 'Recovery codes', link: '/' },
+      // { label: 'General Charities', link: '/resources/charities/generalcharities' },
+      { label: 'UK', link: '/resources/charities/UK' },
+      { label: 'USA', link: '/resources/charities/USA' },
     ],
   },
 ];
@@ -54,21 +55,9 @@ export function NavbarNested() {
 
   return (
     <nav className={classes.navbar}>
-      <div className={classes.header}>
-        <Group justify='space-between'>
-          <Code fw={700}>v3.1.2</Code>
-        </Group>
-      </div>
-
       <ScrollArea className={classes.links}>
         <div className={classes.linksInner}>{links}</div>
       </ScrollArea>
-
-      <div className={classes.footer}>
-        <Button radius={'xl'} fw={'bolder'} size='sm' color='dark'>
-          Sign in
-        </Button>
-      </div>
     </nav>
   );
 }
