@@ -31,7 +31,10 @@ const mockdata = [
     label: 'Charities',
     icon: IconGift,
     links: [
-      // { label: 'General Charities', link: '/resources/charities/generalcharities' },
+      {
+        label: 'General Charities',
+        link: '/resources/charities/general charities',
+      },
       { label: 'UK', link: '/resources/charities/UK' },
       { label: 'USA', link: '/resources/charities/USA' },
     ],
