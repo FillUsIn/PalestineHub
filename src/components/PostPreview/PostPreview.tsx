@@ -12,17 +12,17 @@ const PostPreview: React.FC<PostPreviewProps> = ({
   post,
   previewMode = false,
 }) => {
-  console.log(post);
-  const url = `/posts/${post.id}`;
+  const { body, categoryName, id, subCategoryName, thumbnailUrl } = post;
+
   return (
     <Paper
+      className='flex h-96 flex-col justify-between overflow-hidden hover:ring-sky-500'
       component={Link}
-      href={url}
-      shadow='md'
-      w='100%'
+      href={`/resources/${categoryName}/${subCategoryName}${id}`}
       radius='lg'
-      style={{ backgroundImage: `url(${post.thumbnailUrl})` }}
-      className='flex h-96 flex-col justify-between overflow-hidden'
+      shadow='md'
+      style={{ backgroundImage: `url(${thumbnailUrl})` }}
+      w='100%'
     >
       <div className='flex h-full flex-col justify-between bg-gradient-to-b from-[#141414eb] to-90% p-5'>
         <div>
@@ -30,7 +30,7 @@ const PostPreview: React.FC<PostPreviewProps> = ({
             {post.title}
           </Title>
           {!previewMode && (
-            <p className='mt-3 font-semibold text-white'>{post.body}</p>
+            <p className='mt-3 font-semibold text-white'>{body}</p>
           )}
         </div>
         {!previewMode && (

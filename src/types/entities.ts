@@ -1,15 +1,17 @@
 type Post = {
-  id: string;
-  title: string;
   body: string;
-  voteCount: number;
-  createdAt: string;
-  username: string;
-  url: string;
-  thumbnailUrl: string | null;
-  userLikes: User[];
-  userDislikes: User[];
+  categoryName: string;
   comments: Comment[];
+  createdAt: string;
+  id: string;
+  subCategoryName: string;
+  thumbnailUrl: string | null;
+  title: string;
+  url: string;
+  userDislikes: User[];
+  userLikes: User[];
+  username: string;
+  voteCount: number;
 };
 
 type TopPosts = {
