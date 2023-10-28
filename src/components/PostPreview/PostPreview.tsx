@@ -16,28 +16,23 @@ const PostPreview: React.FC<PostPreviewProps> = ({
 
   return (
     <Paper
-      className='flex h-96 flex-col justify-between overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover: duration-300'
+      className='flex h-96 w-full flex-col justify-center items-center overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover: duration-300'
       component={Link}
       href={`/resources/${categoryName}/${subCategoryName}/posts/${id}`}
       radius='lg'
-      shadow='md'
-      style={{ backgroundImage: `url(${thumbnailUrl})` }}
-      w='100%'
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url(${thumbnailUrl})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }}
     >
       <div className='flex h-full flex-col justify-between bg-gradient-to-b from-[#141414eb] to-90% p-5'>
         <div>
           <Title order={2} className='text-white'>
             {post.title}
           </Title>
-          {!previewMode && (
-            <p className='mt-3 font-semibold text-white'>{body}</p>
-          )}
         </div>
-        {!previewMode && (
-          <Button variant='white' color='dark' className=''>
-            Read post
-          </Button>
-        )}
       </div>
     </Paper>
   );

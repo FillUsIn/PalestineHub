@@ -62,12 +62,12 @@ function Resources({ allPosts }: Props) {
           size='sm'
           className='mt-5 md:mt-0'
         >
-          Submit a post
+          Submit a resource
         </Button>
       </div>
 
       <Title order={2} mt={30}>
-        Top 3 posts
+        Top 3 resources
       </Title>
 
       <div className='mt-5 justify-between space-y-4 md:flex md:gap-5 md:space-y-0'>
