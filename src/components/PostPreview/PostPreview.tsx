@@ -12,13 +12,19 @@ const PostPreview: React.FC<PostPreviewProps> = ({
   post,
   previewMode = false,
 }) => {
-  const { body, categoryName, id, subCategoryName, thumbnailUrl } = post;
+  const {
+    body,
+    categoryName,
+    id,
+    subcategoryName: subcategoryName,
+    thumbnailUrl,
+  } = post;
 
   return (
     <Paper
       className='flex h-96 w-full flex-col justify-center items-center overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover: duration-300'
       component={Link}
-      href={`/resources/${categoryName}/${subCategoryName}/posts/${id}`}
+      href={`/resources/${categoryName}/${subcategoryName}/posts/${id}`}
       radius='lg'
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url(${thumbnailUrl})`,

@@ -6,7 +6,7 @@ type PostSummaryDTO = {
   commentCount: number;
   createdDate: string;
   id: string;
-  subCategoryName: string;
+  subcategoryName: string;
   thumbnailUrl?: string;
   title: string;
   username: string;

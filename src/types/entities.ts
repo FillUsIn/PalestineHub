@@ -4,7 +4,7 @@ type Post = {
   comments: Comment[];
   createdAt: string;
   id: string;
-  subCategoryName: string;
+  subcategoryName: string;
   thumbnailUrl: string | null;
   title: string;
   url: string;
