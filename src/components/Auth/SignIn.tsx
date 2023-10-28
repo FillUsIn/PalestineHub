@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useForm, isEmail } from '@mantine/form';
+import { useForm } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
 import {
   Button,
@@ -12,17 +12,14 @@ import {
   Text,
 } from '@mantine/core';
 import { useRouter } from 'next/navigation';
-import { login } from '@/api/user';
+import { signIn } from 'next-auth/react';
 
 export const SignIn = () => {
   const router = useRouter();
   const form = useForm({
     initialValues: {
-      email: '',
+      username: '',
       password: '',
-    },
-    validate: {
-      email: isEmail('Invalid email'),
     },
   });
 
@@ -31,17 +28,28 @@ export const SignIn = () => {
   const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
 
-    const { email: username, password } = form.values;
-    await login({ username, password });
+    const { username, password } = form.values;
+    await signIn('credentials', {
+      username,
+      password,
+      redirect: true,
+      callbackUrl: '/',
+    });
   };
 
   return (
-    <Box component='form' maw={340} mx='auto' onSubmit={handleSubmit}>
+    <Box
+      component='form'
+      className='flex flex-col gap-6'
+      maw={340}
+      mx='auto'
+      onSubmit={handleSubmit}
+    >
       <TextInput
         withAsterisk
         label='Email'
         placeholder='your@email.com'
-        {...form.getInputProps('email')}
+        {...form.getInputProps('username')}
       />
       <PasswordInput
         withAsterisk
@@ -51,7 +59,7 @@ export const SignIn = () => {
         error={form.errors.password}
         {...form.getInputProps('password')}
       />
-      <Stack mt='md' justify='center'>
+      <Stack justify='center'>
         <Button variant='filled' type='submit'>
           Login
         </Button>
