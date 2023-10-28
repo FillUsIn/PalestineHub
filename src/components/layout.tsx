@@ -1,10 +1,9 @@
-import { login } from '@/api/users';
 import { AppShell, Burger, Button, Group, em } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { Children, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
@@ -13,9 +12,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 function Layout({ children }: Props) {
   const [opened, { toggle }] = useDisclosure();
-
   const isMobile = useMediaQuery(`(max-width: ${em(767)})`);
-  const router = useRouter();
 
   return (
     <AppShell
@@ -26,9 +23,6 @@ function Layout({ children }: Props) {
         collapsed: { mobile: !opened, desktop: true },
       }}
       py={'xl'}
-      // style={{
-      //   backgroundImage: "url(hero-bg.png)",
-      // }}
       className={`mx-auto max-w-6xl px-7 xl:px-0 ${inter.className}`}
     >
       <AppShell.Header withBorder={false}>
@@ -57,17 +51,7 @@ function Layout({ children }: Props) {
                   Charities
                 </Link>
               </Group>
-              <Button
-                radius={'xl'}
-                fw={'bolder'}
-                size='sm'
-                color='dark'
-                onClick={() =>
-                  login({ username: 'admin', password: 'password' })
-                }
-              >
-                Sign in
-              </Button>
+              <AuthActionButton />
             </>
           )}
 
@@ -88,15 +72,7 @@ function Layout({ children }: Props) {
           </Link>
 
           <hr />
-          <Button
-            w={'100%'}
-            radius={'xl'}
-            fw={'bold'}
-            size='compact-xl'
-            color='dark'
-          >
-            Sign in
-          </Button>
+          <AuthActionButton />
         </ul>
       </AppShell.Navbar>
 
@@ -106,3 +82,35 @@ function Layout({ children }: Props) {
 }
 
 export default Layout;
+
+const CustomButton = ({
+  text,
+  onClick,
+}: {
+  text: string;
+  onClick: VoidFunction;
+}) => {
+  return (
+    <Button
+      radius={'xl'}
+      fw={'bolder'}
+      size='sm'
+      color='dark'
+      onClick={onClick}
+    >
+      {text}
+    </Button>
+  );
+};
+
+const AuthActionButton = () => {
+  const { data: session } = useSession();
+
+  const handleSignIn = () => signIn();
+  const handleSignOut = () => signOut();
+  return session ? (
+    <CustomButton text='Sign Out' onClick={handleSignOut} />
+  ) : (
+    <CustomButton text='Sign In' onClick={handleSignIn} />
+  );
+};
