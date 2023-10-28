@@ -1,5 +1,5 @@
 import { login } from '@/api/users';
-import { AppShell, Burger, Button, Group, em } from '@mantine/core';
+import { AppShell, Burger, Button, Group, Tabs, em } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
@@ -47,32 +47,31 @@ function Layout({ children }: Props) {
 
           {!isMobile && (
             <>
-              <Group className='space-x-10 text-lg font-semibold'>
-                <Link
-                  href='/resources/education'
-                  className={`cursor-pointer ${
-                    isLinkSelected('/resources/education')
-                      ? { textDecoration: 'underline' }
-                      : ''
-                  }`}
-                >
-                  Education
-                </Link>
-                <Link
-                  href='/resources/tools'
-                  className='cursor-pointer'
-                  style={
-                    router.pathname === '/resources/tools'
-                      ? { textDecoration: 'underline' }
-                      : {}
-                  }
-                >
-                  Tools
-                </Link>
-                <Link href='/resources/charities' className='cursor-pointer'>
-                  Charities
-                </Link>
-              </Group>
+              <Tabs defaultValue='gallery' color='green'>
+                <Tabs.List>
+                  <Tabs.Tab value='education' className='mr-0'>
+                    <Link
+                      href='/resources/education'
+                      className='cursor-pointer'
+                    >
+                      Education
+                    </Link>
+                  </Tabs.Tab>
+                  <Tabs.Tab value='tools' className='mr-0'>
+                    <Link href='/resources/tools' className='cursor-pointer'>
+                      Tools
+                    </Link>
+                  </Tabs.Tab>
+                  <Tabs.Tab value='charities' className='mr-0'>
+                    <Link
+                      href='/resources/charities'
+                      className='cursor-pointer'
+                    >
+                      Charities
+                    </Link>
+                  </Tabs.Tab>
+                </Tabs.List>
+              </Tabs>
               <Button
                 radius={'xl'}
                 fw={'bolder'}
