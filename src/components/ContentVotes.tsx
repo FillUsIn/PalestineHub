@@ -7,12 +7,12 @@ type Props = {
 
 function ContentVotes({ voteCount = 0 }: Props) {
   return (
-    <div className='flex items-center rounded-full p-2 text-white '>
+    <div className='flex items-center rounded-full p-2 text-gray '>
       {/* <ActionIcon radius={"xl"} size={"lg"} variant='subtle' onClick={handleUpvote}> */}
       {/* <ArrowUp /> */}
       {/* </ActionIcon> */}
 
-      <p className='mx-1.5 text-center text-sm font-bold text-white'>
+      <p className='mx-1.5 text-center text-sm font-bold text-gray'>
         {voteCount}
       </p>
 
