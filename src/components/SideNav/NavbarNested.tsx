@@ -1,12 +1,11 @@
 import { Group, Code, ScrollArea, rem, Button } from '@mantine/core';
-import IconSettings from '../../../public/IconCharity.svg';
+import IconSettings2 from '../../../public/IconCharity.svg';
 import {
   IconNotes,
   IconCalendarStats,
-  IconGauge,
-  IconPresentationAnalytics,
-  IconFileAnalytics,
-  IconAdjustments,
+  IconSettings,
+  IconGift,
+  IconBook,
   IconLock,
 } from '@tabler/icons-react';
 import { LinksGroup } from './NavbarLinksGroup';
@@ -19,7 +18,7 @@ console.log(categories);
 const mockdata = [
   {
     label: 'Education',
-    icon: IconNotes,
+    icon: IconBook,
     initiallyOpened: true,
     links: [
       { label: 'Articles', link: '/resources/education/articles' },
@@ -30,7 +29,7 @@ const mockdata = [
   },
   {
     label: 'Tools',
-    icon: IconCalendarStats,
+    icon: IconSettings,
     links: [
       { label: 'BDS', link: '/resources/tools/bds' },
       // { label: 'General Tools', link: '/resources/tools/generaltools' },
@@ -39,7 +38,7 @@ const mockdata = [
   },
   {
     label: 'Charities',
-    icon: IconLock,
+    icon: IconGift,
     links: [
       // { label: 'General Charities', link: '/resources/charities/generalcharities' },
       { label: 'UK', link: '/resources/charities/UK' },
