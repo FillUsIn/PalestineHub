@@ -1,6 +1,7 @@
 import { PostSummaryDTO } from '@/types/dtos';
 import { Post } from '@/types/entities';
 import { Button, Paper, Title } from '@mantine/core';
+import Link from 'next/link';
 
 type PostPreviewProps = {
   post: Post | PostSummaryDTO;
@@ -11,13 +12,17 @@ const PostPreview: React.FC<PostPreviewProps> = ({
   post,
   previewMode = false,
 }) => {
+  const { body, categoryName, id, subCategoryName, thumbnailUrl } = post;
+
   return (
     <Paper
-      shadow='md'
-      w='100%'
+      className='flex h-96 flex-col justify-between overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover: duration-300'
+      component={Link}
+      href={`/resources/${categoryName}/${subCategoryName}/posts/${id}`}
       radius='lg'
-      style={{ backgroundImage: `url(${post.thumbnailUrl})` }}
-      className='flex h-96 flex-col justify-between overflow-hidden'
+      shadow='md'
+      style={{ backgroundImage: `url(${thumbnailUrl})` }}
+      w='100%'
     >
       <div className='flex h-full flex-col justify-between bg-gradient-to-b from-[#141414eb] to-90% p-5'>
         <div>
@@ -25,7 +30,7 @@ const PostPreview: React.FC<PostPreviewProps> = ({
             {post.title}
           </Title>
           {!previewMode && (
-            <p className='mt-3 font-semibold text-white'>{post.body}</p>
+            <p className='mt-3 font-semibold text-white'>{body}</p>
           )}
         </div>
         {!previewMode && (
