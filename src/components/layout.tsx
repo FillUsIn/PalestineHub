@@ -14,9 +14,6 @@ const inter = Inter({ subsets: ['latin'] });
 function Layout({ children }: Props) {
   const [opened, { toggle }] = useDisclosure();
   const isMobile = useMediaQuery(`(max-width: ${em(767)})`);
-  const router = useRouter();
-
-  const isLinkSelected = (href: string) => router.pathname === href;
 
   return (
     <AppShell
