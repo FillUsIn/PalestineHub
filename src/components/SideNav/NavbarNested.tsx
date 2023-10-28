@@ -35,8 +35,8 @@ const mockdata = [
         label: 'General Charities',
         link: '/resources/charities/general charities',
       },
-      { label: 'UK', link: '/resources/charities/UK' },
-      { label: 'USA', link: '/resources/charities/USA' },
+      // { label: 'UK', link: '/resources/charities/UK' },
+      // { label: 'USA', link: '/resources/charities/USA' },
     ],
   },
   {
@@ -44,8 +44,8 @@ const mockdata = [
     icon: IconSettings,
     links: [
       { label: 'BDS', link: '/resources/tools/bds' },
-      // { label: 'General Tools', link: '/resources/tools/generaltools' },
-      // { label: 'Fact Check', link: '/resources/tools/factcheck' },
+      { label: 'General Tools', link: '/resources/tools/general tools' },
+      { label: 'Fact Check', link: '/resources/tools/fact check' },
     ],
   },
 ];

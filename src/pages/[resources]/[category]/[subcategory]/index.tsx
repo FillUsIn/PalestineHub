@@ -26,7 +26,7 @@ function SubCategoryPage({ subcategoryPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const items = [
     { title: subcategoryPosts[0]?.categoryName, href: '#' },
-    { title: subcategoryPosts[0]?.subCategoryName, href: '#' },
+    { title: subcategoryPosts[0]?.subcategoryName, href: '#' },
   ].map((item, index) => (
     <Anchor href={item.href} key={index}>
       {item.title}
@@ -53,7 +53,7 @@ function SubCategoryPage({ subcategoryPosts }: Props) {
             <Breadcrumbs
               separator='>'
               styles={{
-                breadcrumb: { color: 'grey', fontWeight: '500' },
+                breadcrumb: { color: 'grey', fontWeight: '500', padding: 10 },
                 separator: { color: 'grey', fontWeight: '500' },
               }}
             >
