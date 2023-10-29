@@ -7,7 +7,7 @@ import AddCommentBox from './Comments/AddCommentBox';
 import { Divider } from '@mantine/core';
 import { AnimatePresence } from 'framer-motion';
 import CommentsList from './Comments/CommentsList';
-import { IconBrandWechat } from '@tabler/icons-react';
+import { IconBrandWechat, IconExternalLink } from '@tabler/icons-react';
 
 function PostContent({
   post,
@@ -31,10 +31,23 @@ function PostContent({
       </div>
       <h1 className='mt-4 text-2xl font-semibold'>{post.title}</h1>
       {post.thumbnailUrl && (
-        <div
-          style={{ backgroundImage: `url(${post.thumbnailUrl})` }}
-          className='h-80 w-full  rounded-md shadow-lg'
-        ></div>
+        <div className=''>
+          <a href={post.url} target='_blank' className='relative group'>
+            <div
+              style={{ backgroundImage: `url(${post.thumbnailUrl})` }}
+              className='h-80 w-full  rounded-md shadow-lg'
+            ></div>
+            <div className='absolute inset-0 bg-black opacity-0 transition-all group-hover:opacity-50 duration-300 cursor-pointer'></div>
+          </a>
+
+          <a
+            href={post.url}
+            target='_blank'
+            className='flex mt-2 items-center hover:underline hover:underline-offset-4 font-semibold bg-gray-100 justify-center sm:justify-start sm:w-fit hover:scale-105 p-2 transition-all  rounded-lg cursor-pointer  gap-2'
+          >
+            View resource <IconExternalLink size={22} />
+          </a>
+        </div>
       )}
       {post.body && (
         <p className=' whitespace-pre-line break-words'>{post.body}</p>
