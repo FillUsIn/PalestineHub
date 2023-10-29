@@ -1,5 +1,5 @@
 import { api } from '@/api/config/axios';
-import { CreatePostDTO, PostSummaryDTO } from '@/types/dtos';
+import { CreatePostDTO, PagedResponse, PostSummaryDTO } from '@/types/dtos';
 import { Post } from '@/types/entities';
 
 const API_BASE_URI = '/posts';
@@ -14,10 +14,6 @@ async function createSubcategoryPost(
   );
   return response.data;
 }
-
-type PagedResponse<T> = {
-  content: T[];
-};
 
 async function getAllPosts(
   page: number = 0,
