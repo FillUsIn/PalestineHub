@@ -1,4 +1,4 @@
-import { AppShell, Burger, Button, Group, em } from '@mantine/core';
+import { AppShell, Burger, Button, Group, Tabs, em } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { Inter } from 'next/font/google';
@@ -39,17 +39,36 @@ function Layout({ children }: Props) {
 
           {!isMobile && (
             <>
-              <Group className='space-x-10 text-lg font-semibold'>
-                <Link href='/resources/education' className='cursor-pointer'>
-                  Education
-                </Link>
-                <Link href='/resources/tools' className='cursor-pointer'>
-                  Tools
-                </Link>
-                <Link href='/resources/charities' className='cursor-pointer'>
-                  Charities
-                </Link>
-              </Group>
+              <Tabs color='green'>
+                <Tabs.List>
+                  <Tabs.Tab value='resources' className='mr-0'>
+                    <Link href='/resources' className='cursor-pointer'>
+                      Resources
+                    </Link>
+                  </Tabs.Tab>
+                  <Tabs.Tab value='education' className='mr-0'>
+                    <Link
+                      href='/resources/education'
+                      className='cursor-pointer'
+                    >
+                      Education
+                    </Link>
+                  </Tabs.Tab>
+                  <Tabs.Tab value='tools' className='mr-0'>
+                    <Link href='/resources/tools' className='cursor-pointer'>
+                      Tools
+                    </Link>
+                  </Tabs.Tab>
+                  <Tabs.Tab value='charities' className='mr-0'>
+                    <Link
+                      href='/resources/charities'
+                      className='cursor-pointer'
+                    >
+                      Charities
+                    </Link>
+                  </Tabs.Tab>
+                </Tabs.List>
+              </Tabs>
               <AuthActionButton />
             </>
           )}
@@ -60,6 +79,9 @@ function Layout({ children }: Props) {
 
       <AppShell.Navbar p='md' className='mb-5'>
         <ul className='flex flex-col space-y-6 pl-4 text-2xl font-medium'>
+          <Link href='/resources' className='cursor-pointer'>
+            Resources
+          </Link>
           <Link href='/resources/education' className='cursor-pointer'>
             Education
           </Link>
@@ -69,7 +91,6 @@ function Layout({ children }: Props) {
           <Link href='/resources/charities' className='cursor-pointer'>
             Charities
           </Link>
-
           <hr />
           <AuthActionButton />
         </ul>
