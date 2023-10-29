@@ -38,11 +38,11 @@ function CategoryPage({ categoryPosts }: Props) {
 
   return (
     <>
-      <div className='flex justify-center'>
+      <div className='flex'>
         <div className='pr-5'>
           <NavbarNested />
         </div>
-        <div className='flex flex-col'>
+        <div className='flex flex-grow flex-col'>
           <Modal
             classNames={{ body: 'md:mx-5' }}
             opened={opened}
