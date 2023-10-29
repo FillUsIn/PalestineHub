@@ -5,7 +5,7 @@ type PostSummaryDTO = {
   body?: string;
   categoryName: string;
   commentCount: number;
-  subCategoryName: string;
+  subcategoryName: string;
   title: string;
   username: string;
   createdDate: string;
