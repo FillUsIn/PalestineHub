@@ -1,48 +1,50 @@
-import { Group, Code, ScrollArea, rem, Button } from '@mantine/core';
+import { ScrollArea } from '@mantine/core';
 import {
-  IconNotes,
-  IconCalendarStats,
+  IconSettings,
+  IconGift,
+  IconBook,
   IconGauge,
-  IconPresentationAnalytics,
-  IconFileAnalytics,
-  IconAdjustments,
-  IconLock,
 } from '@tabler/icons-react';
 import { LinksGroup } from './NavbarLinksGroup';
-import classes from './NavbarNested.module.css';
+import styles from './NavbarNested.module.css';
 
 const mockdata = [
-  { label: 'Dashboard', icon: IconGauge },
+  { label: 'All Resources', link: '/resources', icon: IconGauge },
   {
-    label: 'Market news',
-    icon: IconNotes,
-    initiallyOpened: true,
+    label: 'Education',
+    link: '/resources/education',
+    icon: IconBook,
     links: [
-      { label: 'Overview', link: '/' },
-      { label: 'Forecasts', link: '/' },
-      { label: 'Outlook', link: '/' },
-      { label: 'Real time', link: '/' },
+      { label: 'All Education', link: '/resources/education' },
+      { label: 'Articles', link: '/resources/education/articles' },
+      { label: 'Documentaries', link: '/resources/education/documentaries' },
+      { label: 'Videos', link: '/resources/education/videos' },
+      { label: 'Podcasts', link: '/resources/education/podcasts' },
     ],
   },
   {
-    label: 'Releases',
-    icon: IconCalendarStats,
+    label: 'Charities',
+    link: '/resources/charities',
+    icon: IconGift,
     links: [
-      { label: 'Upcoming releases', link: '/' },
-      { label: 'Previous releases', link: '/' },
-      { label: 'Releases schedule', link: '/' },
+      { label: 'All Charities', link: '/resources/charities' },
+      {
+        label: 'General Charities',
+        link: '/resources/charities/general charities',
+      },
+      // { label: 'UK', link: '/resources/charities/UK' },
+      // { label: 'USA', link: '/resources/charities/USA' },
     ],
   },
-  { label: 'Analytics', icon: IconPresentationAnalytics },
-  { label: 'Contracts', icon: IconFileAnalytics },
-  { label: 'Settings', icon: IconAdjustments },
   {
-    label: 'Security',
-    icon: IconLock,
+    label: 'Tools',
+    link: '/resources/tools',
+    icon: IconSettings,
     links: [
-      { label: 'Enable 2FA', link: '/' },
-      { label: 'Change password', link: '/' },
-      { label: 'Recovery codes', link: '/' },
+      { label: 'All Tools', link: '/resources/tools' },
+      { label: 'BDS', link: '/resources/tools/BDS' },
+      { label: 'General Tools', link: '/resources/tools/general tools' },
+      { label: 'Fact Check', link: '/resources/tools/fact check' },
     ],
   },
 ];
@@ -53,22 +55,10 @@ export function NavbarNested() {
   ));
 
   return (
-    <nav className={classes.navbar}>
-      <div className={classes.header}>
-        <Group justify='space-between'>
-          <Code fw={700}>v3.1.2</Code>
-        </Group>
-      </div>
-
-      <ScrollArea className={classes.links}>
-        <div className={classes.linksInner}>{links}</div>
+    <nav className={styles.navbar}>
+      <ScrollArea className={styles.links}>
+        <div className={styles.linksInner}>{links}</div>
       </ScrollArea>
-
-      <div className={classes.footer}>
-        <Button radius={'xl'} fw={'bolder'} size='sm' color='dark'>
-          Sign in
-        </Button>
-      </div>
     </nav>
   );
 }

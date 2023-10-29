@@ -2,6 +2,12 @@ import { Post } from '@/types/entities';
 import { since } from '@/lib/utils/date-time';
 import Link from 'next/link';
 import ContentInteractions from './ContentInteractions';
+import UpvoteDownvote from './UpvoteDownvote';
+import AddCommentBox from './Comments/AddCommentBox';
+import { Divider } from '@mantine/core';
+import { AnimatePresence } from 'framer-motion';
+import CommentsList from './Comments/CommentsList';
+import { IconBrandWechat } from '@tabler/icons-react';
 
 function PostContent({
   post,
@@ -11,15 +17,11 @@ function PostContent({
   onOptionsClicked?: () => void;
 }) {
   return (
-    <div className=''>
+    <div className='space-y-5'>
       <div className='flex items-center gap-2'>
         <div className=''>
-          <Link href='#'>
-            <p className='font-semibold'>test</p>
-          </Link>
-
-          <p className='text-[.8rem] font-semibold text-gray-500'>
-            test
+          <p className='text-sm font-semibold text-gray-500'>
+            {post.username || 'user'}
             <span>
               <span className='mx-1'>·</span>
               <span>{since(post.createdAt)}</span>
@@ -28,15 +30,22 @@ function PostContent({
         </div>
       </div>
       <h1 className='mt-4 text-2xl font-semibold'>{post.title}</h1>
-      {post.body && (
-        <p className='mt-10 whitespace-pre-line break-words'>{post.body}</p>
+      {post.thumbnailUrl && (
+        <div
+          style={{ backgroundImage: `url(${post.thumbnailUrl})` }}
+          className='h-80 w-full  rounded-md shadow-lg'
+        ></div>
       )}
-      <ContentInteractions
+      {post.body && (
+        <p className=' whitespace-pre-line break-words'>{post.body}</p>
+      )}
+
+      {/* <ContentInteractions
         voteCount={post.voteCount}
-        commentCount={0}
+        commentCount={post.comments.length}
         className='mt-5'
         onOptionsClicked={onOptionsClicked}
-      />
+      /> */}
     </div>
   );
 }

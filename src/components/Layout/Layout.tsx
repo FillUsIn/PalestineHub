@@ -1,9 +1,12 @@
-import { AppShell, Burger, Button, Group, em } from '@mantine/core';
+import { AppShell, Burger, Button, Group, Tabs, em } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
+import { Logo75 } from '../../img/Logo';
+import { useRouter } from 'next/router';
+import styles from './Layout.module.css';
 
 type Props = {
   children: ReactNode;
@@ -13,10 +16,18 @@ const inter = Inter({ subsets: ['latin'] });
 function Layout({ children }: Props) {
   const [opened, { toggle }] = useDisclosure();
   const isMobile = useMediaQuery(`(max-width: ${em(767)})`);
+  const router = useRouter();
 
+  const isSelected = (section: string) => {
+    if (!router.query.resources) return '';
+    if (!router.query.category && section === 'resources')
+      return styles.isSelected;
+    if (router.query.category !== section) return '';
+    return styles.isSelected;
+  };
   return (
     <AppShell
-      header={{ height: 60 }}
+      header={{ height: 100 }}
       navbar={{
         width: 300,
         breakpoint: 'sm',
@@ -31,24 +42,33 @@ function Layout({ children }: Props) {
           justify='space-between'
         >
           <Link href='/'>
-            <p className='space-x-1 text-2xl font-black'>
-              <span>Fill</span>
-              <span className='text-red-700'>Us</span>
-              <span className='text-green-800'>In</span>
+            <p className='space-x-1'>
+              <Logo75 />
             </p>
           </Link>
 
           {!isMobile && (
             <>
-              <Group className='space-x-10 text-lg font-semibold'>
-                <Link href='/resources/education' className='cursor-pointer'>
+              <Group
+                className={`space-x-10 text-lg font-semibold ${styles.navigation}`}
+              >
+                <Link href='/resources' className={isSelected('resources')}>
+                  Resources
+                </Link>
+                <Link
+                  href='/resources/education'
+                  className={isSelected('education')}
+                >
                   Education
                 </Link>
-                <Link href='/resources/tools' className='cursor-pointer'>
-                  Tools
-                </Link>
-                <Link href='/resources/charities' className='cursor-pointer'>
+                <Link
+                  href='/resources/charities'
+                  className={isSelected('charities')}
+                >
                   Charities
+                </Link>
+                <Link href='/resources/tools' className={isSelected('tools')}>
+                  Tools
                 </Link>
               </Group>
               <AuthActionButton />
@@ -60,17 +80,21 @@ function Layout({ children }: Props) {
       </AppShell.Header>
 
       <AppShell.Navbar p='md' className='mb-5'>
-        <ul className='flex flex-col space-y-6 pl-4 text-2xl font-medium'>
-          <Link href='/resources/education' className='cursor-pointer'>
+        <ul
+          className={`flex flex-col space-y-6 pl-4 text-2xl font-medium ${styles.navigation}`}
+        >
+          <Link href='/resources' className={isSelected('resources')}>
+            Resources
+          </Link>
+          <Link href='/resources/education' className={isSelected('education')}>
             Education
           </Link>
-          <Link href='/resources/tools' className='cursor-pointer'>
-            Tools
-          </Link>
-          <Link href='/resources/charities' className='cursor-pointer'>
+          <Link href='/resources/charities' className={isSelected('charities')}>
             Charities
           </Link>
-
+          <Link href='/resources/tools' className={isSelected('tools')}>
+            Tools
+          </Link>
           <hr />
           <AuthActionButton />
         </ul>
