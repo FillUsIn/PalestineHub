@@ -47,6 +47,7 @@ const meta: Meta<typeof TopPosts> = {
     ],
   },
   args: {
+    // @ts-ignore
     topPosts: exampleTopPosts,
   },
 };
@@ -56,5 +57,6 @@ export default meta;
 type Story = StoryObj<typeof TopPosts>;
 
 export const Primary: Story = {
+  // @ts-ignore
   render: () => <TopPosts topPosts={exampleTopPosts} />,
 };
