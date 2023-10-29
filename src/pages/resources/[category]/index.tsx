@@ -10,15 +10,18 @@ import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import { NavbarNested } from '@/components/SideNav/NavbarNested';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { getCategories } from '@/api/categories';
+import { Category } from '@/types/entities';
 
 type Props = {
   categoryPosts: PostSummaryDTO[];
+  categories: Category[];
 };
 
 const numberOfTopPosts = 3;
 const postsPerPage = 10;
 
-function CategoryPage({ categoryPosts }: Props) {
+function CategoryPage({ categoryPosts, categories }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const router = useRouter();
   const { data: session } = useSession();
@@ -49,7 +52,7 @@ function CategoryPage({ categoryPosts }: Props) {
             centered
             withCloseButton={false}
           >
-            <CreatePostForm onDismiss={close} />
+            <CreatePostForm categories={categories} onDismiss={close} />
           </Modal>
           <div className='flex flex-col md:flex-row justify-between'>
             <Breadcrumbs items={items} />
@@ -95,10 +98,13 @@ export async function getServerSideProps(context: {
   const category = context.params.category;
   const categoryPosts = (await getCategoryPosts(category, 0, postsPerPage))
     .content;
+
+  const categories = await getCategories();
   console.log(categoryPosts);
   return {
     props: {
       categoryPosts,
+      categories,
     },
   };
 }
