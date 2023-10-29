@@ -4,7 +4,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
-import { Logo100 } from '../../img/Logo';
+import { Logo75 } from '../../img/Logo';
 import { useRouter } from 'next/router';
 import styles from './Layout.module.css';
 
@@ -17,7 +17,6 @@ function Layout({ children }: Props) {
   const [opened, { toggle }] = useDisclosure();
   const isMobile = useMediaQuery(`(max-width: ${em(767)})`);
   const router = useRouter();
-  console.log(router);
 
   const isSelected = (section: string) => {
     if (!router.query.resources) return '';
@@ -28,7 +27,7 @@ function Layout({ children }: Props) {
   };
   return (
     <AppShell
-      header={{ height: 130 }}
+      header={{ height: 100 }}
       navbar={{
         width: 300,
         breakpoint: 'sm',
@@ -44,7 +43,7 @@ function Layout({ children }: Props) {
         >
           <Link href='/'>
             <p className='space-x-1'>
-              <Logo100 />
+              <Logo75 />
             </p>
           </Link>
 
