@@ -3,14 +3,7 @@
 import React from 'react';
 import { useForm, hasLength, isEmail } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
-import {
-  Button,
-  TextInput,
-  PasswordInput,
-  Stack,
-  Box,
-  Text,
-} from '@mantine/core';
+import { Button, TextInput, PasswordInput, Box, Text } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { useRouter } from 'next/navigation';
 import { createUserAccount } from '@/api/users';
@@ -58,36 +51,76 @@ export const SignUp = () => {
     });
   };
 
+  const inputErrorStyles: React.CSSProperties = { color: '#ffd700' };
+
   return (
-    <Box
-      component='form'
-      maw={340}
-      mx='auto'
-      onSubmit={handleSubmit()}
-      className='flex flex-col gap-6'
-    >
-      <TextInput
-        withAsterisk
-        label='Email'
-        placeholder='your@email.com'
-        {...form.getInputProps('email')}
-      />
-      <PasswordInput
-        withAsterisk
-        label='Password'
-        visible={visible}
-        onVisibilityChange={toggle}
-        {...form.getInputProps('password')}
-      />
-      <Stack justify='center'>
-        <Button variant='filled' type='submit'>
-          Signup
-        </Button>
-        <Text className='text-center'>OR</Text>
-        <Button variant='outline' onClick={() => router.push('/auth/signin')}>
+    <Box maw={745} className='flex flex-col gap-8' mx='auto'>
+      <form
+        className='bg-[#3D9A6B] px-24 py-8 flex flex-col gap-8 rounded-xl'
+        onSubmit={handleSubmit()}
+      >
+        <Box className='flex flex-col justify-center text-center gap-2 text-white'>
+          <Text fw='bolder' fz='xl'>
+            Register
+          </Text>
+          <Text fw='normal' fz='md'>
+            Register to unlock features such as Add Resource, Upvote, and
+            Comment
+          </Text>
+        </Box>
+
+        <TextInput
+          placeholder='Email address'
+          size='lg'
+          radius='md'
+          styles={{
+            error: inputErrorStyles,
+          }}
+          {...form.getInputProps('email')}
+        />
+
+        <PasswordInput
+          placeholder='Password'
+          visible={visible}
+          onVisibilityChange={toggle}
+          size='lg'
+          radius='md'
+          withErrorStyles={true}
+          styles={{
+            error: inputErrorStyles,
+          }}
+          {...form.getInputProps('password')}
+        />
+        <Box mx='auto'>
+          <Button
+            variant='filled'
+            radius='xl'
+            color='white'
+            c='green'
+            size='lg'
+            type='submit'
+          >
+            Register
+          </Button>
+        </Box>
+      </form>
+      <Box
+        mx='auto'
+        className='flex flex-col items-center content-center gap-8'
+      >
+        <Text fw='bold' fz='md'>
+          OR
+        </Text>
+        <Button
+          variant='outline'
+          color='green'
+          radius='xl'
+          size='lg'
+          onClick={() => router.push('/auth/signin')}
+        >
           Login
         </Button>
-      </Stack>
+      </Box>
     </Box>
   );
 };
