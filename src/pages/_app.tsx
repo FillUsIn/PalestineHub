@@ -2,6 +2,8 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
+import '@mantine/notifications/styles.css';
+import { Notifications } from '@mantine/notifications';
 import Layout from '@/components/Layout/Layout';
 import SessionProvider from '@/components/SessionProvider';
 import Head from 'next/head';
@@ -12,6 +14,7 @@ export default function App({
 }: AppProps) {
   return (
     <MantineProvider>
+      <Notifications />
       <Head>
         <title>Fill Us In | Information and resources for Palestine</title>
         <meta
