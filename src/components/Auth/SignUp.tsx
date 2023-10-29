@@ -35,8 +35,6 @@ export const SignUp = () => {
           body: JSON.stringify({ ...values, username }),
         });
 
-        console.log('======RRR=====', response);
-
         if (response.status !== 201) {
           notifications.show({
             title: 'Error Signing Up',
