@@ -16,7 +16,6 @@ type PostSummaryDTO = {
 
 type CreatePostDTO = {
   title: string;
-  username: string;
   body?: string;
   url?: string;
 };

@@ -119,7 +119,6 @@ function CreatePostForm({ onDismiss }: Props) {
     const createPostDTO: CreatePostDTO = {
       title: title.trim(),
       body: body?.trim(),
-      username: 'ahmad', //TODO: // REPLACE WITH LOGGED IN USER
       url: contentUrl?.trim(),
     };
 
@@ -137,7 +136,11 @@ function CreatePostForm({ onDismiss }: Props) {
           icon: <IconCheck size='1rem' />,
           autoClose: 4000,
         });
-        router.push(`/resources`);
+
+        router.push(
+          `/resources/${createdPost.categoryName}/${createdPost.subcategoryName}/posts/${createdPost.id}`
+        );
+        onDismiss();
       } else {
         notifications.show({
           message: 'Something went wrong, please try again.',
