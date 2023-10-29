@@ -2,6 +2,7 @@ import { createComment } from '@/api/comments';
 import { getPostById } from '@/api/posts';
 import AddCommentBox from '@/components/Comments/AddCommentBox';
 import CommentsList from '@/components/Comments/CommentsList';
+import ContentInteractions from '@/components/ContentInteractions';
 import PostContent from '@/components/PostContent';
 import UpvoteDownvote from '@/components/UpvoteDownvote';
 import { CreateCommentDTO, PostSummaryDTO } from '@/types/dtos';
@@ -53,7 +54,8 @@ function PostPage({ post }: Props) {
       >
         <PostContent post={post} />
 
-        <UpvoteDownvote />
+        {/* <UpvoteDownvote /> */}
+        <ContentInteractions voteCount={post.voteCount} className='mt-5' />
 
         <Button
           variant='light'
@@ -61,6 +63,7 @@ function PostPage({ post }: Props) {
           radius={'xl'}
           onClick={toggle}
           w={180}
+          className='mt-16'
           rightSection={
             commentsExpanded ? (
               <IconChevronUp strokeWidth={1.5} />

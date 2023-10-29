@@ -20,11 +20,7 @@ function PostContent({
     <div className='space-y-5'>
       <div className='flex items-center gap-2'>
         <div className=''>
-          <Link href='#'>
-            <p className='font-semibold'>test</p>
-          </Link>
-
-          <p className='text-[.8rem] font-semibold text-gray-500'>
+          <p className='text-sm font-semibold text-gray-500'>
             {post.username || 'user'}
             <span>
               <span className='mx-1'>·</span>
