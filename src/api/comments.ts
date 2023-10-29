@@ -4,8 +4,8 @@ import { Comment } from '@/types/entities';
 import { getSession } from 'next-auth/react';
 
 export const getAuthorizationHeader = async () => {
-  const session = (await getSession()) as unknown as LoginResponseDTO;
-  const bearer = `Bearer ${session.accessToken}`;
+  const session = (await getSession()) as any;
+  const bearer = `Bearer ${session?.user?.accessToken}`;
   return {
     Authorization: bearer,
   };
