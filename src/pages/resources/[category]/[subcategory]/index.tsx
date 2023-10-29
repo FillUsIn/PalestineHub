@@ -37,7 +37,7 @@ function SubCategoryPage({ subcategoryPosts }: Props) {
       router.push('/auth/signup');
       return;
     }
-    return open;
+    return open();
   };
 
   return (
