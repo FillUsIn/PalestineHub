@@ -44,35 +44,61 @@ export const SignIn = () => {
   };
 
   return (
-    <Box
-      component='form'
-      className='flex flex-col gap-6'
-      maw={340}
-      mx='auto'
-      onSubmit={handleSubmit()}
-    >
-      <TextInput
-        withAsterisk
-        label='Email'
-        placeholder='your@email.com'
-        {...form.getInputProps('email')}
-      />
-      <PasswordInput
-        withAsterisk
-        label='Password'
-        visible={visible}
-        onVisibilityChange={toggle}
-        {...form.getInputProps('password')}
-      />
-      <Stack justify='center'>
-        <Button variant='filled' type='submit'>
-          Login
+    <Box maw={745} className='flex flex-col gap-8' mx='auto'>
+      <form
+        className='border border-[#3D9A6B] px-24 py-8 flex flex-col gap-8 rounded-xl'
+        onSubmit={handleSubmit()}
+      >
+        <Box className='flex flex-col justify-center text-center gap-2 text-slate-700'>
+          <Text fw='bolder' fz='48px'>
+            Login
+          </Text>
+        </Box>
+
+        <TextInput
+          placeholder='Email address'
+          size='lg'
+          radius='md'
+          {...form.getInputProps('email')}
+        />
+        <PasswordInput
+          placeholder='Password'
+          visible={visible}
+          onVisibilityChange={toggle}
+          size='lg'
+          radius='md'
+          {...form.getInputProps('password')}
+        />
+        <Box mx='auto' w={200}>
+          <Button
+            variant='filled'
+            w='100%'
+            radius='xl'
+            color='#3D9A6B'
+            size='lg'
+            type='submit'
+          >
+            Login
+          </Button>
+        </Box>
+      </form>
+      <Box
+        mx='auto'
+        className='flex flex-col items-center content-center gap-8'
+      >
+        <Text fw='bold' fz='md'>
+          OR
+        </Text>
+        <Button
+          variant='outline'
+          color='#3D9A6B'
+          radius='xl'
+          size='lg'
+          onClick={() => router.push('/auth/signup')}
+        >
+          Register
         </Button>
-        <Text className='text-center'>OR</Text>
-        <Button variant='outline' onClick={() => router.push('/auth/signup')}>
-          Sign Up
-        </Button>
-      </Stack>
+      </Box>
     </Box>
   );
 };
