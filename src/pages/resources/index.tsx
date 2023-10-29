@@ -86,7 +86,6 @@ function Resources({ paginatedPosts }: Props) {
             size='lg'
             radius='md'
           />
-          ;
         </div>
       </div>
     </>
