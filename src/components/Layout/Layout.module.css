@@ -5,9 +5,15 @@
     padding: 10px 16px;
     box-sizing: border-box;
     border-bottom: solid 2px #fff;
+    &:hover {
+      color: #007a3d;
+    }
   }
 
   .isSelected {
+    &:hover {
+      color: #000;
+    }
     border-bottom-color: #d9d9d9;
   }
 }
