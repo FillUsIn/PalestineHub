@@ -2,7 +2,7 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
-import Layout from '@/components/layout';
+import Layout from '@/components/Layout/Layout';
 import SessionProvider from '@/components/SessionProvider';
 import Head from 'next/head';
 

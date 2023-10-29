@@ -4,7 +4,9 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
-import { Logo100 } from '../img/Logo';
+import { Logo100 } from '../../img/Logo';
+import { useRouter } from 'next/router';
+import styles from './Layout.module.css';
 
 type Props = {
   children: ReactNode;
@@ -14,7 +16,16 @@ const inter = Inter({ subsets: ['latin'] });
 function Layout({ children }: Props) {
   const [opened, { toggle }] = useDisclosure();
   const isMobile = useMediaQuery(`(max-width: ${em(767)})`);
+  const router = useRouter();
+  console.log(router);
 
+  const isSelected = (section: string) => {
+    if (!router.query.resources) return '';
+    if (!router.query.category && section === 'resources')
+      return styles.isSelected;
+    if (router.query.category !== section) return '';
+    return styles.isSelected;
+  };
   return (
     <AppShell
       header={{ height: 130 }}
@@ -39,36 +50,28 @@ function Layout({ children }: Props) {
 
           {!isMobile && (
             <>
-              <Tabs color='green'>
-                <Tabs.List>
-                  <Tabs.Tab value='resources' className='mr-0'>
-                    <Link href='/resources' className='cursor-pointer'>
-                      Resources
-                    </Link>
-                  </Tabs.Tab>
-                  <Tabs.Tab value='education' className='mr-0'>
-                    <Link
-                      href='/resources/education'
-                      className='cursor-pointer'
-                    >
-                      Education
-                    </Link>
-                  </Tabs.Tab>
-                  <Tabs.Tab value='tools' className='mr-0'>
-                    <Link href='/resources/tools' className='cursor-pointer'>
-                      Tools
-                    </Link>
-                  </Tabs.Tab>
-                  <Tabs.Tab value='charities' className='mr-0'>
-                    <Link
-                      href='/resources/charities'
-                      className='cursor-pointer'
-                    >
-                      Charities
-                    </Link>
-                  </Tabs.Tab>
-                </Tabs.List>
-              </Tabs>
+              <Group
+                className={`space-x-10 text-lg font-semibold ${styles.navigation}`}
+              >
+                <Link href='/resources' className={isSelected('resources')}>
+                  Resources
+                </Link>
+                <Link
+                  href='/resources/education'
+                  className={isSelected('education')}
+                >
+                  Education
+                </Link>
+                <Link
+                  href='/resources/charities'
+                  className={isSelected('charities')}
+                >
+                  Charities
+                </Link>
+                <Link href='/resources/tools' className={isSelected('tools')}>
+                  Tools
+                </Link>
+              </Group>
               <AuthActionButton />
             </>
           )}
@@ -78,18 +81,20 @@ function Layout({ children }: Props) {
       </AppShell.Header>
 
       <AppShell.Navbar p='md' className='mb-5'>
-        <ul className='flex flex-col space-y-6 pl-4 text-2xl font-medium'>
-          <Link href='/resources' className='cursor-pointer'>
+        <ul
+          className={`flex flex-col space-y-6 pl-4 text-2xl font-medium ${styles.navigation}`}
+        >
+          <Link href='/resources' className={isSelected('resources')}>
             Resources
           </Link>
-          <Link href='/resources/education' className='cursor-pointer'>
+          <Link href='/resources/education' className={isSelected('education')}>
             Education
           </Link>
-          <Link href='/resources/tools' className='cursor-pointer'>
-            Tools
-          </Link>
-          <Link href='/resources/charities' className='cursor-pointer'>
+          <Link href='/resources/charities' className={isSelected('charities')}>
             Charities
+          </Link>
+          <Link href='/resources/tools' className={isSelected('tools')}>
+            Tools
           </Link>
           <hr />
           <AuthActionButton />
