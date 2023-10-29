@@ -28,7 +28,6 @@ function CategoryPage({ categoryPosts }: Props) {
   ];
 
   const handleSubmitResourceClick = () => {
-    console.log(session);
     if (!session) {
       router.push('/auth/signup');
       return;
@@ -42,7 +41,7 @@ function CategoryPage({ categoryPosts }: Props) {
         <div className='pr-5'>
           <NavbarNested />
         </div>
-        <div className='flex flex-col'>
+        <div className='flex flex-grow flex-col'>
           <Modal
             classNames={{ body: 'md:mx-5' }}
             opened={opened}
@@ -52,7 +51,7 @@ function CategoryPage({ categoryPosts }: Props) {
           >
             <CreatePostForm onDismiss={close} />
           </Modal>
-          <div className='flex flex-col  justify-between md:flex-row '>
+          <div className='flex flex-col md:flex-row justify-between'>
             <Breadcrumbs items={items} />
             <Button
               onClick={handleSubmitResourceClick}
