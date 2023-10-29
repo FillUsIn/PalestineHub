@@ -38,7 +38,7 @@ function CategoryPage({ categoryPosts }: Props) {
 
   return (
     <>
-      <div className='flex'>
+      <div className='flex justify-center'>
         <div className='pr-5'>
           <NavbarNested />
         </div>
