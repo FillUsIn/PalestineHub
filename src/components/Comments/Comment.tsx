@@ -173,67 +173,6 @@ function Header({
   );
 }
 
-// function Header({
-//   authorUsername = 'user',
-//   datePosted,
-//   expandComment,
-//   commentExpanded,
-//   isAuthor,
-// }: {
-//   authorUsername: string;
-//   datePosted: string;
-//   expandComment: () => void;
-//   commentExpanded: boolean;
-//   isAuthor: boolean;
-// }) {
-//   return (
-//     <motion.div className='flex items-center' transition={{ duration: 0.6 }}>
-//       <AnimatePresence mode='popLayout'>
-//         {!commentExpanded && (
-//           <motion.div
-//             initial={{ scale: 0, x: 20 }}
-//             animate={{
-//               scale: 1,
-//               x: 0,
-//               transition: { duration: 0.5, type: 'spring' },
-//             }}
-//             exit={{ scale: 0, transition: { duration: 0.5, type: 'spring' } }}
-//             key={'1'}
-//             transition={{ duration: 0.3, type: 'spring' }}
-//             className='text-gray-500 hover:text-green-700 group cursor-pointer'
-//           >
-//             <IconArrowsDiagonal
-//               className='mr-2 group-hover:scale-110 transition-all duration-150'
-//               onClick={expandComment}
-//             />
-//           </motion.div>
-//         )}
-
-//         <div className='flex items-center'>
-//           <Avatar size='md' radius='xl' className='mr-1' color={'green'}>
-//             <IconBrandReddit size='30' />
-//           </Avatar>
-//           <p className='text-sm'>
-//             <span className='font-semibold '>{authorUsername}</span>
-//             {isAuthor && (
-//               <>
-//                 <span className='mx-1'>·</span>
-//                 <span className='font-bold text-blue-600 text-[.9rem]'>
-//                   Author
-//                 </span>
-//               </>
-//             )}
-//             <span className=''>
-//               <span className='mx-1'>·</span>
-//               <span className='text-xs font-medium'>{datePosted}</span>
-//             </span>
-//           </p>
-//         </div>
-//       </AnimatePresence>
-//     </motion.div>
-//   );
-// }
-
 function VerticalCollapsibleLine({ onClick }: { onClick: () => void }) {
   return (
     <div
