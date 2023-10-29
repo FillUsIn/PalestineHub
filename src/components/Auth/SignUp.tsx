@@ -1,12 +1,9 @@
-'use client';
-
 import React from 'react';
 import { useForm, hasLength, isEmail } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
 import { Button, TextInput, PasswordInput, Box, Text } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { useRouter } from 'next/navigation';
-import { createUserAccount } from '@/api/users';
 import { generateUsername } from 'unique-username-generator';
 
 export const SignUp = () => {
@@ -32,7 +29,11 @@ export const SignUp = () => {
     return form.onSubmit(async (values) => {
       const username = generateUsername('', 2, 15);
       try {
-        const user = await createUserAccount({ ...values, username });
+        const user = await fetch('/api/signup', {
+          method: 'POST',
+          body: JSON.stringify({ ...values, username }),
+        });
+
         if (user) {
           notifications.show({
             title: 'Success',
