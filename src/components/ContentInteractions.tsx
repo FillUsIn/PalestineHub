@@ -4,9 +4,10 @@ import {
   IconMessageCircle,
 } from '@tabler/icons-react';
 import { cn } from '@/lib/utils/classname';
-import { useState } from 'react';
-import { ActionIcon } from '@mantine/core';
+import { ReactNode } from 'react';
+import { ActionIcon, Button } from '@mantine/core';
 import ContentVotes from './ContentVotes';
+import UpvoteDownvote from './UpvoteDownvote';
 
 type Props = {
   onUpvote?: () => void;
@@ -43,31 +44,52 @@ function ContentInteractions({
         // setVoteCount={setVoteCount}
         // setVoteState={setVoteState}
       />
+      {/* <UpvoteDownvote /> */}
 
       {showCommentsCount && <Comments commentCount={commentCount} />}
+
       {showReplyButton && (
-        <ActionIcon radius={'xl'} onClick={onReplyClicked}>
-          <IconArrowBackUp size='24' color='gray' />
+        <ActionIcon
+          radius={'xl'}
+          size={37}
+          color='#eeeeee'
+          onClick={onReplyClicked}
+        >
+          <IconArrowBackUp
+            color='gray'
+            className='cursor-pointer  rounded-full p-1.5 hover:bg-zinc-100'
+            size='36'
+          />
         </ActionIcon>
       )}
 
       {showOptions && (
-        <IconDots
-          size='36'
-          color='gray'
-          className='cursor-pointer  rounded-full p-1.5 hover:bg-zinc-100'
-          onClick={onOptionsClicked}
-        />
+        <ActionIcon radius={'xl'} size={37} color='#eeeeee'>
+          <IconDots
+            size='36'
+            color='gray'
+            className='cursor-pointer  rounded-full p-1.5 hover:bg-zinc-100'
+            onClick={onOptionsClicked}
+          />
+        </ActionIcon>
       )}
     </div>
   );
 }
 
-function Comments({ commentCount }: { commentCount: number }) {
+function Comments({ commentCount = 0 }: { commentCount: number }) {
   return (
-    <div className='flex cursor-pointer items-center space-x-1 rounded-full px-2.5 py-1.5 hover:bg-zinc-100'>
-      <IconMessageCircle size='22' color='black' fill='black' />
-      <p className='text-sm font-bold text-black '>{commentCount}</p>
+    <Button radius={'xl'} color='#eeeeee' classNames={{ label: 'space-x-1' }}>
+      <IconMessageCircle size='22' color='#4f4f4f' />
+      <p className='text-sm font-bold text-gray-800'>{commentCount}</p>
+    </Button>
+  );
+}
+
+function Container({ children }: { children: ReactNode }) {
+  return (
+    <div className='bg-gray-200 hover:bg-[#e2e2e2] rounded-full px-3 py-1 cursor-pointer'>
+      {children}
     </div>
   );
 }

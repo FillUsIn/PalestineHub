@@ -4,7 +4,7 @@ import { Button, Paper, Title } from '@mantine/core';
 import Link from 'next/link';
 
 type PostPreviewProps = {
-  post: Post | PostSummaryDTO;
+  post: PostSummaryDTO;
   previewMode?: boolean;
 };
 

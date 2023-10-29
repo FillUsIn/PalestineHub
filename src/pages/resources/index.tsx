@@ -7,6 +7,7 @@ import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import { useDisclosure } from '@mantine/hooks';
 import React from 'react';
 import { getAllPosts } from '../../api/posts';
+import { Post } from '@/types/entities';
 import { NavbarNested } from '@/components/SideNav/NavbarNested';
 
 type Props = {

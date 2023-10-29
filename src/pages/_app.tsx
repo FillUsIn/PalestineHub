@@ -14,6 +14,10 @@ export default function App({
     <MantineProvider>
       <Head>
         <title>Fill Us In | Information and resources for Palestine</title>
+        <meta
+          name='viewport'
+          content='minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no'
+        />
       </Head>
       <SessionProvider session={session}>
         <Layout>
