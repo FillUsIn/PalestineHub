@@ -34,9 +34,10 @@ type Inputs = {
 
 type Props = {
   onDismiss: () => void;
+  categories: Category[];
 };
 
-function CreatePostForm({ onDismiss }: Props) {
+function CreatePostForm({ onDismiss, categories }: Props) {
   const {
     register,
     handleSubmit,
@@ -75,8 +76,6 @@ function CreatePostForm({ onDismiss }: Props) {
   >([]);
 
   const router = useRouter();
-
-  const categories = useCategories();
 
   useEffect(() => {
     const categorySelectItems = mapCategoriesToSelectData(categories);

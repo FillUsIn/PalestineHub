@@ -7,19 +7,21 @@ import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import { useDisclosure } from '@mantine/hooks';
 import React from 'react';
 import { getAllPosts } from '../../api/posts';
-import { Post } from '@/types/entities';
+import { Category, Post } from '@/types/entities';
 import { NavbarNested } from '@/components/SideNav/NavbarNested';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import { getCategories } from '@/api/categories';
 
 type Props = {
   paginatedPosts: PagedResponse<PostSummaryDTO>;
+  categories: Category[];
 };
 
 const numberOfTopPosts = 3;
 const postsPerPage = 10;
 
-function Resources({ paginatedPosts }: Props) {
+function Resources({ paginatedPosts, categories }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const items = [{ title: 'Resources', href: '#' }];
   const { data: session } = useSession();
@@ -49,7 +51,7 @@ function Resources({ paginatedPosts }: Props) {
             centered
             withCloseButton={false}
           >
-            <CreatePostForm onDismiss={close} />
+            <CreatePostForm categories={categories} onDismiss={close} />
           </Modal>
           <div className='flex flex-col md:flex-row justify-between'>
             <Breadcrumbs items={items} />
@@ -94,9 +96,12 @@ function Resources({ paginatedPosts }: Props) {
 
 export async function getServerSideProps() {
   const paginatedPosts = await getAllPosts(0, postsPerPage);
+  const categories = await getCategories();
+
   return {
     props: {
       paginatedPosts,
+      categories,
     },
   };
 }
