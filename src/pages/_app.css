@@ -1,0 +1,16 @@
+/* @font-face {
+  font-family: 'Bebas Neue';
+  src: url(FONT_FILE_NAME.woff2) format('woff2');
+ } */
+
+body {
+  font-family: 'Montserrat', 'DM Sans', serif;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
