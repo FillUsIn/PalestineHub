@@ -51,7 +51,7 @@ function Resources({ paginatedPosts }: Props) {
           >
             <CreatePostForm onDismiss={close} />
           </Modal>
-          <div className='flex flex-col  justify-between md:flex-row '>
+          <div className='flex flex-col md:flex-row '>
             <Breadcrumbs items={items} />
             <Button
               onClick={handleSubmitResourceClick}
