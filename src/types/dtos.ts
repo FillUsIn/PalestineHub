@@ -32,9 +32,21 @@ type CreateUserDTO = {
   password: string;
 };
 
+type CreateUserResponseDTO = {
+  email: string;
+  username: string;
+  password: string;
+  accessToken: string;
+  createdAt: string;
+};
+
 type LoginDTO = {
   email: string;
   password: string;
+};
+
+type LoginResponseDTO = {
+  accessToken: string;
 };
 
 type Topic = {
@@ -54,5 +66,7 @@ export type {
   Topic,
   TopPost,
   LoginDTO,
+  LoginResponseDTO,
   CreateUserDTO,
+  CreateUserResponseDTO,
 };
