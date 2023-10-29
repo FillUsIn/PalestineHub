@@ -52,8 +52,11 @@ function Layout({ children }: Props) {
               <Group
                 className={`space-x-10 text-lg font-semibold ${styles.navigation}`}
               >
-                <Link href='/resources' className={isSelected('resources')}>
-                  Resources
+                <Link
+                  href='/resources/news'
+                  className={isSelected('resources')}
+                >
+                  News
                 </Link>
                 <Link
                   href='/resources/education'
