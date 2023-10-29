@@ -60,7 +60,7 @@ export const SignUp = () => {
         onSubmit={handleSubmit()}
       >
         <Box className='flex flex-col justify-center text-center gap-2 text-white'>
-          <Text fw='bolder' fz='xl'>
+          <Text fw='bolder' fz='48px'>
             Register
           </Text>
           <Text fw='normal' fz='md'>
@@ -85,14 +85,14 @@ export const SignUp = () => {
           onVisibilityChange={toggle}
           size='lg'
           radius='md'
-          withErrorStyles={true}
           styles={{
             error: inputErrorStyles,
           }}
           {...form.getInputProps('password')}
         />
-        <Box mx='auto'>
+        <Box mx='auto' w={200}>
           <Button
+            w='100%'
             variant='filled'
             radius='xl'
             color='white'
@@ -113,7 +113,7 @@ export const SignUp = () => {
         </Text>
         <Button
           variant='outline'
-          color='green'
+          color='#3D9A6B'
           radius='xl'
           size='lg'
           onClick={() => router.push('/auth/signin')}
