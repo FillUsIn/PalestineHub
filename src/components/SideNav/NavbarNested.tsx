@@ -9,31 +9,31 @@ import { LinksGroup } from './NavbarLinksGroup';
 import styles from './NavbarNested.module.css';
 
 const mockdata = [
-  { label: 'All Resources', link: '/resources', icon: IconGauge },
+  // { label: 'All Resources', link: '/resources', icon: IconGauge },
+  {
+    label: 'News',
+    link: '/resources/news',
+    icon: IconGift,
+    links: [
+      { label: 'Updates', link: '/resources/news/updates' },
+      { label: 'Fake News', link: '/resources/news/fake news' },
+      { label: 'Counter arguments', link: '/resources/news/counter arguments' },
+      { label: 'Discussions', link: '/resources/news/discussions' },
+      { label: 'General', link: '/resources/news/general news' },
+    ],
+  },
   {
     label: 'Education',
     link: '/resources/education',
     icon: IconBook,
     links: [
-      { label: 'All Education', link: '/resources/education' },
+      // { label: 'All Education', link: '/resources/education' },
       { label: 'Articles', link: '/resources/education/articles' },
       { label: 'Documentaries', link: '/resources/education/documentaries' },
       { label: 'Videos', link: '/resources/education/videos' },
       { label: 'Podcasts', link: '/resources/education/podcasts' },
-    ],
-  },
-  {
-    label: 'Charities',
-    link: '/resources/charities',
-    icon: IconGift,
-    links: [
-      { label: 'All Charities', link: '/resources/charities' },
-      {
-        label: 'General Charities',
-        link: '/resources/charities/general charities',
-      },
-      // { label: 'UK', link: '/resources/charities/UK' },
-      // { label: 'USA', link: '/resources/charities/USA' },
+      { label: 'Books', link: '/resources/education/videos' },
+      { label: 'General', link: '/resources/education/general education' },
     ],
   },
   {
@@ -41,10 +41,21 @@ const mockdata = [
     link: '/resources/tools',
     icon: IconSettings,
     links: [
-      { label: 'All Tools', link: '/resources/tools' },
-      { label: 'BDS', link: '/resources/tools/BDS' },
-      { label: 'General Tools', link: '/resources/tools/general tools' },
+      // { label: 'All Tools', link: '/resources/tools' },
+      { label: 'BDS', link: '/resources/tools/bds' },
+      { label: 'Advocacy', link: '/resources/tools/advocacy' },
       { label: 'Fact Check', link: '/resources/tools/fact check' },
+      { label: 'General', link: '/resources/tools/general tools' },
+    ],
+  },
+  {
+    label: 'Charities',
+    link: '/resources/charities',
+    icon: IconGift,
+    links: [
+      // { label: 'All Charities', link: '/resources/charities' },
+      { label: 'On The Ground', link: '/resources/charities/on the ground' },
+      { label: 'General', link: '/resources/charities/general charities' },
     ],
   },
 ];

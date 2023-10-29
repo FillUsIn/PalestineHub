@@ -59,6 +59,16 @@ type TopPost = {
   post: Post;
 };
 
+type Category = {
+  name: string;
+  subcategories: Subcategory[];
+};
+
+type Subcategory = {
+  name: string;
+  posts: PostSummaryDTO[];
+};
+
 export type {
   CreatePostDTO,
   CreateCommentDTO,
@@ -69,4 +79,6 @@ export type {
   LoginResponseDTO,
   CreateUserDTO,
   CreateUserResponseDTO,
+  Category,
+  Subcategory,
 };
