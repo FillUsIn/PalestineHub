@@ -6,7 +6,7 @@ import {
   IconGauge,
 } from '@tabler/icons-react';
 import { LinksGroup } from './NavbarLinksGroup';
-import classes from './NavbarNested.module.css';
+import styles from './NavbarNested.module.css';
 
 const mockdata = [
   { label: 'All Resources', link: '/resources', icon: IconGauge },
@@ -14,7 +14,6 @@ const mockdata = [
     label: 'Education',
     link: '/resources/education',
     icon: IconBook,
-    initiallyOpened: true,
     links: [
       { label: 'All Education', link: '/resources/education' },
       { label: 'Articles', link: '/resources/education/articles' },
@@ -56,9 +55,9 @@ export function NavbarNested() {
   ));
 
   return (
-    <nav className={classes.navbar}>
-      <ScrollArea className={classes.links}>
-        <div className={classes.linksInner}>{links}</div>
+    <nav className={styles.navbar}>
+      <ScrollArea className={styles.links}>
+        <div className={styles.linksInner}>{links}</div>
       </ScrollArea>
     </nav>
   );

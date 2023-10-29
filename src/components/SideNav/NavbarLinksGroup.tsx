@@ -29,7 +29,8 @@ export function LinksGroup({
 }: LinksGroupProps) {
   const router = useRouter();
   const hasLinks = Array.isArray(links);
-  const [opened, setOpened] = useState(initiallyOpened || false);
+  const shouldBeOpen = router.query.category === label.toLowerCase();
+  const [opened, setOpened] = useState(shouldBeOpen);
 
   const handleButtonClick = (o: any) => {
     setOpened(o);
