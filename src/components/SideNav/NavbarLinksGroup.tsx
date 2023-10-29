@@ -4,12 +4,11 @@ import {
   Box,
   Collapse,
   ThemeIcon,
-  Text,
   UnstyledButton,
   rem,
 } from '@mantine/core';
-import { IconCalendarStats, IconChevronRight } from '@tabler/icons-react';
-import classes from './NavbarLinksGroup.module.css';
+import { IconChevronRight } from '@tabler/icons-react';
+import styles from './NavbarLinksGroup.module.css';
 import Link from 'next/link'; // Import Link component from Next.js
 
 interface LinksGroupProps {
@@ -27,28 +26,12 @@ export function LinksGroup({
 }: LinksGroupProps) {
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
-  const items = (hasLinks ? links : []).map((link) => (
-    // <div className={classes.link}>
-    //   <Link href={link.link} key={link.label}>
-    //     {link.label}
-    //   </Link>
-    // </div>
-    <Text<'a'>
-      component='a'
-      className={classes.link}
-      href={link.link}
-      key={link.label}
-      //onClick={(event) => event.currentTarget} // this refeshes the page
-    >
-      {link.label}
-    </Text>
-  ));
 
   return (
     <>
       <UnstyledButton
         onClick={() => setOpened((o) => !o)}
-        className={classes.control}
+        className={styles.control}
       >
         <Group justify='space-between' gap={0}>
           <Box style={{ display: 'flex', alignItems: 'center' }}>
@@ -57,9 +40,8 @@ export function LinksGroup({
             </ThemeIcon>
             <Box ml='md'>{label}</Box>
           </Box>
-          {/* {hasLinks && (
+          {hasLinks && (
             <IconChevronRight
-              className={classes.chevron}
               stroke={1.5}
               style={{
                 width: rem(16),
@@ -67,10 +49,20 @@ export function LinksGroup({
                 transform: opened ? 'rotate(-90deg)' : 'none',
               }}
             />
-          )} */}
+          )}
         </Group>
       </UnstyledButton>
-      {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
+      {hasLinks && (
+        <Collapse in={opened}>
+          {links.map((link) => (
+            <div className={styles.linkWrapper} key={link.label}>
+              <Link className={styles.link} href={link.link}>
+                {link.label}
+              </Link>
+            </div>
+          ))}
+        </Collapse>
+      )}
     </>
   );
 }
