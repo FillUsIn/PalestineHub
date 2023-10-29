@@ -42,8 +42,8 @@ function SubCategoryPage({ subcategoryPosts }: Props) {
 
   return (
     <>
-      <div className='flex'>
-        <div className='mr-8'>
+      <div className='flex justify-center'>
+        <div className='pr-5'>
           <NavbarNested />
         </div>
         <div className='flex flex-col'>
