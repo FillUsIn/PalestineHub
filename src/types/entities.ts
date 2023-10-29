@@ -4,8 +4,7 @@ type Post = {
   body: string;
   voteCount: number;
   createdAt: string;
-  username: string;
-  url: string;
+  subcategoryName: string;
   thumbnailUrl: string | null;
   userLikes: User[];
   userDislikes: User[];

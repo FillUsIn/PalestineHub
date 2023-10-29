@@ -7,8 +7,8 @@ export const examplePost: Post = {
   body: 'Post body',
   voteCount: 5,
   createdAt: new Date().toDateString(),
-  username: 'testuser',
-  url: '/testpost',
+  id: 'post1',
+  subcategoryName: 'Medical',
   thumbnailUrl: '',
   userLikes: [
     {
@@ -59,6 +59,10 @@ export const examplePostSummary: PostSummaryDTO = {
   voteCount: 5,
   commentCount: 3,
   createdDate: new Date().toDateString(),
+  id: 'post1',
+  subcategoryName: 'Medical',
+  thumbnailUrl: '',
+  title: 'Post title',
   username: 'testuser',
   thumbnailUrl: '',
 };

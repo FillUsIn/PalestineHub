@@ -50,6 +50,11 @@ export async function getServerSideProps({ params }) {
   const post: Post = {
     id: postId,
     body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, odit.',
+    categoryName: 'Charities',
+    createdAt: '2023-10-24T01:08:46.305527088',
+    comments: [],
+    id: postId,
+    subcategoryName: 'Medical',
     title: 'Why palestinians are the oppressed, not the oppressors.',
     createdAt: '2023-10-24T01:08:46.305527088',
     username: 'ahmad',

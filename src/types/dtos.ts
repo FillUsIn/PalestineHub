@@ -2,6 +2,8 @@ import { Post } from './entities';
 
 type PostSummaryDTO = {
   id: string;
+  subcategoryName: string;
+  thumbnailUrl?: string;
   title: string;
   username: string;
   createdDate: string;

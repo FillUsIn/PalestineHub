@@ -1,12 +1,9 @@
-import { Group, Code, ScrollArea, rem, Button } from '@mantine/core';
+import { ScrollArea } from '@mantine/core';
 import {
-  IconNotes,
-  IconCalendarStats,
+  IconSettings,
+  IconGift,
+  IconBook,
   IconGauge,
-  IconPresentationAnalytics,
-  IconFileAnalytics,
-  IconAdjustments,
-  IconLock,
 } from '@tabler/icons-react';
 import { LinksGroup } from './NavbarLinksGroup';
 import classes from './NavbarNested.module.css';
@@ -14,35 +11,38 @@ import classes from './NavbarNested.module.css';
 const mockdata = [
   { label: 'Dashboard', icon: IconGauge },
   {
-    label: 'Market news',
-    icon: IconNotes,
+    label: 'Education',
+    icon: IconBook,
     initiallyOpened: true,
     links: [
-      { label: 'Overview', link: '/' },
-      { label: 'Forecasts', link: '/' },
-      { label: 'Outlook', link: '/' },
-      { label: 'Real time', link: '/' },
+      { label: 'Articles', link: '/resources/education/articles' },
+      { label: 'Documentaries', link: '/resources/education/documentaries' },
+      { label: 'Videos', link: '/resources/education/videos' },
+      { label: 'Podcasts', link: '/resources/education/podcasts' },
     ],
   },
   {
-    label: 'Releases',
-    icon: IconCalendarStats,
+    label: 'Charities',
+    icon: IconGift,
     links: [
-      { label: 'Upcoming releases', link: '/' },
-      { label: 'Previous releases', link: '/' },
-      { label: 'Releases schedule', link: '/' },
+      {
+        label: 'General Charities',
+        link: '/resources/charities/general charities',
+      },
+      // { label: 'UK', link: '/resources/charities/UK' },
+      // { label: 'USA', link: '/resources/charities/USA' },
     ],
   },
   { label: 'Analytics', icon: IconPresentationAnalytics },
   { label: 'Contracts', icon: IconFileAnalytics },
   { label: 'Settings', icon: IconAdjustments },
   {
-    label: 'Security',
-    icon: IconLock,
+    label: 'Tools',
+    icon: IconSettings,
     links: [
-      { label: 'Enable 2FA', link: '/' },
-      { label: 'Change password', link: '/' },
-      { label: 'Recovery codes', link: '/' },
+      { label: 'BDS', link: '/resources/tools/BDS' },
+      { label: 'General Tools', link: '/resources/tools/general tools' },
+      { label: 'Fact Check', link: '/resources/tools/fact check' },
     ],
   },
 ];

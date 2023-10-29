@@ -10,6 +10,7 @@ import {
 } from '@mantine/core';
 import { IconCalendarStats, IconChevronRight } from '@tabler/icons-react';
 import classes from './NavbarLinksGroup.module.css';
+import Link from 'next/link'; // Import Link component from Next.js
 
 interface LinksGroupProps {
   icon: React.FC<any>;
@@ -27,12 +28,17 @@ export function LinksGroup({
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
   const items = (hasLinks ? links : []).map((link) => (
+    // <div className={classes.link}>
+    //   <Link href={link.link} key={link.label}>
+    //     {link.label}
+    //   </Link>
+    // </div>
     <Text<'a'>
       component='a'
       className={classes.link}
       href={link.link}
       key={link.label}
-      onClick={(event) => event.preventDefault()}
+      //onClick={(event) => event.currentTarget} // this refeshes the page
     >
       {link.label}
     </Text>
@@ -46,12 +52,12 @@ export function LinksGroup({
       >
         <Group justify='space-between' gap={0}>
           <Box style={{ display: 'flex', alignItems: 'center' }}>
-            <ThemeIcon variant='light' size={30}>
+            <ThemeIcon variant='transparent' size={30} color='#007A3D'>
               <Icon style={{ width: rem(18), height: rem(18) }} />
             </ThemeIcon>
             <Box ml='md'>{label}</Box>
           </Box>
-          {hasLinks && (
+          {/* {hasLinks && (
             <IconChevronRight
               className={classes.chevron}
               stroke={1.5}
@@ -61,28 +67,10 @@ export function LinksGroup({
                 transform: opened ? 'rotate(-90deg)' : 'none',
               }}
             />
-          )}
+          )} */}
         </Group>
       </UnstyledButton>
       {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
     </>
-  );
-}
-
-const mockdata = {
-  label: 'Releases',
-  icon: IconCalendarStats,
-  links: [
-    { label: 'Upcoming releases', link: '/' },
-    { label: 'Previous releases', link: '/' },
-    { label: 'Releases schedule', link: '/' },
-  ],
-};
-
-export function NavbarLinksGroup() {
-  return (
-    <Box mih={220} p='md'>
-      <LinksGroup {...mockdata} />
-    </Box>
   );
 }
