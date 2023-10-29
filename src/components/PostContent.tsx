@@ -35,7 +35,7 @@ function PostContent({
           <a href={post.url} target='_blank' className='relative group'>
             <div
               style={{ backgroundImage: `url(${post.thumbnailUrl})` }}
-              className='h-80 w-full  rounded-md shadow-lg'
+              className='h-80 w-full rounded-md shadow-lg'
             ></div>
             <div className='absolute inset-0 bg-black opacity-0 transition-all group-hover:opacity-50 duration-300 cursor-pointer'></div>
           </a>
@@ -43,7 +43,7 @@ function PostContent({
           <a
             href={post.url}
             target='_blank'
-            className='flex mt-2 items-center hover:underline hover:underline-offset-4 font-semibold bg-gray-100 justify-center sm:justify-start sm:w-fit hover:scale-105 p-2 transition-all  rounded-lg cursor-pointer  gap-2'
+            className='flex mt-2 items-center hover:underline hover:underline-offset-4 font-semibold bg-gray-200 justify-center sm:justify-start sm:w-fit hover:scale-105 p-2 transition-all  rounded-lg cursor-pointer  gap-2'
           >
             View resource <IconExternalLink size={22} />
           </a>
