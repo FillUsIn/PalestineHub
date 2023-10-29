@@ -13,6 +13,7 @@ const TopPosts: React.FC<TopPostsProps> = ({ topPosts }) => {
   return (
     <div className='mt-5 space-y-10 md:flex md:justify-between md:gap-5 md:space-y-0'>
       {topPosts.map((topPost) => (
+        //@ts-ignore // TODO: update to PostSummaryDTO once abdul has done it in backend
         <PostPreview key={topPost.post.id} post={topPost.post} />
       ))}
     </div>

@@ -3,7 +3,7 @@ import PostPreview from '../PostPreview/PostPreview';
 import { Post } from '@/types/entities';
 
 type TopPostProps = {
-  post: Post;
+  post: PostSummaryDTO;
 };
 
 const TopPost: React.FC<TopPostProps> = ({ post }) => {

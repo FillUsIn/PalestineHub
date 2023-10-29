@@ -43,6 +43,7 @@ const meta: Meta<typeof PostPreview> = {
     },
   },
   args: {
+    //@ts-ignore // TODO: fix typing to PostSummaryDTO
     post: examplePost,
   },
 };
@@ -52,5 +53,6 @@ export default meta;
 type Story = StoryObj<typeof PostPreview>;
 
 export const Primary: Story = {
+  //@ts-ignore // TODO: fix typing to PostSummaryDTO
   render: () => <PostPreview post={examplePost} />,
 };

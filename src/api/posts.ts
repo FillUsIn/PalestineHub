@@ -1,5 +1,5 @@
 import { api } from '@/api/config/axios';
-import { CreatePostDTO } from '@/types/dtos';
+import { CreatePostDTO, PostSummaryDTO } from '@/types/dtos';
 import { Post } from '@/types/entities';
 
 const API_BASE_URI = '/posts';
@@ -22,13 +22,16 @@ type PagedResponse<T> = {
 async function getAllPosts(
   page: number = 0,
   size: number = 10
-): Promise<PagedResponse<Post>> {
-  const response = await api.get<PagedResponse<Post>>(`${API_BASE_URI}`, {
-    params: {
-      page,
-      size,
-    },
-  });
+): Promise<PagedResponse<PostSummaryDTO>> {
+  const response = await api.get<PagedResponse<PostSummaryDTO>>(
+    `${API_BASE_URI}`,
+    {
+      params: {
+        page,
+        size,
+      },
+    }
+  );
   return response.data;
 }
 
@@ -36,8 +39,8 @@ async function getCategoryPosts(
   categoryName: string,
   page: number = 0,
   size: number = 10
-): Promise<PagedResponse<Post>> {
-  const response = await api.get<PagedResponse<Post>>(
+): Promise<PagedResponse<PostSummaryDTO>> {
+  const response = await api.get<PagedResponse<PostSummaryDTO>>(
     `${API_BASE_URI}/category/${categoryName}`,
     {
       params: {
@@ -53,8 +56,8 @@ async function getSubcategoryPosts(
   subCategoryName: string,
   page: number = 0,
   size: number = 10
-): Promise<PagedResponse<Post>> {
-  const response = await api.get<PagedResponse<Post>>(
+): Promise<PagedResponse<PostSummaryDTO>> {
+  const response = await api.get<PagedResponse<PostSummaryDTO>>(
     `${API_BASE_URI}/subcategory/${subCategoryName}`,
     {
       params: {

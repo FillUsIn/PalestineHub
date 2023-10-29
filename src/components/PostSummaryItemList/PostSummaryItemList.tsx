@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
 import PostSummaryItem from '../PostSummaryItem/PostSummaryItem';
 import { PostSummaryDTO } from '@/types/dtos';
-import { Post } from '@/types/entities';
 
 type Props = {
-  posts: Post[];
+  posts: PostSummaryDTO[];
 };
 
 function PostSummaryItemList({ posts }: Props) {

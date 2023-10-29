@@ -17,7 +17,7 @@ import { getAllPosts } from '../../api/posts';
 import { Post } from '@/types/entities';
 
 type Props = {
-  allPosts: Post[];
+  allPosts: PostSummaryDTO[];
 };
 
 const numberOfTopPosts = 3;

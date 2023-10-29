@@ -16,7 +16,7 @@ import TopPost from '../../../../components/TopPosts/TopPost';
 import { Post } from '@/types/entities';
 
 type Props = {
-  subcategoryPosts: Post[];
+  subcategoryPosts: PostSummaryDTO[];
 };
 
 const numberOfTopPosts = 3;
