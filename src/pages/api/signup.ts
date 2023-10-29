@@ -13,16 +13,14 @@ export default async function handler(
       const body = JSON.parse(req.body) as CreateUserDTO;
       try {
         const user = await createUserAccount(body);
-        if (user) {
-          res.json(user);
-        }
-      } catch (error) {
-        res.json({ Error: error });
+        res.status(201).json(user);
+      } catch (error: any) {
+        res.status(400).json({ message: 'Error creating user' });
       }
       break;
     }
     default:
-      res.json({ message: 'use POST request to signup' });
+      res.status(405).json({ status: 'error', message: 'Method not allowed' });
       break;
   }
 }
