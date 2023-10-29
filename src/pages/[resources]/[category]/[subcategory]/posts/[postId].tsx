@@ -53,7 +53,7 @@ export async function getServerSideProps({ params }) {
     createdAt: '2023-10-24T01:08:46.305527088',
     comments: [],
     id: postId,
-    subCategoryName: 'Medical',
+    subcategoryName: 'Medical',
     title: 'Why palestinians are the oppressed, not the oppressors.',
     thumbnailUrl: null,
     url: 'https://google.com',

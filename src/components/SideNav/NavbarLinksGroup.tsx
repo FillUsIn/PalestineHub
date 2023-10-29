@@ -4,17 +4,19 @@ import {
   Box,
   Collapse,
   ThemeIcon,
-  Text,
   UnstyledButton,
   rem,
 } from '@mantine/core';
-import { IconCalendarStats, IconChevronRight } from '@tabler/icons-react';
-import classes from './NavbarLinksGroup.module.css';
+import { IconChevronRight } from '@tabler/icons-react';
+import styles from './NavbarLinksGroup.module.css';
+import Link from 'next/link'; // Import Link component from Next.js
+import { useRouter } from 'next/router';
 
 interface LinksGroupProps {
   icon: React.FC<any>;
   label: string;
   initiallyOpened?: boolean;
+  link: string;
   links?: { label: string; link: string }[];
 }
 
@@ -22,38 +24,35 @@ export function LinksGroup({
   icon: Icon,
   label,
   initiallyOpened,
+  link,
   links,
 }: LinksGroupProps) {
+  const router = useRouter();
   const hasLinks = Array.isArray(links);
-  const [opened, setOpened] = useState(initiallyOpened || false);
-  const items = (hasLinks ? links : []).map((link) => (
-    <Text<'a'>
-      component='a'
-      className={classes.link}
-      href={link.link}
-      key={link.label}
-      onClick={(event) => event.preventDefault()}
-    >
-      {link.label}
-    </Text>
-  ));
+  const shouldBeOpen = router.query.category === label.toLowerCase();
+  const [opened, setOpened] = useState(shouldBeOpen);
+
+  const handleButtonClick = (o: any) => {
+    setOpened(o);
+    if (label !== 'All Resources') return;
+    router.push(link);
+  };
 
   return (
     <>
       <UnstyledButton
-        onClick={() => setOpened((o) => !o)}
-        className={classes.control}
+        onClick={() => handleButtonClick((o: any) => !o)}
+        className={styles.control}
       >
         <Group justify='space-between' gap={0}>
           <Box style={{ display: 'flex', alignItems: 'center' }}>
-            <ThemeIcon variant='light' size={30}>
+            <ThemeIcon variant='transparent' size={30} color='#007A3D'>
               <Icon style={{ width: rem(18), height: rem(18) }} />
             </ThemeIcon>
             <Box ml='md'>{label}</Box>
           </Box>
           {hasLinks && (
             <IconChevronRight
-              className={classes.chevron}
               stroke={1.5}
               style={{
                 width: rem(16),
@@ -64,25 +63,17 @@ export function LinksGroup({
           )}
         </Group>
       </UnstyledButton>
-      {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
+      {hasLinks && (
+        <Collapse in={opened}>
+          {links.map((link) => (
+            <div className={styles.linkWrapper} key={link.label}>
+              <Link className={styles.link} href={link.link}>
+                {link.label}
+              </Link>
+            </div>
+          ))}
+        </Collapse>
+      )}
     </>
-  );
-}
-
-const mockdata = {
-  label: 'Releases',
-  icon: IconCalendarStats,
-  links: [
-    { label: 'Upcoming releases', link: '/' },
-    { label: 'Previous releases', link: '/' },
-    { label: 'Releases schedule', link: '/' },
-  ],
-};
-
-export function NavbarLinksGroup() {
-  return (
-    <Box mih={220} p='md'>
-      <LinksGroup {...mockdata} />
-    </Box>
   );
 }

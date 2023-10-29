@@ -18,7 +18,7 @@ function PostSummaryItem({ post }: Props) {
     commentCount,
     createdDate,
     id,
-    subCategoryName,
+    subcategoryName,
     title,
     thumbnailUrl,
     username,
@@ -29,7 +29,7 @@ function PostSummaryItem({ post }: Props) {
     <Paper
       className='flex flex-col h-48 overflow-hidden text-black transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover: duration-300'
       component={Link}
-      href={`/resources/${categoryName}/${subCategoryName}/posts/${id}`}
+      href={`/resources/${categoryName}/${subcategoryName}/posts/${id}`}
       radius='lg'
       style={{
         backgroundImage: `url(${thumbnailUrl})`,
