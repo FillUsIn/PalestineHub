@@ -34,6 +34,7 @@ function Layout({ children }: Props) {
         collapsed: { mobile: !opened, desktop: true },
       }}
       py={'xl'}
+      pb={100}
       className={`mx-auto max-w-6xl px-7 xl:px-0 ${inter.className}`}
     >
       <AppShell.Header withBorder={false}>

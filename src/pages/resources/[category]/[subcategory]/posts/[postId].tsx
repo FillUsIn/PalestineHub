@@ -113,7 +113,7 @@ function NoCommentsYet() {
   return (
     <div className='flex flex-col items-center mt-20 gap-5 opacity-40'>
       <IconBrandWechat size={60} strokeWidth={1.5} />
-      <p className='font-bold text-lg'>Be the first to comment</p>
+      <p className='font-bold text-xl'>Share your thoughts!</p>
     </div>
   );
 }
