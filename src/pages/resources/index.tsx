@@ -1,8 +1,8 @@
 import CreatePostForm from '@/components/CreatePostForm';
 import PostSummaryItemList from '@/components/PostSummaryItemList/PostSummaryItemList';
 import TopPost from '@/components/TopPosts/TopPost';
-import { PostSummaryDTO } from '@/types/dtos';
-import { Button, Divider, Modal, Title } from '@mantine/core';
+import { PagedResponse, PostSummaryDTO } from '@/types/dtos';
+import { Button, Divider, Modal, Pagination, Title } from '@mantine/core';
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import { useDisclosure } from '@mantine/hooks';
 import React from 'react';
@@ -11,15 +11,17 @@ import { Post } from '@/types/entities';
 import { NavbarNested } from '@/components/SideNav/NavbarNested';
 
 type Props = {
-  allPosts: PostSummaryDTO[];
+  paginatedPosts: PagedResponse<PostSummaryDTO>;
 };
 
 const numberOfTopPosts = 3;
 const postsPerPage = 10;
 
-function Resources({ allPosts }: Props) {
+function Resources({ paginatedPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const items = [{ title: 'Resources', href: '#' }];
+
+  const posts = paginatedPosts.content || [];
 
   return (
     <>
@@ -50,25 +52,29 @@ function Resources({ allPosts }: Props) {
               Submit a resource
             </Button>
           </div>
-
           <Title order={2} mt={30}>
             Top 3 resources
           </Title>
-
           <div className='mt-5 justify-between space-y-4 md:flex md:gap-5 md:space-y-0'>
-            {allPosts &&
-              allPosts
+            {posts &&
+              posts
                 .slice(0, numberOfTopPosts)
                 .map((post) => <TopPost post={post} key={post.id} />)}
           </div>
-
           <Divider className='my-5' size={'xl'} />
-          {allPosts.length > 3 && (
+          {posts.length > 3 && (
             <Title order={2} mt={10} mb={20}>
               Other resources:
             </Title>
           )}
-          <PostSummaryItemList posts={allPosts.slice(numberOfTopPosts)} />
+          <PostSummaryItemList posts={posts.slice(numberOfTopPosts)} />
+          <Pagination
+            total={paginatedPosts.totalPages}
+            color='#337a00'
+            size='lg'
+            radius='md'
+          />
+          ;
         </div>
       </div>
     </>
@@ -76,10 +82,10 @@ function Resources({ allPosts }: Props) {
 }
 
 export async function getServerSideProps() {
-  const allPosts = (await getAllPosts(0, postsPerPage)).content;
+  const paginatedPosts = await getAllPosts(0, postsPerPage);
   return {
     props: {
-      allPosts,
+      paginatedPosts,
     },
   };
 }
