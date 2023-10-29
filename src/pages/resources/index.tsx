@@ -9,6 +9,8 @@ import React from 'react';
 import { getAllPosts } from '../../api/posts';
 import { Post } from '@/types/entities';
 import { NavbarNested } from '@/components/SideNav/NavbarNested';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 
 type Props = {
   paginatedPosts: PagedResponse<PostSummaryDTO>;
@@ -20,8 +22,18 @@ const postsPerPage = 10;
 function Resources({ paginatedPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const items = [{ title: 'Resources', href: '#' }];
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const posts = paginatedPosts.content || [];
+
+  const handleSubmitResourceClick = () => {
+    if (!session) {
+      router.push('/auth/signup');
+      return;
+    }
+    return open;
+  };
 
   return (
     <>
@@ -42,7 +54,7 @@ function Resources({ paginatedPosts }: Props) {
           <div className='flex flex-col  justify-between md:flex-row '>
             <Breadcrumbs items={items} />
             <Button
-              onClick={open}
+              onClick={handleSubmitResourceClick}
               fw={'bolder'}
               radius='lg'
               color='dark'

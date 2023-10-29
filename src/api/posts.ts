@@ -1,6 +1,7 @@
 import { api } from '@/api/config/axios';
 import { CreatePostDTO, PagedResponse, PostSummaryDTO } from '@/types/dtos';
 import { Post } from '@/types/entities';
+import { getAuthorizationHeader } from './comments';
 
 const API_BASE_URI = '/posts';
 async function createSubcategoryPost(
@@ -10,7 +11,7 @@ async function createSubcategoryPost(
   const response = await api.post<Post>(
     `${API_BASE_URI}/subcategory/${subCategoryName}`,
     createPostDTO,
-    { withCredentials: true }
+    { withCredentials: true, headers: await getAuthorizationHeader() }
   );
   return response.data;
 }
@@ -73,7 +74,8 @@ async function getPostById(postId: string): Promise<Post> {
 async function likePost(postId: string): Promise<PagedResponse<Post>> {
   const response = await api.post<PagedResponse<Post>>(
     `${API_BASE_URI}/${postId}/like`,
-    { withCredentials: true }
+    {},
+    { withCredentials: true, headers: await getAuthorizationHeader() }
   );
   return response.data;
 }
@@ -81,7 +83,8 @@ async function likePost(postId: string): Promise<PagedResponse<Post>> {
 async function dislikePost(postId: string): Promise<PagedResponse<Post>> {
   const response = await api.post<PagedResponse<Post>>(
     `${API_BASE_URI}/${postId}/dislike`,
-    { withCredentials: true }
+    {},
+    { withCredentials: true, headers: await getAuthorizationHeader() }
   );
   return response.data;
 }

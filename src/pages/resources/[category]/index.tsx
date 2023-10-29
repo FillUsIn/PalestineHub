@@ -8,6 +8,8 @@ import PostSummaryItemList from '../../../components/PostSummaryItemList/PostSum
 import TopPost from '../../../components/TopPosts/TopPost';
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import { NavbarNested } from '@/components/SideNav/NavbarNested';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 type Props = {
   categoryPosts: PostSummaryDTO[];
@@ -18,10 +20,21 @@ const postsPerPage = 10;
 
 function CategoryPage({ categoryPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
+  const router = useRouter();
+  const { data: session } = useSession();
   const items = [
     { title: 'Resources', href: '/resources' },
     { title: categoryPosts[0].categoryName, href: '#' },
   ];
+
+  const handleSubmitResourceClick = () => {
+    console.log(session);
+    if (!session) {
+      router.push('/auth/signup');
+      return;
+    }
+    return open;
+  };
 
   return (
     <>
@@ -42,7 +55,7 @@ function CategoryPage({ categoryPosts }: Props) {
           <div className='flex flex-col  justify-between md:flex-row '>
             <Breadcrumbs items={items} />
             <Button
-              onClick={open}
+              onClick={handleSubmitResourceClick}
               fw={'bolder'}
               radius='lg'
               color='dark'

@@ -8,6 +8,8 @@ import PostSummaryItemList from '../../../../components/PostSummaryItemList/Post
 import TopPost from '../../../../components/TopPosts/TopPost';
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import { NavbarNested } from '@/components/SideNav/NavbarNested';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 type Props = {
   subcategoryPosts: PostSummaryDTO[];
@@ -18,6 +20,9 @@ const postsPerPage = 10;
 
 function SubCategoryPage({ subcategoryPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
+  const router = useRouter();
+  const { data: session } = useSession();
+
   const items = [
     { title: 'Resources', href: '/resources' },
     {
@@ -26,6 +31,14 @@ function SubCategoryPage({ subcategoryPosts }: Props) {
     },
     { title: subcategoryPosts[0]?.subcategoryName, href: '#' },
   ];
+
+  const handleSubmitResourceClick = () => {
+    if (!session) {
+      router.push('/auth/signup');
+      return;
+    }
+    return open;
+  };
 
   return (
     <>
@@ -43,10 +56,11 @@ function SubCategoryPage({ subcategoryPosts }: Props) {
           >
             <CreatePostForm onDismiss={close} />
           </Modal>
+
           <div className='flex flex-col  justify-between md:flex-row '>
             <Breadcrumbs items={items} />
             <Button
-              onClick={open}
+              onClick={handleSubmitResourceClick}
               fw={'bolder'}
               radius='lg'
               color='dark'

@@ -1,6 +1,15 @@
 import { api } from '@/api/config/axios';
-import { CreateCommentDTO } from '@/types/dtos';
+import { CreateCommentDTO, LoginResponseDTO } from '@/types/dtos';
 import { Comment } from '@/types/entities';
+import { getSession } from 'next-auth/react';
+
+export const getAuthorizationHeader = async () => {
+  const session = (await getSession()) as any;
+  const bearer = `Bearer ${session?.user?.accessToken}`;
+  return {
+    Authorization: bearer,
+  };
+};
 
 const API_BASE_URI = '/comments';
 async function createComment(
@@ -9,7 +18,10 @@ async function createComment(
   const response = await api.post<Comment>(
     `${API_BASE_URI}`,
     createCommentDTO,
-    { withCredentials: true }
+    {
+      withCredentials: true,
+      headers: await getAuthorizationHeader(),
+    }
   );
   return response.data;
 }
@@ -17,7 +29,11 @@ async function createComment(
 async function likeComment(commentId: string): Promise<Comment> {
   const response = await api.post<Comment>(
     `${API_BASE_URI}/${commentId}/like`,
-    { withCredentials: true }
+    {},
+    {
+      withCredentials: true,
+      headers: await getAuthorizationHeader(),
+    }
   );
   return response.data;
 }
@@ -25,7 +41,11 @@ async function likeComment(commentId: string): Promise<Comment> {
 async function dislikeComment(commentId: string): Promise<Comment> {
   const response = await api.post<Comment>(
     `${API_BASE_URI}/${commentId}/dislike`,
-    { withCredentials: true }
+    {},
+    {
+      withCredentials: true,
+      headers: await getAuthorizationHeader(),
+    }
   );
   return response.data;
 }
