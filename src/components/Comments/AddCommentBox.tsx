@@ -49,6 +49,7 @@ function AddCommentBox({
           //   color: "white",
           //   ":disabled": { background: "darkgray", color: "rgb(239, 239, 239)" },
           // }}
+          color='#117e36'
           className='ml-auto transition-all duration-300'
           disabled={!submittable}
         >

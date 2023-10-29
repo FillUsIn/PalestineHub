@@ -51,11 +51,15 @@ function ContentInteractions({
       {showReplyButton && (
         <ActionIcon
           radius={'xl'}
-          variant='transparent'
-          color='gray'
+          size={37}
+          color='#eeeeee'
           onClick={onReplyClicked}
         >
-          <IconArrowBackUp size='24' />
+          <IconArrowBackUp
+            color='gray'
+            className='cursor-pointer  rounded-full p-1.5 hover:bg-zinc-100'
+            size='36'
+          />
         </ActionIcon>
       )}
 

@@ -1,5 +1,5 @@
 import { Avatar, Collapse } from '@mantine/core';
-import { IconArrowsDiagonal, IconBrandReddit } from '@tabler/icons-react';
+import { IconArrowsDiagonal, IconUser } from '@tabler/icons-react';
 import { CreateCommentDTO } from '@/types/dtos';
 import { since } from '@/lib/utils/date-time';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -35,19 +35,15 @@ function Comment({ comment, isChild }: Props) {
           expandComment={toggleCollapsed}
           commentExpanded={commentExpanded}
         />
-        <div className='-ml-2 pt-1.5'>
+        <div className='pl-[.1rem] pt-1.5'>
           <Collapse in={commentExpanded}>
             <Content
               className={''}
               toggleCollapsed={toggleCollapsed}
               comment={comment}
               isChild={isChild}
-              onReplyClicked={() => {
-                alert('not implemented yet');
-              }}
-              onOptionsClicked={() => {
-                alert('not implemented yet');
-              }}
+              onReplyClicked={() => {}}
+              onOptionsClicked={() => {}}
               onAddReply={() => alert('not implemented yet')}
             />
           </Collapse>
@@ -80,17 +76,18 @@ function Content({
       <VerticalCollapsibleLine onClick={toggleCollapsed} />
       <div className='w-full'>
         {/* Comment */}
-        <div className='ml-2 w-full'>
+        <div className='ml-4 w-full'>
           <p className='whitespace-pre-line text-sm break-words pr-5'>
             {comment.body}
           </p>
           <ContentInteractions
-            className='pt-2'
+            className='pt-5'
             onUpvote={() => {}}
             onDownvote={() => {}}
             voteCount={comment.voteCount}
             onOptionsClicked={onOptionsClicked}
             showReplyButton
+            showCommentsCount={false}
             onReplyClicked={onReplyClicked}
           />
         </div>
@@ -136,7 +133,7 @@ function Header({
             exit={{ scale: 0, transition: { duration: 0.5, type: 'spring' } }}
             key={'1'}
             transition={{ duration: 0.3, type: 'spring' }}
-            className='text-gray-500 hover:text-orange-400 group cursor-pointer'
+            className='text-gray-500 hover:text-green-700  group cursor-pointer'
           >
             <IconArrowsDiagonal
               className='mr-2 group-hover:scale-110 transition-all duration-150'
@@ -145,9 +142,14 @@ function Header({
           </motion.div>
         )}
 
-        <div className='flex items-center'>
-          <Avatar size='md' radius='xl' className='mr-1' color={'green'}>
-            <IconBrandReddit size='30' />
+        <div className='flex items-center gap-2'>
+          <Avatar
+            size={30}
+            radius='xl'
+            className='mr-1'
+            style={{ backgroundColor: '#eeeeee' }}
+          >
+            <IconUser size='22' color='#616161' />
           </Avatar>
 
           <p className='text-sm'>
