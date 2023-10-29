@@ -19,10 +19,6 @@ function Layout({ children }: Props) {
   const router = useRouter();
 
   const isSelected = (section: string) => {
-    const isCategoryEmpty = !router.query.category;
-    if (isCategoryEmpty && router.asPath.replace(/\//g, '') !== section)
-      return '';
-    if (isCategoryEmpty && section === 'resources') return styles.isSelected;
     if (router.query.category !== section) return '';
     return styles.isSelected;
   };
@@ -54,10 +50,7 @@ function Layout({ children }: Props) {
               <Group
                 className={`space-x-10 text-lg font-semibold ${styles.navigation}`}
               >
-                <Link
-                  href='/resources/news'
-                  className={isSelected('resources')}
-                >
+                <Link href='/resources/news' className={isSelected('news')}>
                   News
                 </Link>
                 <Link
@@ -66,14 +59,14 @@ function Layout({ children }: Props) {
                 >
                   Education
                 </Link>
+                <Link href='/resources/tools' className={isSelected('tools')}>
+                  Tools
+                </Link>
                 <Link
                   href='/resources/charities'
                   className={isSelected('charities')}
                 >
                   Charities
-                </Link>
-                <Link href='/resources/tools' className={isSelected('tools')}>
-                  Tools
                 </Link>
               </Group>
               <AuthActionButton />
@@ -88,17 +81,17 @@ function Layout({ children }: Props) {
         <ul
           className={`flex flex-col space-y-6 pl-4 text-2xl font-medium ${styles.navigation}`}
         >
-          <Link href='/resources' className={isSelected('resources')}>
-            Resources
+          <Link href='/resources/news' className={isSelected('news')}>
+            News
           </Link>
           <Link href='/resources/education' className={isSelected('education')}>
             Education
           </Link>
-          <Link href='/resources/charities' className={isSelected('charities')}>
-            Charities
-          </Link>
           <Link href='/resources/tools' className={isSelected('tools')}>
             Tools
+          </Link>
+          <Link href='/resources/charities' className={isSelected('charities')}>
+            Charities
           </Link>
           <hr />
           <AuthActionButton />
