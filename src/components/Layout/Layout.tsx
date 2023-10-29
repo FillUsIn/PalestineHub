@@ -19,9 +19,10 @@ function Layout({ children }: Props) {
   const router = useRouter();
 
   const isSelected = (section: string) => {
-    if (!router.query.resources) return '';
-    if (!router.query.category && section === 'resources')
-      return styles.isSelected;
+    const isCategoryEmpty = !router.query.category;
+    if (isCategoryEmpty && router.asPath.replace(/\//g, '') !== section)
+      return '';
+    if (isCategoryEmpty && section === 'resources') return styles.isSelected;
     if (router.query.category !== section) return '';
     return styles.isSelected;
   };
