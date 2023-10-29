@@ -27,7 +27,7 @@ const PostPreview: React.FC<PostPreviewProps> = ({
       href={`/resources/${categoryName}/${subcategoryName}/posts/${id}`}
       radius='lg'
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url(${thumbnailUrl})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), url(${thumbnailUrl})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
