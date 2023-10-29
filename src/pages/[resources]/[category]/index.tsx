@@ -1,19 +1,12 @@
-import { useRouter } from 'next/router';
 import React from 'react';
 import { getCategoryPosts } from '@/api/posts';
 import { PostSummaryDTO } from '@/types/dtos';
 import { useDisclosure } from '@mantine/hooks';
-import {
-  Anchor,
-  Breadcrumbs,
-  Button,
-  Divider,
-  Modal,
-  Title,
-} from '@mantine/core';
+import { Anchor, Button, Divider, Modal, Title } from '@mantine/core';
 import CreatePostForm from '../../../components/CreatePostForm';
 import PostSummaryItemList from '../../../components/PostSummaryItemList/PostSummaryItemList';
 import TopPost from '../../../components/TopPosts/TopPost';
+import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import { NavbarNested } from '@/components/SideNav/NavbarNested';
 
 type Props = {
@@ -26,19 +19,15 @@ const postsPerPage = 10;
 function CategoryPage({ categoryPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const items = [
+    { title: 'Resources', href: '/resources' },
     { title: categoryPosts[0].categoryName, href: '#' },
-    // { title: 'documentaries', href: '#' },
-  ].map((item, index) => (
-    <Anchor href={item.href} key={index}>
-      {item.title}
-    </Anchor>
-  ));
+  ];
 
   return (
     <>
       <div className='flex'>
         <div className='mr-8'>
-          <NavbarNested></NavbarNested>
+          <NavbarNested />
         </div>
         <div className='flex flex-col'>
           <Modal
@@ -51,15 +40,7 @@ function CategoryPage({ categoryPosts }: Props) {
             <CreatePostForm onDismiss={close} />
           </Modal>
           <div className='flex flex-col  justify-between md:flex-row '>
-            <Breadcrumbs
-              separator='>'
-              styles={{
-                breadcrumb: { color: 'grey', fontWeight: '500' },
-                separator: { color: 'grey', fontWeight: '500' },
-              }}
-            >
-              {items}
-            </Breadcrumbs>
+            <Breadcrumbs items={items} />
             <Button
               onClick={open}
               fw={'bolder'}

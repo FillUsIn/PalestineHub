@@ -1,18 +1,12 @@
 import React from 'react';
 import { getSubcategoryPosts } from '../../../../api/posts';
 import { PostSummaryDTO } from '../../../../types/dtos';
-import {
-  Anchor,
-  Modal,
-  Breadcrumbs,
-  Button,
-  Title,
-  Divider,
-} from '@mantine/core';
+import { Modal, Button, Title, Divider } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import CreatePostForm from '../../../../components/CreatePostForm';
 import PostSummaryItemList from '../../../../components/PostSummaryItemList/PostSummaryItemList';
 import TopPost from '../../../../components/TopPosts/TopPost';
+import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
 import { NavbarNested } from '@/components/SideNav/NavbarNested';
 
 type Props = {
@@ -25,19 +19,19 @@ const postsPerPage = 10;
 function SubCategoryPage({ subcategoryPosts }: Props) {
   const [opened, { close, open }] = useDisclosure(false);
   const items = [
-    { title: subcategoryPosts[0]?.categoryName, href: '#' },
+    { title: 'Resources', href: '/resources' },
+    {
+      title: subcategoryPosts[0]?.categoryName,
+      href: `/resources/${subcategoryPosts[0]?.categoryName}`,
+    },
     { title: subcategoryPosts[0]?.subcategoryName, href: '#' },
-  ].map((item, index) => (
-    <Anchor href={item.href} key={index}>
-      {item.title}
-    </Anchor>
-  ));
+  ];
 
   return (
     <>
       <div className='flex'>
         <div className='mr-8'>
-          <NavbarNested></NavbarNested>
+          <NavbarNested />
         </div>
         <div className='flex flex-col'>
           <Modal
@@ -50,15 +44,7 @@ function SubCategoryPage({ subcategoryPosts }: Props) {
             <CreatePostForm onDismiss={close} />
           </Modal>
           <div className='flex flex-col  justify-between md:flex-row '>
-            <Breadcrumbs
-              separator='>'
-              styles={{
-                breadcrumb: { color: 'grey', fontWeight: '500', padding: 10 },
-                separator: { color: 'grey', fontWeight: '500' },
-              }}
-            >
-              {items}
-            </Breadcrumbs>
+            <Breadcrumbs items={items} />
             <Button
               onClick={open}
               fw={'bolder'}

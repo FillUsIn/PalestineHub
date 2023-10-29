@@ -15,16 +15,22 @@ interface BreadcrumbsProps {
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   items,
   home = 'Home',
-  separator = '→',
+  separator = '>',
 }) => {
   const homeItem: BreadcrumbItem = {
     title: home,
     href: '/',
   };
   return (
-    <MantineBreadcrumbs separator={separator}>
+    <MantineBreadcrumbs
+      separator={separator}
+      styles={{
+        breadcrumb: { color: 'grey', fontWeight: '500' },
+        separator: { color: 'grey', fontWeight: '500' },
+      }}
+    >
       {[homeItem, ...items].map((item, index) => (
-        <Anchor href={item.href} key={index}>
+        <Anchor href={item.href.toLocaleLowerCase()} key={index}>
           {item.title}
         </Anchor>
       ))}

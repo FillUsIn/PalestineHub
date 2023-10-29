@@ -9,12 +9,14 @@ import { LinksGroup } from './NavbarLinksGroup';
 import classes from './NavbarNested.module.css';
 
 const mockdata = [
-  { label: 'All Resources', icon: IconGauge },
+  { label: 'All Resources', link: '/resources', icon: IconGauge },
   {
     label: 'Education',
+    link: '/resources/education',
     icon: IconBook,
     initiallyOpened: true,
     links: [
+      { label: 'All Education', link: '/resources/education' },
       { label: 'Articles', link: '/resources/education/articles' },
       { label: 'Documentaries', link: '/resources/education/documentaries' },
       { label: 'Videos', link: '/resources/education/videos' },
@@ -23,8 +25,10 @@ const mockdata = [
   },
   {
     label: 'Charities',
+    link: '/resources/charities',
     icon: IconGift,
     links: [
+      { label: 'All Charities', link: '/resources/charities' },
       {
         label: 'General Charities',
         link: '/resources/charities/general charities',
@@ -35,8 +39,10 @@ const mockdata = [
   },
   {
     label: 'Tools',
+    link: '/resources/tools',
     icon: IconSettings,
     links: [
+      { label: 'All Tools', link: '/resources/tools' },
       { label: 'BDS', link: '/resources/tools/BDS' },
       { label: 'General Tools', link: '/resources/tools/general tools' },
       { label: 'Fact Check', link: '/resources/tools/fact check' },
