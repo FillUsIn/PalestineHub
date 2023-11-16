@@ -109,7 +109,6 @@ export async function getServerSideProps(context: {
   ).content;
   const categories = await getCategories();
 
-  console.log(subcategoryPosts);
   return {
     props: {
       subcategoryPosts,
