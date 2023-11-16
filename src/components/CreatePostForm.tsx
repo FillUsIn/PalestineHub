@@ -109,13 +109,14 @@ function CreatePostForm({ onDismiss, categories }: Props) {
     };
 
     try {
-      const createdPost = await fetch('/api/posts/create', {
+      const response = await fetch('/api/posts/create', {
         method: 'POST',
         body: JSON.stringify({ subCategoryName, ...data }),
       });
 
-      console.log('createdPost', createdPost.json());
-      if (createdPost) {
+      const createdPost = await response.json();
+
+      if (createdPost?.id) {
         notifications.show({
           color: 'green',
           title: 'Your post is now live!',
@@ -124,20 +125,20 @@ function CreatePostForm({ onDismiss, categories }: Props) {
           autoClose: 4000,
         });
 
-        // router.push(
-        //   `/resources/${createdPost.categoryName}/${createdPost.subcategoryName}/posts/${createdPost.id}`
-        // );
-        // onDismiss();
+        router.push(
+          `/resources/${selectedCategoryNameField.value}/${subCategoryName}/posts/${createdPost.id}`
+        );
+        onDismiss();
       } else {
         notifications.show({
           message: 'Something went wrong, please try again.',
           color: 'red',
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       notifications.show({
         color: 'red',
-        title: 'Error posting content',
+        title: error?.message,
         message: 'Please try again',
         icon: <IconCheck size='1rem' />,
         autoClose: 4000,
