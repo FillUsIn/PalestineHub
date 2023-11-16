@@ -100,7 +100,6 @@ export async function getServerSideProps(context: {
     .content;
 
   const categories = await getCategories();
-  console.log(categoryPosts);
   return {
     props: {
       categoryPosts,

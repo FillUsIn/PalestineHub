@@ -6,12 +6,18 @@ import { getAuthorizationHeader } from './comments';
 const API_BASE_URI = '/posts';
 async function createSubcategoryPost(
   subCategoryName: string,
-  createPostDTO: CreatePostDTO
+  createPostDTO: CreatePostDTO,
+  accessToken?: string
 ): Promise<Post> {
   const response = await api.post<Post>(
     `${API_BASE_URI}/subcategory/${subCategoryName}`,
     createPostDTO,
-    { withCredentials: true, headers: await getAuthorizationHeader() }
+    {
+      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
   );
   return response.data;
 }

@@ -76,7 +76,6 @@ function Home({ topics }: Props) {
 
 export async function getServerSideProps() {
   const topics = await getTopics();
-  console.log(topics);
   return {
     props: {
       topics,

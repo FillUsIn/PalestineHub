@@ -1,26 +1,19 @@
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
-  Avatar,
   Button,
   CloseButton,
   Divider,
-  Group,
   LoadingOverlay,
   Select,
-  Text,
   TextInput,
   Textarea,
   Title,
 } from '@mantine/core';
-import { IconBrandReddit, IconCheck } from '@tabler/icons-react';
-import { Constants } from '@/lib/constants';
+import { IconCheck } from '@tabler/icons-react';
 import { notifications } from '@mantine/notifications';
-import { addArtificialDelay } from '@/lib/utils/network';
 import { useForm, SubmitHandler, useController } from 'react-hook-form';
 import { CreatePostDTO } from '@/types/dtos';
-import { createSubcategoryPost } from '@/api/posts';
 import { useRouter } from 'next/router';
-import useCategories from '@/hooks/useCategories';
 import { Category, Subcategory } from '@/types/entities';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -41,11 +34,9 @@ function CreatePostForm({ onDismiss, categories }: Props) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isValid },
     control,
     setValue,
-    resetField,
-    setFocus,
   } = useForm<Inputs>();
 
   const { field: selectedCategoryNameField } = useController({
@@ -59,9 +50,6 @@ function CreatePostForm({ onDismiss, categories }: Props) {
     control,
     rules: { required: true },
   });
-
-  // const [selectedCategoryName, setSelectedCategoryName] = useState()
-  // const [selectedSubCategoryName, setSelectedSubCategoryName] = useState()
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const subCategorySelectRef = useRef(null);
@@ -103,7 +91,6 @@ function CreatePostForm({ onDismiss, categories }: Props) {
   };
 
   const handleSubCategoryChange = (newSubCategoryNameValue: string | null) => {
-    // setSelectedSubCategoryName(newSubCategoryNameValue)
     selectedSubCategoryNameField.onChange(newSubCategoryNameValue);
   };
 
@@ -115,19 +102,21 @@ function CreatePostForm({ onDismiss, categories }: Props) {
   }) => {
     setIsSubmitting(true);
 
-    const createPostDTO: CreatePostDTO = {
+    const data: CreatePostDTO = {
       title: title.trim(),
       body: body?.trim(),
       url: contentUrl?.trim(),
     };
 
     try {
-      const createdPost = await createSubcategoryPost(
-        subCategoryName,
-        createPostDTO
-      );
+      const response = await fetch('/api/posts/create', {
+        method: 'POST',
+        body: JSON.stringify({ subCategoryName, ...data }),
+      });
 
-      if (createdPost) {
+      const createdPost = await response.json();
+
+      if (createdPost?.id) {
         notifications.show({
           color: 'green',
           title: 'Your post is now live!',
@@ -137,7 +126,7 @@ function CreatePostForm({ onDismiss, categories }: Props) {
         });
 
         router.push(
-          `/resources/${createdPost.categoryName}/${createdPost.subcategoryName}/posts/${createdPost.id}`
+          `/resources/${selectedCategoryNameField.value}/${subCategoryName}/posts/${createdPost.id}`
         );
         onDismiss();
       } else {
@@ -146,6 +135,14 @@ function CreatePostForm({ onDismiss, categories }: Props) {
           color: 'red',
         });
       }
+    } catch (error: any) {
+      notifications.show({
+        color: 'red',
+        title: error?.message,
+        message: 'Please try again',
+        icon: <IconCheck size='1rem' />,
+        autoClose: 4000,
+      });
     } finally {
       setIsSubmitting(false);
     }

@@ -5,7 +5,6 @@ import { Button, TextInput, PasswordInput, Box, Text } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { useRouter } from 'next/navigation';
 import { generateUsername } from 'unique-username-generator';
-import { CreateUserResponseDTO } from '../../types/dtos';
 
 export const SignUp = () => {
   const router = useRouter();
