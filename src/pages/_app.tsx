@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/notifications/styles.css';
+import '@mantine/carousel/styles.css';
 import { Notifications } from '@mantine/notifications';
 import Layout from '@/components/Layout/Layout';
 import SessionProvider from '@/components/SessionProvider';
