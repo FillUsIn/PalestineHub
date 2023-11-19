@@ -1,6 +1,6 @@
 import { getTopics } from '@/api/topics';
 import TopPosts from '@/components/TopPosts/TopThreePosts';
-import { Topic } from '@/types/dtos';
+import useIsMobile from '@/hooks/useIsMobile';
 import { Button, SegmentedControl } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -18,6 +18,7 @@ function Home({ topics }: Props) {
   const [selectedTab, setSelectedTab] = useState<Tab>(resultTypes[0]);
 
   const router = useRouter();
+  const isMobile = useIsMobile();
 
   return (
     <div>
@@ -54,11 +55,11 @@ function Home({ topics }: Props) {
         data={resultTypes}
         value={selectedTab}
         onChange={(value) => setSelectedTab(value)}
+        orientation={isMobile ? 'vertical' : 'horizontal'}
         fullWidth
         color='#007A3D'
         size='md'
-        className='mt-10'
-        radius={'xl'}
+        radius={isMobile ? 'lg' : 'xl'}
       />
 
       {topics && topics.length ? (

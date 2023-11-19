@@ -4,9 +4,10 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
-import { Logo75 } from '../../img/Logo';
+import { Logo50, Logo75 } from '../../img/Logo';
 import { useRouter } from 'next/router';
 import styles from './Layout.module.css';
+import useIsMobile from '@/hooks/useIsMobile';
 
 type Props = {
   children: ReactNode;
@@ -15,7 +16,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 function Layout({ children }: Props) {
   const [opened, { toggle }] = useDisclosure();
-  const isMobile = useMediaQuery(`(max-width: ${em(767)})`);
+  const isMobile = useIsMobile();
   const router = useRouter();
 
   const isSelected = (section: string) => {
@@ -36,13 +37,11 @@ function Layout({ children }: Props) {
     >
       <AppShell.Header withBorder={false}>
         <Group
-          className='mx-auto  h-full max-w-6xl px-7 xl:px-0'
+          className='mx-auto my-5 max-w-6xl px-7 xl:px-0'
           justify='space-between'
         >
           <Link href='/'>
-            <p className='space-x-1'>
-              <Logo75 />
-            </p>
+            <p className='space-x-1'>{isMobile ? <Logo50 /> : <Logo75 />}</p>
           </Link>
 
           {!isMobile && (
