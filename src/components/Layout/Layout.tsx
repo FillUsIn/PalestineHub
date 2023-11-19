@@ -25,19 +25,19 @@ function Layout({ children }: Props) {
   };
   return (
     <AppShell
-      header={{ height: 100 }}
+      header={{ height: isMobile ? 70 : 100 }}
       navbar={{
         width: 300,
         breakpoint: 'sm',
         collapsed: { mobile: !opened, desktop: true },
       }}
-      py={'xl'}
+      pt={'lg'}
       pb={100}
       className={`mx-auto max-w-6xl px-7 xl:px-0 ${inter.className}`}
     >
       <AppShell.Header withBorder={false}>
         <Group
-          className='mx-auto my-5 max-w-6xl px-7 xl:px-0'
+          className='mx-auto my-3 max-w-6xl px-7 xl:px-0'
           justify='space-between'
         >
           <Link href='/'>
