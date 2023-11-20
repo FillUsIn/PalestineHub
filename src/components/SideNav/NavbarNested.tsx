@@ -76,9 +76,9 @@ export function NavbarNested() {
 
   return (
     <nav className={styles.navbar}>
-      <ScrollArea className={styles.links}>
-        <div className={styles.linksInner}>{links}</div>
-      </ScrollArea>
+      {/* <ScrollArea className={styles.links}> */}
+      <div className={styles.linksInner}>{links}</div>
+      {/* </ScrollArea> */}
     </nav>
   );
 }
