@@ -158,8 +158,9 @@ const svg = (w: number, h: number) => (
   </svg>
 );
 
+const Logo50 = () => svg(80, 50);
 const Logo75 = () => svg(115, 75);
 const Logo100 = () => svg(153, 100);
 const Logo150 = () => svg(229, 150);
 
-export { Logo75, Logo100, Logo150 };
+export { Logo50, Logo75, Logo100, Logo150 };

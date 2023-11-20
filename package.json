@@ -13,12 +13,13 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@mantine/carousel": "^7.1.5",
     "@mantine/code-highlight": "^7.1.5",
-    "@mantine/core": "^7.1.5",
+    "@mantine/core": "^7.2.2",
     "@mantine/dates": "^7.1.5",
     "@mantine/dropzone": "^7.1.5",
     "@mantine/form": "^7.1.5",
-    "@mantine/hooks": "^7.1.5",
+    "@mantine/hooks": "^7.2.2",
     "@mantine/modals": "^7.1.5",
     "@mantine/notifications": "^7.1.5",
     "@mantine/nprogress": "^7.1.5",
@@ -30,6 +31,7 @@
     "@tiptap/starter-kit": "^2.1.12",
     "axios": "^1.5.1",
     "dayjs": "^1.11.10",
+    "embla-carousel-react": "^7.1.0",
     "framer-motion": "^10.16.4",
     "next": "13.5.6",
     "next-auth": "^4.24.3",
