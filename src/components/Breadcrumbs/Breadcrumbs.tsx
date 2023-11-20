@@ -1,5 +1,7 @@
 import React from 'react';
 import { Breadcrumbs as MantineBreadcrumbs, Anchor } from '@mantine/core';
+import Link from 'next/link';
+import useIsMobile from '@/hooks/useIsMobile';
 
 type BreadcrumbItem = {
   title: string;
@@ -21,6 +23,8 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
     title: home,
     href: '/',
   };
+
+  const isMobile = useIsMobile();
   return (
     <MantineBreadcrumbs
       separator={separator}
@@ -29,11 +33,17 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         separator: { color: 'grey', fontWeight: '500' },
       }}
     >
-      {[homeItem, ...items].map((item, index) => (
-        <Anchor href={item.href.toLocaleLowerCase()} key={index}>
-          {item.title}
-        </Anchor>
-      ))}
+      {isMobile
+        ? [homeItem, ...items].slice(-2).map((item, index) => (
+            <Link href={item.href.toLocaleLowerCase()} key={index}>
+              {item.title}
+            </Link>
+          ))
+        : [homeItem, ...items].map((item, index) => (
+            <Link href={item.href.toLocaleLowerCase()} key={index}>
+              {item.title}
+            </Link>
+          ))}
     </MantineBreadcrumbs>
   );
 };
