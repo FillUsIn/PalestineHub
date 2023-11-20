@@ -18,10 +18,8 @@ interface LinksGroupProps {
   initiallyOpened?: boolean;
   link: string;
   links?: { label: string; link: string }[];
-  setOpenCategory: Dispatch<
-    SetStateAction<'News' | 'Education' | 'Tools' | 'Charities' | undefined>
-  >;
-  openCategory: 'News' | 'Education' | 'Tools' | 'Charities' | undefined;
+  setOpenCategory: Dispatch<SetStateAction<string | undefined>>;
+  openCategory: string | undefined;
 }
 
 export function LinksGroup({

@@ -63,9 +63,7 @@ const mockdata = [
 ];
 
 export function NavbarNested() {
-  const [openCategory, setOpenCategory] = useState<
-    'News' | 'Education' | 'Tools' | 'Charities' | undefined
-  >();
+  const [openCategory, setOpenCategory] = useState<string | undefined>();
 
   const links = mockdata.map((item) => (
     <LinksGroup
