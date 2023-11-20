@@ -45,11 +45,11 @@ function SubCategoryPage({ subcategoryPosts, categories }: Props) {
 
   return (
     <>
-      <div className='flex justify-center'>
-        <div className='pr-5'>
+      <div className='grid md:grid-cols-4'>
+        <div className='col-span-1 hidden md:block  md:border-r-2 md:mr-10 md:pr-2'>
           <NavbarNested />
         </div>
-        <div className='flex flex-grow flex-col'>
+        <div className='col-span-3'>
           <Modal
             classNames={{ body: 'md:mx-5' }}
             opened={opened}

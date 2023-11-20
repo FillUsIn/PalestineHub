@@ -4,16 +4,18 @@ import {
   IconGift,
   IconBook,
   IconGauge,
+  IconNews,
 } from '@tabler/icons-react';
 import { LinksGroup } from './NavbarLinksGroup';
 import styles from './NavbarNested.module.css';
+import { useState } from 'react';
 
 const mockdata = [
   // { label: 'All Resources', link: '/resources', icon: IconGauge },
   {
     label: 'News',
     link: '/resources/news',
-    icon: IconGift,
+    icon: IconNews,
     links: [
       { label: 'Updates', link: '/resources/news/updates' },
       { label: 'Fake News', link: '/resources/news/fake news' },
@@ -61,8 +63,17 @@ const mockdata = [
 ];
 
 export function NavbarNested() {
+  const [openCategory, setOpenCategory] = useState<
+    'News' | 'Education' | 'Tools' | 'Charities' | undefined
+  >();
+
   const links = mockdata.map((item) => (
-    <LinksGroup {...item} key={item.label} />
+    <LinksGroup
+      openCategory={openCategory}
+      {...item}
+      key={item.label}
+      setOpenCategory={setOpenCategory}
+    />
   ));
 
   return (

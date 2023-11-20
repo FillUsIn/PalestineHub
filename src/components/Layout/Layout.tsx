@@ -3,11 +3,13 @@ import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { Logo50, Logo75 } from '../../img/Logo';
 import { useRouter } from 'next/router';
 import styles from './Layout.module.css';
 import useIsMobile from '@/hooks/useIsMobile';
+import { NavbarNested } from '../SideNav/NavbarNested';
+import { usePathname } from 'next/navigation';
 
 type Props = {
   children: ReactNode;
@@ -15,7 +17,8 @@ type Props = {
 const inter = Inter({ subsets: ['latin'] });
 
 function Layout({ children }: Props) {
-  const [opened, { toggle }] = useDisclosure();
+  const [opened_navBar, { toggle, close: closeNavBar, open: openNavBar }] =
+    useDisclosure();
   const isMobile = useIsMobile();
   const router = useRouter();
 
@@ -23,13 +26,20 @@ function Layout({ children }: Props) {
     if (router.query.category !== section) return '';
     return styles.isSelected;
   };
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    closeNavBar(); // Close the navigation panel
+  }, [pathname, closeNavBar]);
+
   return (
     <AppShell
       header={{ height: isMobile ? 70 : 100 }}
       navbar={{
         width: 300,
         breakpoint: 'sm',
-        collapsed: { mobile: !opened, desktop: true },
+        collapsed: { mobile: !opened_navBar, desktop: true },
       }}
       pt={'lg'}
       pb={100}
@@ -72,29 +82,18 @@ function Layout({ children }: Props) {
             </>
           )}
 
-          <Burger opened={opened} onClick={toggle} hiddenFrom='sm' size='md' />
+          <Burger
+            opened={opened_navBar}
+            onClick={toggle}
+            hiddenFrom='sm'
+            size='md'
+          />
         </Group>
       </AppShell.Header>
 
       <AppShell.Navbar p='md' className='mb-5'>
-        <ul
-          className={`flex flex-col space-y-6 pl-4 text-2xl font-medium ${styles.navigation}`}
-        >
-          <Link href='/resources/news' className={isSelected('news')}>
-            News
-          </Link>
-          <Link href='/resources/education' className={isSelected('education')}>
-            Education
-          </Link>
-          <Link href='/resources/tools' className={isSelected('tools')}>
-            Tools
-          </Link>
-          <Link href='/resources/charities' className={isSelected('charities')}>
-            Charities
-          </Link>
-          <hr />
-          <AuthActionButton />
-        </ul>
+        <NavbarNested />
+        <AuthActionButton className='mt-10' />
       </AppShell.Navbar>
 
       <AppShell.Main>{children}</AppShell.Main>
@@ -107,9 +106,11 @@ export default Layout;
 const CustomButton = ({
   text,
   onClick,
+  className,
 }: {
   text: string;
   onClick: VoidFunction;
+  className?: string;
 }) => {
   return (
     <Button
@@ -118,20 +119,25 @@ const CustomButton = ({
       size='sm'
       color='dark'
       onClick={onClick}
+      className={className}
     >
       {text}
     </Button>
   );
 };
 
-const AuthActionButton = () => {
+const AuthActionButton = ({ className }: { className?: string }) => {
   const { data: session } = useSession();
 
   const handleSignIn = () => signIn();
   const handleSignOut = () => signOut();
   return session ? (
-    <CustomButton text='Sign Out' onClick={handleSignOut} />
+    <CustomButton
+      className={className ?? ''}
+      text='Sign Out'
+      onClick={handleSignOut}
+    />
   ) : (
-    <CustomButton text='Sign In' onClick={handleSignIn} />
+    <CustomButton className={className} text='Sign In' onClick={handleSignIn} />
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import {
   Group,
   Box,
@@ -18,6 +18,10 @@ interface LinksGroupProps {
   initiallyOpened?: boolean;
   link: string;
   links?: { label: string; link: string }[];
+  setOpenCategory: Dispatch<
+    SetStateAction<'News' | 'Education' | 'Tools' | 'Charities' | undefined>
+  >;
+  openCategory: 'News' | 'Education' | 'Tools' | 'Charities' | undefined;
 }
 
 export function LinksGroup({
@@ -26,14 +30,21 @@ export function LinksGroup({
   initiallyOpened,
   link,
   links,
+  setOpenCategory,
+  openCategory,
 }: LinksGroupProps) {
   const router = useRouter();
   const hasLinks = Array.isArray(links);
   const shouldBeOpen = router.query.category === label.toLowerCase();
-  const [opened, setOpened] = useState(shouldBeOpen);
+  const opened = openCategory == label;
 
-  const handleButtonClick = (o: any) => {
-    setOpened(o);
+  const handleCategoryClicked = () => {
+    setOpenCategory((prev) => {
+      if (prev === label) {
+        return undefined;
+      }
+      return label;
+    });
     if (label !== 'All Resources') return;
     router.push(link);
   };
@@ -41,22 +52,22 @@ export function LinksGroup({
   return (
     <>
       <UnstyledButton
-        onClick={() => handleButtonClick((o: any) => !o)}
+        onClick={handleCategoryClicked}
         className={styles.control}
       >
         <Group justify='space-between' gap={0}>
           <Box style={{ display: 'flex', alignItems: 'center' }}>
             <ThemeIcon variant='transparent' size={30} color='#007A3D'>
-              <Icon style={{ width: rem(18), height: rem(18) }} />
+              <Icon style={{ width: rem(25), height: rem(25) }} />
             </ThemeIcon>
             <Box ml='md'>{label}</Box>
           </Box>
           {hasLinks && (
             <IconChevronRight
-              stroke={1.5}
+              stroke={3}
               style={{
-                width: rem(16),
-                height: rem(16),
+                width: rem(25),
+                height: rem(25),
                 transform: opened ? 'rotate(-90deg)' : 'none',
               }}
             />
@@ -64,7 +75,7 @@ export function LinksGroup({
         </Group>
       </UnstyledButton>
       {hasLinks && (
-        <Collapse in={opened}>
+        <Collapse in={openCategory == label}>
           {links.map((link) => (
             <div className={styles.linkWrapper} key={link.label}>
               <Link className={styles.link} href={link.link}>
