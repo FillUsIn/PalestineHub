@@ -1,4 +1,12 @@
-import { AppShell, Burger, Button, Group, Tabs, em } from '@mantine/core';
+import {
+  AppShell,
+  Burger,
+  Button,
+  Group,
+  ScrollArea,
+  Tabs,
+  em,
+} from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { Inter } from 'next/font/google';
@@ -28,7 +36,6 @@ function Layout({ children }: Props) {
   };
 
   const pathname = usePathname();
-
 
   if (typeof window !== 'undefined') {
     if (opened_navBar) {
@@ -100,10 +107,13 @@ function Layout({ children }: Props) {
         </Group>
       </AppShell.Header>
 
-
-      <AppShell.Navbar p='md' className='mb-5'>
-        <NavbarNested />
-        <AuthActionButton className='mt-10' />
+      <AppShell.Navbar px={10}>
+        <div className='h-full flex flex-col justify-between pb-10'>
+          <ScrollArea>
+            <NavbarNested />
+          </ScrollArea>
+          <AuthActionButton />
+        </div>
       </AppShell.Navbar>
 
       <AppShell.Main>{children}</AppShell.Main>
