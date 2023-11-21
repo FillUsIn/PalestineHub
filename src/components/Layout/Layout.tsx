@@ -29,10 +29,12 @@ function Layout({ children }: Props) {
 
   const pathname = usePathname();
 
-  if (opened_navBar) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = 'auto';
+  if (typeof window !== 'undefined') {
+    if (opened_navBar) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   }
 
   useEffect(() => {
