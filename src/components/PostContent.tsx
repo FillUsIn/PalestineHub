@@ -31,18 +31,16 @@ function PostContent({
       </div>
       <h1 className='mt-4 text-2xl font-semibold'>{post.title}</h1>
       {post.thumbnailUrl && (
-        <div className='max-w-1/2 mx-auto w-full sm:w-3/4 md:w-1/2'>
-          {' '}
-          {/* Center the container */}
+        <div className=''>
           <a href={post.url} target='_blank' className='relative group'>
             <div
               style={{
                 backgroundImage: `url(${post.thumbnailUrl})`,
-                backgroundSize: 'auto 100%',
+                backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
               }}
-              className='h-80 rounded-md shadow-lg'
+              className='h-80 w-full rounded-md shadow-lg'
             ></div>
             <div className='absolute inset-0 bg-black opacity-0 transition-all group-hover:opacity-50 duration-300 cursor-pointer'></div>
           </a>
