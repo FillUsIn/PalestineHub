@@ -29,7 +29,7 @@ function PostContent({
           </p>
         </div>
       </div>
-      <h1 className='mt-4 text-2xl font-semibold'>{post.title}</h1>
+      <h1 className='mt-4  text-2xl font-semibold'>{post.title}</h1>
       {post.thumbnailUrl && (
         <div className=''>
           <a href={post.url} target='_blank' className='relative group'>
@@ -44,7 +44,6 @@ function PostContent({
             ></div>
             <div className='absolute inset-0 bg-black opacity-0 transition-all group-hover:opacity-50 duration-300 cursor-pointer'></div>
           </a>
-
           <a
             href={post.url}
             target='_blank'
@@ -55,7 +54,7 @@ function PostContent({
         </div>
       )}
       {post.body && (
-        <p className=' whitespace-pre-line break-words'>{post.body}</p>
+        <p className='whitespace-pre-line break-words'>{post.body}</p>
       )}
 
       {/* <ContentInteractions

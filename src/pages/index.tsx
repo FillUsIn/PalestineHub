@@ -25,7 +25,7 @@ function Home({ topics }: Props) {
 
   return (
     <div>
-      <div className='md:mt-20 md:flex md:justify-between'>
+      <div className='md:mt-5 md:flex md:justify-between'>
         <p className='mx-auto text-3xl font-black leading-tight sm:text-5xl md:mx-0 md:text-start md:text-6xl lg:max-w-3xl'>
           Ultimate Resources Hub for the
           <span className='text-black'> PAL</span>
@@ -37,7 +37,7 @@ function Home({ topics }: Props) {
           <Button
             onClick={() => router.push('/resources')}
             radius={'xl'}
-            color='dark'
+            color='#007A3D'
             size={'md'}
             hiddenFrom='sm'
           >
@@ -46,7 +46,7 @@ function Home({ topics }: Props) {
           <Button
             onClick={() => router.push('/resources')}
             radius={'xl'}
-            color='dark'
+            color='#007A3D'
             size={'xl'}
             visibleFrom='sm'
           >
@@ -163,7 +163,7 @@ function TopPostPreview({ post, previewMode = false }: PostPreviewProps) {
         radius='lg'
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url(${thumbnailUrl})`,
-          backgroundSize: 'cover',
+          backgroundSize: 'auto 100%',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
         }}

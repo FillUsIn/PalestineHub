@@ -13,18 +13,6 @@ import { useState } from 'react';
 const mockdata = [
   // { label: 'All Resources', link: '/resources', icon: IconGauge },
   {
-    label: 'News',
-    link: '/resources/news',
-    icon: IconNews,
-    links: [
-      { label: 'Updates', link: '/resources/news/updates' },
-      { label: 'Fake News', link: '/resources/news/fake news' },
-      { label: 'Counter arguments', link: '/resources/news/counter arguments' },
-      { label: 'Discussions', link: '/resources/news/discussions' },
-      { label: 'General', link: '/resources/news/general news' },
-    ],
-  },
-  {
     label: 'Education',
     link: '/resources/education',
     icon: IconBook,
@@ -44,7 +32,7 @@ const mockdata = [
     icon: IconSettings,
     links: [
       // { label: 'All Tools', link: '/resources/tools' },
-      { label: 'BDS', link: '/resources/tools/bds' },
+      { label: 'Boycott', link: '/resources/tools/bds' },
       { label: 'Advocacy', link: '/resources/tools/advocacy' },
       { label: 'Fact Check', link: '/resources/tools/fact check' },
       { label: 'General', link: '/resources/tools/general tools' },
@@ -58,6 +46,18 @@ const mockdata = [
       // { label: 'All Charities', link: '/resources/charities' },
       { label: 'On The Ground', link: '/resources/charities/on the ground' },
       { label: 'General', link: '/resources/charities/general charities' },
+    ],
+  },
+  {
+    label: 'News',
+    link: '/resources/news',
+    icon: IconNews,
+    links: [
+      { label: 'Updates', link: '/resources/news/updates' },
+      { label: 'Fake News', link: '/resources/news/fake news' },
+      { label: 'Counter arguments', link: '/resources/news/counter arguments' },
+      { label: 'Discussions', link: '/resources/news/discussions' },
+      { label: 'General', link: '/resources/news/general news' },
     ],
   },
 ];
