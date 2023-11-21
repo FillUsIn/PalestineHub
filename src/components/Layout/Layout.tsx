@@ -137,7 +137,7 @@ const CustomButton = ({
       radius={'xl'}
       fw={'bolder'}
       size='sm'
-      color='#007A3D'
+      color='dark'
       onClick={onClick}
       className={className}
     >

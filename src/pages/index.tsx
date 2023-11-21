@@ -25,7 +25,7 @@ function Home({ topics }: Props) {
 
   return (
     <div>
-      <div className='md:mt-20 md:flex md:justify-between'>
+      <div className='md:mt-5 md:flex md:justify-between'>
         <p className='mx-auto text-3xl font-black leading-tight sm:text-5xl md:mx-0 md:text-start md:text-6xl lg:max-w-3xl'>
           Ultimate Resources Hub for the
           <span className='text-black'> PAL</span>
