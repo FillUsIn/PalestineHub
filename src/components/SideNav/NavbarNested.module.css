@@ -5,10 +5,10 @@
   );
   /* height: rem(800px); */
   /* width: 100%; */
-  padding: var(--mantine-spacing-md);
+  /* padding: var(--mantine-spacing-md); */
   padding-bottom: 0;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .header {
@@ -28,8 +28,8 @@
 }
 
 .linksInner {
-  padding-top: var(--mantine-spacing-xl);
-  padding-bottom: var(--mantine-spacing-xl);
+  /* padding-top: var(--mantine-spacing-xl);
+  padding-bottom: var(--mantine-spacing-xl); */
 }
 
 .footer {
