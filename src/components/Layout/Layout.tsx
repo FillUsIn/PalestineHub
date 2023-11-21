@@ -75,9 +75,6 @@ function Layout({ children }: Props) {
               <Group
                 className={`space-x-10 text-lg font-semibold ${styles.navigation}`}
               >
-                <Link href='/resources/news' className={isSelected('news')}>
-                  News
-                </Link>
                 <Link
                   href='/resources/education'
                   className={isSelected('education')}
@@ -92,6 +89,9 @@ function Layout({ children }: Props) {
                   className={isSelected('charities')}
                 >
                   Charities
+                </Link>
+                <Link href='/resources/news' className={isSelected('news')}>
+                  News
                 </Link>
               </Group>
               <AuthActionButton />
@@ -137,7 +137,7 @@ const CustomButton = ({
       radius={'xl'}
       fw={'bolder'}
       size='sm'
-      color='dark'
+      color='#007A3D'
       onClick={onClick}
       className={className}
     >

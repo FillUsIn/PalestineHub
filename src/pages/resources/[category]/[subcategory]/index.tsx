@@ -66,7 +66,7 @@ function SubCategoryPage({ subcategoryPosts, categories }: Props) {
               onClick={handleSubmitResourceClick}
               fw={'bolder'}
               radius='lg'
-              color='dark'
+              color='#007A3D'
               size='sm'
               className='mt-5 md:mt-0'
             >

@@ -37,7 +37,7 @@ function Home({ topics }: Props) {
           <Button
             onClick={() => router.push('/resources')}
             radius={'xl'}
-            color='dark'
+            color='#007A3D'
             size={'md'}
             hiddenFrom='sm'
           >
@@ -46,7 +46,7 @@ function Home({ topics }: Props) {
           <Button
             onClick={() => router.push('/resources')}
             radius={'xl'}
-            color='dark'
+            color='#007A3D'
             size={'xl'}
             visibleFrom='sm'
           >
@@ -163,7 +163,7 @@ function TopPostPreview({ post, previewMode = false }: PostPreviewProps) {
         radius='lg'
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url(${thumbnailUrl})`,
-          backgroundSize: 'cover',
+          backgroundSize: 'auto 100%',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
         }}
