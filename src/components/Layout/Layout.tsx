@@ -29,6 +29,7 @@ function Layout({ children }: Props) {
 
   const pathname = usePathname();
 
+
   if (typeof window !== 'undefined') {
     if (opened_navBar) {
       document.body.style.overflow = 'hidden';
@@ -99,7 +100,8 @@ function Layout({ children }: Props) {
         </Group>
       </AppShell.Header>
 
-      <AppShell.Navbar p='md' className='mb-5 '>
+
+      <AppShell.Navbar p='md' className='mb-5'>
         <NavbarNested />
         <AuthActionButton className='mt-10' />
       </AppShell.Navbar>
