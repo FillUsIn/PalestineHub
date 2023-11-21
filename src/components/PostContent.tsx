@@ -34,7 +34,12 @@ function PostContent({
         <div className=''>
           <a href={post.url} target='_blank' className='relative group'>
             <div
-              style={{ backgroundImage: `url(${post.thumbnailUrl})` }}
+              style={{
+                backgroundImage: `url(${post.thumbnailUrl})`,
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+              }}
               className='h-80 w-full rounded-md shadow-lg'
             ></div>
             <div className='absolute inset-0 bg-black opacity-0 transition-all group-hover:opacity-50 duration-300 cursor-pointer'></div>
