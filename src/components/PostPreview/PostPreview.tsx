@@ -28,7 +28,7 @@ const PostPreview: React.FC<PostPreviewProps> = ({
       radius='lg'
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), url(${thumbnailUrl})`,
-        backgroundSize: 'cover',
+        backgroundSize: 'auto 100%',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
       }}

@@ -22,7 +22,7 @@ const mockdata = [
       { label: 'Documentaries', link: '/resources/education/documentaries' },
       { label: 'Videos', link: '/resources/education/videos' },
       { label: 'Podcasts', link: '/resources/education/podcasts' },
-      { label: 'Books', link: '/resources/education/videos' },
+      { label: 'Books', link: '/resources/education/books' },
       { label: 'General', link: '/resources/education/general education' },
     ],
   },
@@ -32,7 +32,7 @@ const mockdata = [
     icon: IconSettings,
     links: [
       // { label: 'All Tools', link: '/resources/tools' },
-      { label: 'Boycott', link: '/resources/tools/bds' },
+      { label: 'Boycott', link: '/resources/tools/boycott' },
       { label: 'Advocacy', link: '/resources/tools/advocacy' },
       { label: 'Fact Check', link: '/resources/tools/fact check' },
       { label: 'General', link: '/resources/tools/general tools' },
