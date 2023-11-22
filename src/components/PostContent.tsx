@@ -36,7 +36,7 @@ function PostContent({
             <div
               style={{
                 backgroundImage: `url(${post.thumbnailUrl})`,
-                backgroundSize: 'cover',
+                backgroundSize: 'auto 100%',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
               }}
