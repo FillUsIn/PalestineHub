@@ -41,7 +41,7 @@ function Home({ topics }: Props) {
             size={'md'}
             hiddenFrom='sm'
           >
-            Learn more
+            More resources
           </Button>
           <Button
             onClick={() => router.push('/resources')}
@@ -50,7 +50,7 @@ function Home({ topics }: Props) {
             size={'xl'}
             visibleFrom='sm'
           >
-            Learn more
+            More resources
           </Button>
         </div>
       </div>

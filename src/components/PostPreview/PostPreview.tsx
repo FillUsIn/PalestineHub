@@ -22,13 +22,13 @@ const PostPreview: React.FC<PostPreviewProps> = ({
 
   return (
     <Paper
-      className='flex h-96 md:w-1/3 flex-col justify-center items-center overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover: duration-300'
+      className='flex h-80 md:w-1/3 flex-col justify-center items-center overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover: duration-300'
       component={Link}
       href={`/resources/${categoryName}/${subcategoryName}/posts/${id}`}
       radius='lg'
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), url(${thumbnailUrl})`,
-        backgroundSize: 'auto 100%',
+        backgroundSize: '100% auto',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
       }}
